@@ -20,9 +20,12 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public IPage CurrentFrame { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            CurrentFrame = new InitialDataPage();
         }
     }
 }

@@ -29,5 +29,8 @@
             <TreeViewItem Header="Архив"/>
             <TreeViewItem Header="Заряды"/>
         </TreeView>
+        <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding CurrentFrame}">
+            
+        </ContentControl>
     </Grid>
 </Window>

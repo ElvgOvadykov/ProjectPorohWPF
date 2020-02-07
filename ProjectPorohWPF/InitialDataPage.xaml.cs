@@ -18,7 +18,7 @@ namespace ProjectPorohWPF
     /// <summary>
     /// Логика взаимодействия для InitialDataPage.xaml
     /// </summary>
-    public partial class InitialDataPage : Page
+    public partial class InitialDataPage : UserControl, IPage
     {
         public InitialDataPage()
         {
