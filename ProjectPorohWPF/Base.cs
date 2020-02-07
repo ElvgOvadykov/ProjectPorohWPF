@@ -452,7 +452,7 @@ namespace ProjectPorohWPF
 
                 InRaspad.XW = 0.05f;
 
-                if (Glob.NT1 < 2) throw (999);
+                if (Glob.NT1 < 2) throw new IntException(999);
                 InRaspad.N11 = Glob.NT1 - 1;
                 InRaspad.N21 = Glob.NT2 + 1;
 

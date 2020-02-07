@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectPorohWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Расчет параметров порохового воздействия" Height="500" Width="1150">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Height="20">
+            <MenuItem Header="Расчет" ></MenuItem>
+            <MenuItem Header="Архив" ></MenuItem>
+            <MenuItem Header="Отчет" ></MenuItem>
+            <MenuItem Header="Справочники" ></MenuItem>
+        </Menu>
     </Grid>
 </Window>

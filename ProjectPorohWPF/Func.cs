@@ -37,7 +37,7 @@ namespace ProjectPorohWPF
 
             poz = f.IndexOf(ndc);
 
-            if (poz == 0) throw (0);
+            if (poz == 0) throw new IntException(0);
             fl = f.Substring(1, poz - 1) + dc + f.Substring(poz + 1, f.Length - poz);
             return fl;
 
