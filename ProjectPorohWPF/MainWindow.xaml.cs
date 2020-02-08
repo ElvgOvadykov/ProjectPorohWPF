@@ -27,5 +27,17 @@ namespace ProjectPorohWPF
             InitializeComponent();
             CurrentFrame = new InitialDataPage();
         }
+
+        private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
+        {
+            Panel.SetZIndex(DataPage, 1);
+            Panel.SetZIndex(ChargeSelection, 0);
+        }
+
+        private void TreeViewItem_Selected_Charge_Selection(object sender, RoutedEventArgs e)
+        {
+            Panel.SetZIndex(DataPage, 0);
+            Panel.SetZIndex(ChargeSelection, 1);
+        }
     }
 }

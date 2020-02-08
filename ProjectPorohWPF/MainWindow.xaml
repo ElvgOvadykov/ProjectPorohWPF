@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectPorohWPF"
         mc:Ignorable="d"
-        Title="Расчет параметров порохового воздействия" Height="500" Width="950">
+        Title="Расчет параметров порохового воздействия" Height="500" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -23,14 +23,13 @@
         </Menu>
         <TreeView x:Name="TreeViewMain" Grid.Row="2" Grid.RowSpan="15">
             <TreeViewItem Header="Расчет">
-                <TreeViewItem Header="Общая информация"/>
-                <TreeViewItem Header="Заряды"/>
+                <TreeViewItem Header="Общая информация" Selected="TreeViewItem_Selected_Initial_Data"/>
+                <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_Charge_Selection"/>
             </TreeViewItem>
             <TreeViewItem Header="Архив"/>
             <TreeViewItem Header="Заряды"/>
         </TreeView>
-        <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding CurrentFrame}">
-            
-        </ContentControl>
+        <local:InitialDataPage x:Name="DataPage" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"></local:InitialDataPage>
+        <local:ChargesPage x:Name="ChargeSelection" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>

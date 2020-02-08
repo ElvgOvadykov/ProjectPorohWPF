@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -82,11 +82,11 @@
         <Label Content="Коэффициент Пуассона породы" Grid.Row="7" Grid.Column="2"/>
         <TextBox x:Name="PoissonRatio" Grid.Row="7" Grid.Column="3"/>
         <Label Content="Флюид" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <Label Content="Тип флюида в скважине" Grid.Row="8" Grid.Column="2"/>
-        <TextBox x:Name="TypeFluid" Grid.Row="8" Grid.Column="3"/>
-        <Label Content="Уровень флюида в скважине" Grid.Row="9" Grid.Column="2"/>
-        <TextBox x:Name="FluidLevel" Grid.Row="9" Grid.Column="3"/>
-        <Label Content="Плотность флюида, г/см3" Grid.Row="10" Grid.Column="2"/>
-        <TextBox x:Name="FluidDensity" Grid.Row="10" Grid.Column="3"/>
+        <Label Content="Тип флюида в скважине" Grid.Row="9" Grid.Column="2"/>
+        <TextBox x:Name="TypeFluid" Grid.Row="9" Grid.Column="3"/>
+        <Label Content="Уровень флюида в скважине" Grid.Row="10" Grid.Column="2"/>
+        <TextBox x:Name="FluidLevel" Grid.Row="10" Grid.Column="3"/>
+        <Label Content="Плотность флюида, г/см3" Grid.Row="11" Grid.Column="2"/>
+        <TextBox x:Name="FluidDensity" Grid.Row="11" Grid.Column="3"/>
     </Grid>
 </UserControl>
