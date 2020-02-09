@@ -1324,6 +1324,7 @@ namespace ProjectPorohWPF
 
     class CPoroh
     {
+        public int ID;
         public string Name;    //Название смеси
         public double Power;        //сила пороха
         public double Temper;       //температура горения в K
@@ -1336,8 +1337,9 @@ namespace ProjectPorohWPF
             IsActive = false;
         }
 
-        public CPoroh(string Name, double Power, double Temper, double UdGaz, double Dens)
+        public CPoroh(int id,string Name, double Power, double Temper, double UdGaz, double Dens)
         {
+            ID = id;
             this.Name = Name;
             this.Power = Power;
             this.Temper = Temper;
@@ -1349,6 +1351,7 @@ namespace ProjectPorohWPF
 
     class CZarad
     {
+        public int ID;
         public string Name;
         public CPoroh Poroh;
         public double Dnar;        //диаметр наружный  ,мм
@@ -1372,6 +1375,17 @@ namespace ProjectPorohWPF
         {
             IsActive = false;
             Poroh = null;
+        }
+
+        public CZarad(int id, string name, CPoroh poroh, double dnar, double dvnutr, double length)
+        {
+            ID = id;
+            Name = name;
+            Poroh = poroh;
+            Dnar = dnar;
+            Dvnutr = dvnutr;
+            L = length;
+            IsActive = false;
         }
     }
 }
