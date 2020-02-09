@@ -1345,6 +1345,11 @@ namespace ProjectPorohWPF
             this.Dens = Dens;
             IsActive = false;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     class CZarad
