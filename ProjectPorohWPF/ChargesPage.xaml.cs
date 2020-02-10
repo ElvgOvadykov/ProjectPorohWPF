@@ -18,7 +18,7 @@ namespace ProjectPorohWPF
     /// <summary>
     /// Логика взаимодействия для ChargesPage.xaml
     /// </summary>
-    public partial class ChargesPage : UserControl, IPage
+    public partial class ChargesPage : UserControl
     {
         public ChargesPage()
         {

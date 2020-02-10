@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ProjectPorohWPF
 {
     /// <summary>
-    /// Логика взаимодействия для InitialDataPage.xaml
+    /// Логика взаимодействия для AllChargesPage.xaml
     /// </summary>
-    public partial class InitialDataPage : UserControl
+    public partial class AllChargesPage : UserControl
     {
-        public InitialDataPage()
+        public AllChargesPage()
         {
             InitializeComponent();
         }
