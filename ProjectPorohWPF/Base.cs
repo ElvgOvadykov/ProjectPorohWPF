@@ -1392,5 +1392,10 @@ namespace ProjectPorohWPF
             L = length;
             IsActive = false;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

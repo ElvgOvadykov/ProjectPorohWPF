@@ -40,6 +40,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_Charge_Selection(object sender, RoutedEventArgs e)
         {
+            LoadChargesCombobox();
             ViewPage(ChargeSelection);
         }
 
@@ -78,6 +79,22 @@ namespace ProjectPorohWPF
                 dt.Rows.Add(item.Name, item.Dnar, item.Dvnutr, item.L, item.Poroh);
             }
             AllCharges.ChargesDataGrid.ItemsSource = dt.DefaultView;
+        }
+
+        private void LoadChargesCombobox()
+        {
+            List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+            foreach(var item in zarads)
+            {
+                ChargeSelection.MainСharge.Items.Add(item);
+                ChargeSelection.ActiveСharge.Items.Add(item);
+            }
+            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            foreach(var item in porohs)
+            {
+                ChargeSelection.ActiveСhargeType.Items.Add(item);
+                ChargeSelection.MainСhargeType.Items.Add(item);
+            }
         }
     }
 }

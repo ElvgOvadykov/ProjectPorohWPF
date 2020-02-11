@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="40px"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="ChargesDataGrid" AutoGenerateColumns="True"></DataGrid>
+        <DataGrid x:Name="ChargesDataGrid" AutoGenerateColumns="True" BorderBrush="WhiteSmoke"></DataGrid>
         <Button x:Name="UpdateCharges" Content="Сохранить измениния" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0"></Button>
     </Grid>
 </UserControl>

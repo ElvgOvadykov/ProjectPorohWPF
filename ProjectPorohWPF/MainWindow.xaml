@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectPorohWPF"
         mc:Ignorable="d"
         Title="Расчет параметров порохового воздействия" Height="500" Width="1000">
-    <Grid>
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
@@ -27,12 +27,13 @@
             <TreeViewItem Header="Расчет">
                 <TreeViewItem Header="Общая информация" Selected="TreeViewItem_Selected_Initial_Data"/>
                 <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_Charge_Selection"/>
+                <TreeViewItem Header="Давление в зоне горения" Visibility="Collapsed"/>
             </TreeViewItem>
             <TreeViewItem Header="Архив"/>
             <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_All_Charges"/>
         </TreeView>
-        <local:InitialDataPage x:Name="DataPage" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"></local:InitialDataPage>
-        <local:ChargesPage x:Name="ChargeSelection" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
-        <local:AllChargesPage x:Name="AllCharges" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
+        <local:InitialDataPage x:Name="DataPage" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1" Padding="10"/>
+        <local:ChargesPage x:Name="ChargeSelection" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0" Padding="10"/>
+        <local:AllChargesPage x:Name="AllCharges" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0" Padding="10"/>
     </Grid>
 </Window>
