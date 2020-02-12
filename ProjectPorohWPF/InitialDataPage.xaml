@@ -6,8 +6,9 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="WhiteSmoke">
+    <Grid Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -54,24 +55,28 @@
         <TextBox x:Name="WellNumber" Grid.Row="9" Grid.Column="1"/>
         <Label Content="Забой текущий, м" Grid.Row="10" Grid.Column="0"/>
         <TextBox x:Name="SlaughterCurrent" Grid.Row="10" Grid.Column="1"/>
-        <TextBlock Grid.Row="11" Grid.Column="0">
+        <TextBlock Grid.Row="11" Grid.Column="0" VerticalAlignment="Center">
             Мощность интервала
             <LineBreak />
             перфорации, м
         </TextBlock>
         <TextBox x:Name="PunchIntervalPower" Grid.Row="11" Grid.Column="1"/>
-        <TextBlock Grid.Row="12" Grid.Column="0">
+        <TextBlock Grid.Row="12" Grid.Column="0" VerticalAlignment="Center">
             Подошва интервала
             <LineBreak />
             перфорации, м
         </TextBlock>
         <TextBox x:Name="SolePerforationInterval" Grid.Row="12" Grid.Column="1"/>
-        <TextBlock Grid.Row="13" Grid.Column="0">
+        <TextBlock Grid.Row="13" Grid.Column="0" VerticalAlignment="Center">
             Глубина установки
             <LineBreak />
             генератора, м
         </TextBlock>
         <TextBox x:Name="GeneratorDepth" Grid.Row="13" Grid.Column="1"/>
+        <TextBlock Grid.Row="14" Grid.Column="0" VerticalAlignment="Center">
+            Плотность перфорации
+        </TextBlock>
+        <TextBox x:Name="PerforationDensity" Grid.Row="14" Grid.Column="1"/>
         <Label Content="Порода и пласт" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Пластовое давление , МПа" Grid.Row="4" Grid.Column="2"/>
         <TextBox x:Name="ReservoirPressure" Grid.Row="4" Grid.Column="3"/>
