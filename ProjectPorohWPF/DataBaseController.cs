@@ -91,5 +91,39 @@ namespace ProjectPorohWPF
                 return zarads;
             }
         }
+
+        public static List<double> GetDataTimeIntervals() //инфа по интервалам вывода
+        {
+            string sql = "SELECT * FROM `DataTimeInterval`";
+            List<double> result = new List<double>();
+            // Создать объект Command.
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                try
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                double value = reader.GetDouble(1);
+                                result.Add(value);
+                            }
+                        }
+                    }
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            return result;
+        }
     }
 }

@@ -1186,16 +1186,16 @@ namespace ProjectPorohWPF
             };
         }
 
-        void SetCountCalcPoint(int CountPoint)                 //присвоить количество точек для вычисления
+        public void SetCountCalcPoint(int CountPoint)                 //присвоить количество точек для вычисления
         {
             this.CountPoint = CountPoint;
         }
-        void SetZarad(ref CZarad Osn,ref CZarad Vosp)           //выбрать заряды на расчет
+        public void SetZarad(ref CZarad Osn,ref CZarad Vosp)           //выбрать заряды на расчет
         {
             ZaradOsn = Osn;
             ZaradVosp = Vosp;
         }
-        void LoadBaseParams(ref CLOADPARAMS Params)                   // базовые параметры для расчета
+        public void LoadBaseParams(ref CLOADPARAMS Params)                   // базовые параметры для расчета
         {
             if (!object.ReferenceEquals(this.Params, Params)) 
             //if (this.Params != Params)
@@ -1219,7 +1219,7 @@ namespace ProjectPorohWPF
             Glob.TPX = Params.TPvdolWell;
             InBase.XG = Params.dHFromGenToMan;
         }
-        void SetCalcInterval(double T)                  //присвоить интервал для расчета,c
+        public void SetCalcInterval(double T)                  //присвоить интервал для расчета,c
         {
             Params.DlitProc = T;
             Glob.TK = T;
@@ -1322,80 +1322,7 @@ namespace ProjectPorohWPF
         }
     }
 
-    class CPoroh
-    {
-        public int ID;
-        public string Name;    //Название смеси
-        public double Power;        //сила пороха
-        public double Temper;       //температура горения в K
-        public double UdGaz;        //удельная газопроизводительность
-        public double Dens;         //плотность  в гк/м3
-        public bool IsActive;      //активна смесь или уже типа удалили ее
+    
 
-        public CPoroh()
-        {
-            IsActive = false;
-        }
-
-        public CPoroh(int id,string Name, double Power, double Temper, double UdGaz, double Dens)
-        {
-            ID = id;
-            this.Name = Name;
-            this.Power = Power;
-            this.Temper = Temper;
-            this.UdGaz = UdGaz;
-            this.Dens = Dens;
-            IsActive = false;
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
-    class CZarad
-    {
-        public int ID;
-        public string Name;
-        public CPoroh Poroh;
-        public double Dnar;        //диаметр наружный  ,мм
-        public double Dvnutr;      //диаметр внутренний ,мм
-        public double L;           //длина заряда    ,мм
-        public bool IsActive;     //активен заряд или типа удалили его уже
-        public void SetParametr(string Name, double Dnar, double Dvnutr, double L)
-        {
-            this.Name = Name;
-            this.Dnar = Dnar;
-            this.Dvnutr = Dvnutr;
-            this.L = L;
-        }
-
-        public void SetPoroh(CPoroh Poroh)
-        {
-            this.Poroh = Poroh;
-        }
-
-        public CZarad()
-        {
-            IsActive = false;
-            Poroh = null;
-        }
-
-        public CZarad(int id, string name, CPoroh poroh, double dnar, double dvnutr, double length)
-        {
-            ID = id;
-            Name = name;
-            Poroh = poroh;
-            Dnar = dnar;
-            Dvnutr = dvnutr;
-            L = length;
-            IsActive = false;
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
+    
 }

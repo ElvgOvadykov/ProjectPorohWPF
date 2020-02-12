@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CombustionPressurePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InitialDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,7 +105,12 @@
     <Compile Include="ChargesPage.xaml.cs">
       <DependentUpon>ChargesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CombustionPressurePage.xaml.cs">
+      <DependentUpon>CombustionPressurePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CPoroh.cs" />
     <Compile Include="CReference.cs" />
+    <Compile Include="CZarad.cs" />
     <Compile Include="DataBaseController.cs" />
     <Compile Include="Func.cs" />
     <Compile Include="InitialDataPage.xaml.cs">

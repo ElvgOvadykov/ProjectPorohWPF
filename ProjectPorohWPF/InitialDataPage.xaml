@@ -74,7 +74,7 @@
         </TextBlock>
         <TextBox x:Name="GeneratorDepth" Grid.Row="13" Grid.Column="1"/>
         <TextBlock Grid.Row="14" Grid.Column="0" VerticalAlignment="Center">
-            Плотность перфорации
+            Плотность перфорации отв/м
         </TextBlock>
         <TextBox x:Name="PerforationDensity" Grid.Row="14" Grid.Column="1"/>
         <Label Content="Порода и пласт" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
