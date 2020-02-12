@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.Row="0" Height="20" Grid.ColumnSpan="5">
             <MenuItem Header="Расчет" >
-                <MenuItem Header="Рассчитать"></MenuItem>
+                <MenuItem Header="Рассчитать" Click="Click_Calculation"></MenuItem>
             </MenuItem>
             <MenuItem Header="Архив" ></MenuItem>
             <MenuItem Header="Отчет" ></MenuItem>

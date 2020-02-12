@@ -23,6 +23,8 @@ namespace ProjectPorohWPF
     public partial class MainWindow : Window
     {
 
+        CLOADPARAMS BaseCalcParam;
+
         List<UserControl> Pages = new List<UserControl>();
 
         public MainWindow()
@@ -94,6 +96,48 @@ namespace ProjectPorohWPF
             {
                 ChargeSelection.ActiveСhargeType.Items.Add(item);
                 ChargeSelection.MainСhargeType.Items.Add(item);
+            }
+        }
+
+        private void Click_Calculation(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private bool CorrectData()
+        {
+            BaseCalcParam.NameWell = DataPage.WellNumber.Text;
+            if(BaseCalcParam.NameWell == "")
+            {
+                MessageBox.Show("Введите название скважины"); //?????????????????????????????????????????????????????????
+                throw (new IntException(0));
+                return false;
+            }
+            BaseCalcParam.NameMestor = DataPage.FieldName.Text;
+            if (BaseCalcParam.NameMestor == "") BaseCalcParam.NameMestor = "Без названия";
+            try
+            {
+                BaseCalcParam.Zaboy = Convert.ToDouble(DataPage.SlaughterCurrent.Text);
+                BaseCalcParam.Dvn = Convert.ToDouble(DataPage.CasingDiameter.Text); //как перевести внутренний и внешний  диаметр в диаметр и толщину обсадной калонны
+                BaseCalcParam.GlubVoda = Convert.ToDouble(DataPage.CasingDiameter.Text);
+                BaseCalcParam.DensVoda = ConvertToFloatF(StringGrid3->Cells[1][6]);
+                BaseCalcParam.HPerf = ConvertToFloatF(StringGrid3->Cells[1][7]);
+                BaseCalcParam.PodIntPerf = ConvertToFloatF(StringGrid3->Cells[1][8]);
+
+                BaseCalcParam.DensPerf = ConvertToFloatF(StringGrid3->Cells[1][9]);
+                BaseCalcParam.CountOsnZarad = ConvertToFloatF(StringGrid3->Cells[1][13]);
+                BaseCalcParam.CountVospZarad = ConvertToFloatF(StringGrid3->Cells[1][11]);
+                BaseCalcParam.GlubGen = ConvertToFloatF(StringGrid3->Cells[1][14]);
+                BaseCalcParam.Pplast = ConvertToFloatF(StringGrid3->Cells[1][15]) / 10.0;
+                BaseCalcParam.Tplast = ConvertToFloatF(StringGrid3->Cells[1][16]);
+                BaseCalcParam.ModUnga = ConvertToFloatF(StringGrid3->Cells[1][17]);
+                BaseCalcParam.KPuass = ConvertToFloatF(StringGrid3->Cells[1][18]);
+                BaseCalcParam.TPvdolWell = 1.0;
+                BaseCalcParam.dHFromGenToMan = 1.0;
+            }
+            catch
+            {
+
             }
         }
     }
