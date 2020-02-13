@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,8 +45,9 @@ namespace ProjectPorohWPF
         {
             InitializeComponent();
             Pages.Add(DataPage);
-            Pages.Add(ChargeSelection);
+            Pages.Add(Test);
             Pages.Add(AllCharges);
+            Pages.Add(CombustionPressure);
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -63,6 +65,11 @@ namespace ProjectPorohWPF
         {
             LoadAllCharges();
             ViewPage(AllCharges);
+        }
+
+        private void TreeViewItem_Selected_Combustion_Pressure(object sender, RoutedEventArgs e)
+        {
+            ViewPage(CombustionPressure);
         }
 
         private void ViewPage(UserControl page)
@@ -96,19 +103,43 @@ namespace ProjectPorohWPF
             AllCharges.ChargesDataGrid.ItemsSource = dt.DefaultView;
         }
 
+        //private void LoadChargesCombobox()
+        //{
+        //    ChargeSelection.MainСharge.Items.Clear();
+        //    ChargeSelection.ActiveСharge.Items.Clear();
+        //    ChargeSelection.ActiveСhargeType.Items.Clear();
+        //    ChargeSelection.MainСhargeType.Items.Clear();
+        //    List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+        //    foreach (var item in zarads)
+        //    {
+        //        ChargeSelection.MainСharge.Items.Add(item);
+        //        ChargeSelection.ActiveСharge.Items.Add(item);
+        //    }
+        //    List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+        //    foreach (var item in porohs)
+        //    {
+        //        ChargeSelection.ActiveСhargeType.Items.Add(item);
+        //        ChargeSelection.MainСhargeType.Items.Add(item);
+        //    }
+        //}
+
         private void LoadChargesCombobox()
         {
+            Test.MainСharge.Items.Clear();
+            Test.ActiveСharge.Items.Clear();
+            Test.ActiveСhargeType.Items.Clear();
+            Test.MainСhargeType.Items.Clear();
             List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
             foreach (var item in zarads)
             {
-                ChargeSelection.MainСharge.Items.Add(item);
-                ChargeSelection.ActiveСharge.Items.Add(item);
+                Test.MainСharge.Items.Add(item);
+                Test.ActiveСharge.Items.Add(item);
             }
             List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             foreach (var item in porohs)
             {
-                ChargeSelection.ActiveСhargeType.Items.Add(item);
-                ChargeSelection.MainСhargeType.Items.Add(item);
+                Test.ActiveСhargeType.Items.Add(item);
+                Test.MainСhargeType.Items.Add(item);
             }
         }
 
@@ -135,8 +166,8 @@ namespace ProjectPorohWPF
             double t1, t2;
             try
             {
-                t1 = Convert.ToDouble(Edit1->Text);
-                t2 = Convert.ToDouble(Edit8->Text);
+                t1 = Convert.ToDouble(CombustionPressure.Distance.Text);
+                //t2 = Convert.ToDouble(Edit8->Text);
             }
             catch (Exception ex)
             {
@@ -145,52 +176,52 @@ namespace ProjectPorohWPF
                 return;
             }
 
-            if (t2 > Reference->DataTimeInterval[0])
-            {
-                t2 = Reference->DataTimeInterval[0];
-                Edit8->Text = RoundS(t2, 2);
-            }
+            //if (t2 > Reference->DataTimeInterval[0])
+            //{
+            //    t2 = Reference->DataTimeInterval[0];
+            //    Edit8->Text = RoundS(t2, 2);
+            //}
 
-            BaseRasch->SetdHFromGenToMan(t1);
-            BaseRasch->SetTPvdolWell(t2);
+            BaseRasch.SetdHFromGenToMan(t1);
+            //BaseRasch.SetTPvdolWell(t2);
 
             int countiter = 0;
 
-            while (1)
+            while (true)
             {
                 countiter++;
                 try
                 {
-                    BaseRasch->Calc();
+                    BaseRasch.Calc();//?????????????????????????????
                     break;
                     if (countiter > 20) break;
                 }
-                catch (...)
-		{
-                    BaseRasch->PlusK++;
+                catch (Exception ex)
+		        {
+                    BaseRasch.PlusK++;
                     continue;
                 }
-                }
+            }
 
-                BaseRasch->GetCalcTimes(&T);
-                BaseRasch->GetCalcP(&P);
-                BaseRasch->GetCalcTemper(&Temper);
-                BaseRasch->GetDlinTrech(&DlinTrech);
-                BaseRasch->GetShirTrech(&ShirTrech);
-                BaseRasch->Get1CoorGaz(&Coord1Gaz);
-                BaseRasch->Get2CoorGaz(&Coord2Gaz);
-                BaseRasch->GetDavlOfWell(&Davl);
-                BaseRasch->GetCoordVoda(&Voda);
-                BaseRasch->GetWellCoord(&WellData);
+                BaseRasch.GetCalcTimes(ref T);
+                BaseRasch.GetCalcP(ref P);
+                BaseRasch.GetCalcTemper(ref Temper);
+                BaseRasch.GetDlinTrech(ref DlinTrech);
+                BaseRasch.GetShirTrech(ref ShirTrech);
+                BaseRasch.Get1CoorGaz(ref Coord1Gaz);
+                BaseRasch.Get2CoorGaz(ref Coord2Gaz);
+                BaseRasch.GetDavlOfWell(ref Davl);
+                BaseRasch.GetCoordVoda(ref Voda);
+                BaseRasch.GetWellCoord(ref WellData);
 
-                GetDataToTables();
+                //GetDataToTables();
                 InsertDataToCharts();
 
-                TabSheet1->Enabled = false;
-                Excel1->Enabled = true;
+                //TabSheet1->Enabled = false;
+                //Excel1->Enabled = true;
 
-            }
         }
+        
         private bool CorrectData()
         {
             BaseCalcParam.NameWell = DataPage.WellNumber.Text;
@@ -272,7 +303,31 @@ namespace ProjectPorohWPF
 
         private void ClearCharts() //Очистка графиков!!!!!
         {
+            
+        }
 
+        private void InsertDataToCharts()
+        {
+
+        }
+
+        private void InsertDataToChart(PlotView plot, List<double> data, List<double> data1, List<double> data2)
+        {
+            double x;
+            double y;
+            double z;
+
+            ClearChart(plot);
+
+            //PlotModel model = new PlotModel();//???????
+
+
+        }
+
+        private void ClearChart(PlotView plot)
+        {
+            plot.Model.Series.Clear();
         }
     }
 }
+

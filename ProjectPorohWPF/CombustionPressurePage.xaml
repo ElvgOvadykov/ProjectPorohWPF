@@ -16,6 +16,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -33,18 +34,26 @@
             <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Время, с</TextBlock>
             <TextBlock x:Name="CurrentTime" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
         </Grid>
-        <!--<TextBlock VerticalAlignment="Center">Давление, атм</TextBlock>
-        <TextBlock VerticalAlignment="Center">Давление, атм</TextBlock>-->
         <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
-        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальное давление, МПа</TextBlock>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальное давление, МПа</TextBlock>
-        <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">Гидростатическое давление, МПа</TextBlock>
-        <TextBlock Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">Горное давление, МПа</TextBlock>
-        <TextBlock Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">Глубина депрессионной воронки, МПа</TextBlock>
-        <TextBlock x:Name="MaxPressure" Grid.Row="2" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="MinPressure" Grid.Row="3" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="HydrostaticPressure" Grid.Row="4" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="RockPressure" Grid.Row="5" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="DepressionDepth" Grid.Row="6" Grid.Column="1"></TextBlock>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Расстояние от генератора до места рагистрации давления</TextBlock>
+            <TextBox x:Name="Distance" Grid.Column="1" Text="30"></TextBox>
+            <Button x:Name="Recount" Grid.Column="2" VerticalAlignment="Center">Пересчитать</Button>
+        </Grid>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальное давление, МПа</TextBlock>
+        <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальное давление, МПа</TextBlock>
+        <TextBlock Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">Гидростатическое давление, МПа</TextBlock>
+        <TextBlock Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">Горное давление, МПа</TextBlock>
+        <TextBlock Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center">Глубина депрессионной воронки, МПа</TextBlock>
+        <TextBlock x:Name="MaxPressure" Grid.Row="3" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="MinPressure" Grid.Row="4" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="HydrostaticPressure" Grid.Row="5" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="RockPressure" Grid.Row="6" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="DepressionDepth" Grid.Row="7" Grid.Column="1"></TextBlock>
     </Grid>
 </UserControl>

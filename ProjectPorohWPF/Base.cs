@@ -1224,42 +1224,42 @@ namespace ProjectPorohWPF
             Params.DlitProc = T;
             Glob.TK = T;
         }
-        void SetdHFromGenToMan(double dH)                               //выбрать расстояние от манометра до генератора
+        public void SetdHFromGenToMan(double dH)                               //выбрать расстояние от манометра до генератора
         {
             Params.dHFromGenToMan = dH;
             InBase.XG = dH;
         }
-        void SetTPvdolWell(double dT)                                       //выбрать время вывода вдоль скважины
+        public void SetTPvdolWell(double dT)                                       //выбрать время вывода вдоль скважины
         {
             Params.TPvdolWell = dT;
             Glob.TPX = dT;
         }
-        void Calc()                                                                        //чего нить посчитать
+        public void Calc()                                                                        //чего нить посчитать
         {
 
         }
-        void GetCalcTimes(ref List<double> T)           //вернуть интервалы времени
+        public void GetCalcTimes(ref List<double> T)           //вернуть интервалы времени
         {
             for (int i = 1; i < CountPoint; i++)
             {
                 T.Add(Glob.TY[i]);
             }
         }
-        void GetCalcP(ref List<double> P)          //вернуть давление
+        public void GetCalcP(ref List<double> P)          //вернуть давление
         {
             for (int i = 1; i < CountPoint; i++)
             {
                 P.Add(Glob.PY[i]);
             }
         }
-        void GetCalcTemper(ref List<double> Temp)   //вернуть температуру{
+        public void GetCalcTemper(ref List<double> Temp)   //вернуть температуру{
         {
             for (int i = 1; i < CountPoint; i++)
             {
                 Temp.Add(Glob.X4Y[i]);
             }
         }
-        void GetDlinTrech(ref List<double> L)           //вернуть длину трещины от времени
+        public void GetDlinTrech(ref List<double> L)           //вернуть длину трещины от времени
         {
             double oldL = -1;
             for (int i = 1; i < CountPoint; i++)
@@ -1269,7 +1269,7 @@ namespace ProjectPorohWPF
                 L.Add(Glob.FL[i]);
             }
         }
-        void GetShirTrech(ref List<double> Shir)        //вернуть ширину трещины от времени
+        public void GetShirTrech(ref List<double> Shir)        //вернуть ширину трещины от времени
         {
             double oldS = -1;
             for (int i = 1; i < CountPoint; i++)
@@ -1279,21 +1279,21 @@ namespace ProjectPorohWPF
                 Shir.Add(Glob.FW[i]);
             }
         }
-        void Get1CoorGaz(ref List<double> Coord1)  //первая координата границы газовой области{
+        public void Get1CoorGaz(ref List<double> Coord1)  //первая координата границы газовой области{
         {
             for (int i = 1; i < CountPoint; i++)
             {
                 Coord1.Add(Glob.HSP - Glob.X2Y[i]);            //от низа  перф отв
             }
         }
-        void Get2CoorGaz(ref List<double> Coord2)  //вторая координата границы газовой области 
+        public void Get2CoorGaz(ref List<double> Coord2)  //вторая координата границы газовой области 
         {
             for (int i = 1; i < CountPoint; i++)
             {
                 Coord2.Add(Glob.HSP - Glob.X3Y[i]);
             }
         }
-        void GetDavlOfWell(ref List<double> Davl)   //распределение давление в стволе скважины
+        public void GetDavlOfWell(ref List<double> Davl)   //распределение давление в стволе скважины
         {
             int j;
             for (int i = 1; i < Glob.N3; i++)
@@ -1302,14 +1302,14 @@ namespace ProjectPorohWPF
                 Davl.Add(Glob.PSX[j] / 100000.0);
             }
         }
-        void GetWellCoord(ref List<double> Well)      //положение на стволе
+        public void GetWellCoord(ref List<double> Well)      //положение на стволе
         {
             for (int i = 1; i < Glob.N3; i++)
             {
                 Well.Add(Glob.XS[i]);
             }
         }
-        void GetCoordVoda(ref List<double> Voda)      //положение жидкости в скважине
+        public void GetCoordVoda(ref List<double> Voda)      //положение жидкости в скважине
         {
             for (int i = 1; i < CountPoint; i++)
             {
