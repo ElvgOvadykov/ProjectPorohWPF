@@ -13,25 +13,26 @@
             <RowDefinition Height="30px"/>
             <RowDefinition Height="30px"/>
             <RowDefinition Height="30px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="30px"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="1" Grid.Column="0" Content="Наименование" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Grid.Row="1" Grid.Column="1" Content="Тип" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Grid.Row="1" Grid.Column="2" Content="Количество" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Grid.Row="1" Grid.Column="3" Content="Тип пороховой смеси" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <ComboBox x:Name="ActiveСharge" Grid.Row="2" Grid.Column="0"></ComboBox>
-        <ComboBox x:Name="MainСharge" Grid.Row="3" Grid.Column="0"></ComboBox>
-        <Label Grid.Row="2" Grid.Column="1" Content="Активные" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="Основные" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="ActiveCount" Grid.Row="2" Grid.Column="2"/>
-        <TextBox x:Name="MainCount" Grid.Row="3" Grid.Column="2"/>
-        <ComboBox x:Name="ActiveСhargeType" Grid.Row="2" Grid.Column="3"></ComboBox>
-        <ComboBox x:Name="MainСhargeType" Grid.Row="3" Grid.Column="3"></ComboBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Наименование" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Активные" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="2" Content="Основные" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Количество" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Grid.Row="4" Content="Тип пороховой смеси" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <ComboBox x:Name="ActiveСharge" Grid.Row="2" Grid.Column="1"></ComboBox>
+        <ComboBox x:Name="MainСharge" Grid.Row="2" Grid.Column="2"></ComboBox>
+        <TextBox x:Name="ActiveCount" Grid.Row="3" Grid.Column="1"/>
+        <TextBox x:Name="MainCount" Grid.Row="3" Grid.Column="2" />
+        <ComboBox x:Name="ActiveСhargeType" Grid.Row="4" Grid.Column="1"></ComboBox>
+        <ComboBox x:Name="MainСhargeType" Grid.Row="4" Grid.Column="2"></ComboBox>
     </Grid>
 </UserControl>

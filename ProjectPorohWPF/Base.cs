@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPorohWPF
 {
-    struct CGLOBAL
+    class CGLOBAL
     {
         public double[] X, WS, RS, US;
         public double[] PS, ES, RG, UG;
@@ -32,34 +32,65 @@ namespace ProjectPorohWPF
         public int N0, N1, N2, N3, NT, NT1, NT2, NT3, NXG, NGR, NP, NPT1;                     //COMMON
         public double DX, ITP, HSP, TPX;
         public double PSS, TE, PST;
-    }
 
-    struct CBASEINTERNAL
+        public CGLOBAL()
+        {
+            X = new double[3001]; WS = new double[3001]; RS = new double[3001]; US = new double[3001];
+            PS = new double[3001]; ES = new double[3001]; RG = new double[3001]; UG = new double[3001]; 
+            PG = new double[3001]; EG = new double[3001]; AMS = new double[3001];
+            TY = new double[6000]; PY = new double[6000]; X1Y = new double[6000]; X2Y = new double[6000]; 
+            X3Y = new double[6000]; X4Y = new double[6000]; X5Y = new double[6000];
+            Y = new double[5]; USX = new double[3001]; PSX = new double[3001]; XS = new double[3001];
+            FT = new double[1001]; FL = new double[1001]; FU = new double[1001]; FV = new double[1001]; FW = new double[1001];
+
+            DT = 0; HS = 0; B = 0; AKK = 0; R0 = 0; PGS = 0; BB = 0;
+            HH = 0; HH0 = 0; E0 = 0; EP = 0; BGT = 0;                        
+            FP = 0; FPGOS = 0; DNG = 0; T0 = 0; GG = 0; DG = 0; DS = 0;
+            H0 = 0; E1 = 0; ZK = 0; ALFA = 0; DENS = 0; A = 0; ALL = 0; PSG = 0; DN = 0;
+            ANP = 0; HM = 0; NPF = 0; YT = 0; H1 = 0; HX1 = 0; TA = 0; K1 = 0; TAY = 0; STEP = 0; TK = 0;
+
+            X1 = 0; X2 = 0; X3 = 0; V1 = 0; V2 = 0; TE0 = 0; AM0 = 0; VPSI = 0; AKV = 0;
+            DTP = 0; VT = 0; LT = 0; HT = 0; PSI = 0; DVTP = 0; AE1 = 0; CF1 = 0; CF2 = 0; CF3 = 0; HZAR = 0;
+            PKT = 0; PT = 0; HPI = 0; SD = 0; DGT = 0; AMF = 0; GGS = 0; GG1 = 0; D02 = 0;
+            AK = 0; AK1 = 0; AK2 = 0; AK3 = 0; AK4 = 0; AK5 = 0; AK6 = 0; AK7 = 0;
+            AKK1 = 0; P0 = 0; G0 = 0; PA = 0; C02 = 0; C0 = 0;
+            AIS = 0; DVJ = 0;
+            Z1 = 0; Z2 = 0; F1 = 0; F2 = 0; AEGOS = 0; E1G = 0; DSG = 0; DGG = 0; DDG = 0; HGOS = 0; DNGOS = 0; AMGOS = 0;
+
+            HV1 = 0; HV2 = 0;
+            TG = 0; DTG = 0; PGZ = 0; PGG = 0; PPL = 0; PT0 = 0; VT1 = 0; CPL = 0; CBG = 0; PUAZ = 0; IP = 0;
+            N0 = 0; N1 = 0; N2 = 0; N3 = 0; NT = 0; NT1 = 0; NT2 = 0; NT3 = 0; NXG = 0; NGR = 0; NP = 0; NPT1 = 0;
+            DX = 0; ITP = 0; HSP = 0; TPX = 0;
+            PSS = 0; TE = 0; PST = 0;
+        }
+}
+
+    class CBASEINTERNAL
     {
         public double ANGR1, ANGR2, ANP0, AGOS, TPL, NGR1, CF4;
         public double SDN, AND2, SDN2, PH, PVG, PH0, Z0, PSI0, VT0, XG;
         public int I;
     }
 
-    struct CGGOSINTERNAL
+    class CGGOSINTERNAL
     {
         public double F1P, CSA, F2P, DGS, DSS, EZ1, EZ2, DZ1, DZ2, DE1, DE2;
         public double AA, U1, ADMT, AMT, DMT, DVM, U2, D, D1, SA, TA;
     }
 
-    struct CFRACINTERNAL
+    class CFRACINTERNAL
     {
         public double DP, Q1, Q, L0, P0, T0, W0, Q0;
         public double LL, HH, GG, QQ, VV, PPT, WW;
         public int NPT;
     }
 
-    struct CSMESHINTERNAL
+    class CSMESHINTERNAL
     {
         public double US1, XS1, AM1, AM2, US2, XS2, AM3, AS1, AS2, AS3, US3, PATM, XS3, TAY2, AMTP;
     }
 
-    struct CRASPADINTERNAL
+    class CRASPADINTERNAL
     {
         public double[] F;
         public double[] BG1, BG2, BG3;
@@ -75,6 +106,12 @@ namespace ProjectPorohWPF
         public int N11;
         public double Z, QT, VZ, XW, IT, C2, S0, SNH, VTJ, VTJ1, IS, LT0, LTX, AMS1, AMS2, AMS3;
         public int N21, NPT2;
+
+        public CRASPADINTERNAL()
+        {
+            F = new double[5];
+            BG1 = new double[3001]; BG2 = new double[3001]; BG3 = new double[3001];
+        }
     }
 
     struct CFPGInternal
@@ -123,14 +160,14 @@ namespace ProjectPorohWPF
 
         int CountPoint;    //сколько точек в расчете будет
 
-        CGLOBAL Glob;
-        CBASEINTERNAL InBase;
-        CRASPADINTERNAL InRaspad;
-        CFPGInternal InFPG;
-        CGGOSINTERNAL InGos;
+        CGLOBAL Glob = new CGLOBAL();
+        CBASEINTERNAL InBase = new CBASEINTERNAL();
+        CRASPADINTERNAL InRaspad = new CRASPADINTERNAL();
+        CFPGInternal InFPG= new CFPGInternal();
+        CGGOSINTERNAL InGos = new CGGOSINTERNAL();
 
-        CFRACINTERNAL InFrac;
-        CSMESHINTERNAL InSmesh;
+        CFRACINTERNAL InFrac = new CFRACINTERNAL();
+        CSMESHINTERNAL InSmesh = new CSMESHINTERNAL();
 
         public CBase() { PlusK = 0; }
 
@@ -1236,7 +1273,11 @@ namespace ProjectPorohWPF
         }
         public void Calc()                                                                        //чего нить посчитать
         {
+            ClearDataStruct();
+            InitBaseConst();
+            ReloadBaseParams();
 
+            CalcBase();
         }
         public void GetCalcTimes(ref List<double> T)           //вернуть интервалы времени
         {
