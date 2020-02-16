@@ -36,7 +36,7 @@ namespace ProjectPorohWPF
                                 double power = reader.GetDouble(2);
                                 double temp = reader.GetDouble(3);
                                 double udgaz = reader.GetDouble(4);
-                                double dens = reader.GetDouble(4);
+                                double dens = reader.GetDouble(5);
                                 porohs.Add(new CPoroh(id, name,power,temp,udgaz,dens));
                             }
                         }

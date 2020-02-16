@@ -82,19 +82,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AllChargesPage.xaml">
+    <Page Include="Pages\AllChargesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ChargesPage.xaml">
+    <Page Include="Pages\AllPorohPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CombustionPressurePage.xaml">
+    <Page Include="Pages\ChargesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InitialDataPage.xaml">
+    <Page Include="Pages\CombustionPressurePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InitialDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,18 +106,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AllChargesPage.xaml.cs">
+    <Compile Include="Pages\AllChargesPage.xaml.cs">
       <DependentUpon>AllChargesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AllPorohPage.xaml.cs">
+      <DependentUpon>AllPorohPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base.cs" />
-    <Compile Include="ChargesPage.xaml.cs">
+    <Compile Include="Pages\ChargesPage.xaml.cs">
       <DependentUpon>ChargesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CombustionPressurePage.xaml.cs">
+    <Compile Include="Pages\CombustionPressurePage.xaml.cs">
       <DependentUpon>CombustionPressurePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CPoroh.cs" />
@@ -121,7 +128,7 @@
     <Compile Include="CZarad.cs" />
     <Compile Include="DataBaseController.cs" />
     <Compile Include="Func.cs" />
-    <Compile Include="InitialDataPage.xaml.cs">
+    <Compile Include="Pages\InitialDataPage.xaml.cs">
       <DependentUpon>InitialDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IntException.cs" />

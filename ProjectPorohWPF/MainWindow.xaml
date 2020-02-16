@@ -32,11 +32,12 @@
                 </TreeViewItem>
             <TreeViewItem Header="Архив"/>
             <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_All_Charges"/>
-            <TreeViewItem Header="Пороховые смеси"/>
+            <TreeViewItem Header="Пороховые смеси" Selected="TreeViewItem_Selected_All_Porohs"/>
         </TreeView>
         <local:InitialDataPage x:Name="DataPage" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"/>
         <local:ChargesPage x:Name="ChargeSelection" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local:AllChargesPage x:Name="AllCharges" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local:CombustionPressurePage x:Name="CombustionPressure" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
+        <local:AllPorohPage x:Name="AllPoroh" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>
