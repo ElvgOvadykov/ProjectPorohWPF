@@ -8,13 +8,13 @@ namespace ProjectPorohWPF
 {
     class CZarad
     {
-        public int ID;
-        public string Name;
-        public CPoroh Poroh;
-        public double Dnar;        //диаметр наружный  ,мм
-        public double Dvnutr;      //диаметр внутренний ,мм
-        public double L;           //длина заряда    ,мм
-        public bool IsActive;     //активен заряд или типа удалили его уже
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public CPoroh Poroh { get; set; }
+        public double Dnar { get; set; }        //диаметр наружный  ,мм
+        public double Dvnutr { get; set; }      //диаметр внутренний ,мм
+        public double L { get; set; }           //длина заряда    ,мм
+        //public bool IsActive;     //активен заряд или типа удалили его уже
         public void SetParametr(string Name, double Dnar, double Dvnutr, double L)
         {
             this.Name = Name;
@@ -30,7 +30,7 @@ namespace ProjectPorohWPF
 
         public CZarad()
         {
-            IsActive = false;
+            //IsActive = false;
             Poroh = null;
         }
 
@@ -42,7 +42,7 @@ namespace ProjectPorohWPF
             Dnar = dnar;
             Dvnutr = dvnutr;
             L = length;
-            IsActive = false;
+            //IsActive = false;
         }
 
         public override string ToString()

@@ -24,5 +24,11 @@ namespace ProjectPorohWPF
         {
             InitializeComponent();
         }
+
+        private void ChargesDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+            ChargesDataGrid.ItemsSource = zarads;
+        }
     }
 }

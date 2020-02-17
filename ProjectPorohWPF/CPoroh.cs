@@ -8,17 +8,17 @@ namespace ProjectPorohWPF
 {
     class CPoroh
     {
-        public int ID;
-        public string Name;    //Название смеси
-        public double Power;        //сила пороха
-        public double Temper;       //температура горения в K
-        public double UdGaz;        //удельная газопроизводительность
-        public double Dens;         //плотность  в гк/м3
-        public bool IsActive;      //активна смесь или уже типа удалили ее
+        public int ID { get; set; }
+        public string Name { get; set; }   //Название смеси
+        public double Power { get; set; }        //сила пороха
+        public double Temper { get; set; }      //температура горения в K
+        public double UdGaz { get; set; }        //удельная газопроизводительность
+        public double Dens { get; set; }         //плотность  в гк/м3
+        //public bool IsActive      //активна смесь или уже типа удалили ее
 
         public CPoroh()
         {
-            IsActive = false;
+            //IsActive = false;
         }
 
         public CPoroh(int id, string Name, double Power, double Temper, double UdGaz, double Dens)
@@ -29,7 +29,7 @@ namespace ProjectPorohWPF
             this.Temper = Temper;
             this.UdGaz = UdGaz;
             this.Dens = Dens;
-            IsActive = false;
+            //IsActive = false;
         }
 
         public override string ToString()

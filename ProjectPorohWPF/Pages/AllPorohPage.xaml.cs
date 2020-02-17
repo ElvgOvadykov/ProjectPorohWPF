@@ -24,5 +24,11 @@ namespace ProjectPorohWPF
         {
             InitializeComponent();
         }
+
+        private void PorohsDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            PorohsDataGrid.ItemsSource = porohs;
+        }
     }
 }
