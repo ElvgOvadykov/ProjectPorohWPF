@@ -66,7 +66,6 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_All_Charges(object sender, RoutedEventArgs e)
         {
-            LoadAllCharges();
             ViewPage(AllCharges);
         }
 
@@ -88,41 +87,6 @@ namespace ProjectPorohWPF
                     Panel.SetZIndex(item, 0);
                 }
             }
-        }
-
-        private void LoadAllCharges()
-        {
-            //List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("№");
-            //dt.Columns.Add("Наименование");
-            //dt.Columns.Add("Внешний диаметр, мм");
-            //dt.Columns.Add("Внутренний диаметр, мм");
-            //dt.Columns.Add("Длина заряда, мм");
-            //dt.Columns.Add("Тип пороховой смеси");
-            //foreach (var item in zarads)
-            //{
-            //    dt.Rows.Add(item.ID, item.Name, item.Dnar, item.Dvnutr, item.L, item.Poroh);
-            //}
-            //AllCharges.ChargesDataGrid.ItemsSource = dt.DefaultView;
-        }
-
-        private void LoadAllPorohs()
-        {
-            //List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add(@"№");
-            //dt.Columns.Add(@"Наименование");
-            //dt.Columns.Add(@"Сила пороха, Джкг");
-            //dt.Columns.Add(@"Расчетная температура горения, С");
-            //dt.Columns.Add(@"Удельная газопроизводительность, лкг");
-            //dt.Columns.Add(@"Плотность, гсм3");
-            //foreach (var item in porohs)
-            //{
-            //    dt.Rows.Add(item.ID, item.Name, item.Power, item.Temper, item.UdGaz, item.Dens);
-            //}
-            ////MessageBox.Show(dt.Rows[0].ItemArray[4].ToString());
-            //AllPoroh.PorohsDataGrid.ItemsSource = dt.DefaultView;
         }
 
         private void LoadChargesCombobox()
@@ -366,7 +330,6 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_All_Porohs(object sender, RoutedEventArgs e)
         {
-            LoadAllPorohs();
             ViewPage(AllPoroh);
         }
 

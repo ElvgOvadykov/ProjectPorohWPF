@@ -29,6 +29,12 @@ namespace ProjectPorohWPF
         {
             List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             PorohsDataGrid.ItemsSource = porohs;
+            PorohsDataGrid.Columns[0].Header = "№";
+            PorohsDataGrid.Columns[1].Header = "Наименование";
+            PorohsDataGrid.Columns[2].Header = "Сила пороха, Дж/кг";
+            PorohsDataGrid.Columns[3].Header = "Расчетная температура, К";
+            PorohsDataGrid.Columns[4].Header = "Удельная газопроизводительность, л/кг";
+            PorohsDataGrid.Columns[5].Header = "Плотность, г/см3";
         }
     }
 }
