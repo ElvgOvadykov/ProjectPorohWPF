@@ -60,7 +60,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_Charge_Selection(object sender, RoutedEventArgs e)
         {
-            //LoadChargesCombobox();
+            LoadChargesCombobox();
             ViewPage(ChargeSelection);
         }
 
@@ -89,25 +89,25 @@ namespace ProjectPorohWPF
             }
         }
 
-        //private void LoadChargesCombobox()
-        //{
-        //    ChargeSelection.MainСharge.Items.Clear();
-        //    ChargeSelection.ActiveСharge.Items.Clear();
-        //    ChargeSelection.ActiveСhargeType.Items.Clear();
-        //    ChargeSelection.MainСhargeType.Items.Clear();
-        //    List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
-        //    foreach (var item in zarads)
-        //    {
-        //        ChargeSelection.MainСharge.Items.Add(item);
-        //        ChargeSelection.ActiveСharge.Items.Add(item);
-        //    }
-        //    List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
-        //    foreach (var item in porohs)
-        //    {
-        //        ChargeSelection.ActiveСhargeType.Items.Add(item);
-        //        ChargeSelection.MainСhargeType.Items.Add(item);
-        //    }
-        //}
+        private void LoadChargesCombobox()
+        {
+            ChargeSelection.MainСharge.Items.Clear();
+            ChargeSelection.ActiveСharge.Items.Clear();
+            ChargeSelection.ActiveСhargeType.Items.Clear();
+            ChargeSelection.MainСhargeType.Items.Clear();
+            List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+            foreach (var item in zarads)
+            {
+                ChargeSelection.MainСharge.Items.Add(item);
+                ChargeSelection.ActiveСharge.Items.Add(item);
+            }
+            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            foreach (var item in porohs)
+            {
+                ChargeSelection.ActiveСhargeType.Items.Add(item);
+                ChargeSelection.MainСhargeType.Items.Add(item);
+            }
+        }
 
         private void Click_Calculation(object sender, RoutedEventArgs e)
         {
