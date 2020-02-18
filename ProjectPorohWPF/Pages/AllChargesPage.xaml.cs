@@ -20,15 +20,16 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class AllChargesPage : UserControl
     {
+        List<CZarad> zarads;
+        List<CPoroh> porohs;
+
         public AllChargesPage()
         {
-            InitializeComponent();
-        }
-
-        private void ChargesDataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
             List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            InitializeComponent();
             ChargesDataGrid.ItemsSource = zarads;
         }
+
     }
 }
