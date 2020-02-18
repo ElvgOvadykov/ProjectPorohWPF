@@ -20,21 +20,18 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class AllPorohPage : UserControl
     {
+        List<CPoroh> porohs;
+
         public AllPorohPage()
         {
+            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
+            PorohsDataGrid.ItemsSource = porohs;
         }
 
-        private void PorohsDataGrid_Loaded(object sender, RoutedEventArgs e)
+        private void UpdatePorohs_Click(object sender, RoutedEventArgs e)
         {
-            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
-            PorohsDataGrid.ItemsSource = porohs;
-            PorohsDataGrid.Columns[0].Header = "№";
-            PorohsDataGrid.Columns[1].Header = "Наименование";
-            PorohsDataGrid.Columns[2].Header = "Сила пороха, Дж/кг";
-            PorohsDataGrid.Columns[3].Header = "Расчетная температура, К";
-            PorohsDataGrid.Columns[4].Header = "Удельная газопроизводительность, л/кг";
-            PorohsDataGrid.Columns[5].Header = "Плотность, г/см3";
+
         }
     }
 }

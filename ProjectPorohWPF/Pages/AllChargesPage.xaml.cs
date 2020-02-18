@@ -25,11 +25,15 @@ namespace ProjectPorohWPF
 
         public AllChargesPage()
         {
-            List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
-            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            zarads = new List<CZarad>(DataBaseController.GetZarads());
+            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
             ChargesDataGrid.ItemsSource = zarads;
         }
 
+        private void UpdateCharges_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
