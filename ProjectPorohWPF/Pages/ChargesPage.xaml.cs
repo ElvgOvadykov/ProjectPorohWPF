@@ -20,9 +20,13 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class ChargesPage : UserControl
     {
+        List<CZarad> zarads;
+
         public ChargesPage()
         {
+            zarads = new List<CZarad>(DataBaseController.GetZarads());
             InitializeComponent();
+            
         }
     }
 }

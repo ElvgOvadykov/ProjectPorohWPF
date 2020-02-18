@@ -125,5 +125,46 @@ namespace ProjectPorohWPF
             }
             return result;
         }
+
+        public static void UpdateAllPorohs(List<CPoroh> porohs)
+        {
+            string deleteAllPorohSQL = "DELETE FROM `Porohs`";
+            StringBuilder addUpdatedListPorohs = new StringBuilder();
+            foreach(var item in porohs)
+            {
+                string addedporoh = "INSERT INTO Porohs (Name, Power, Temp, UdGaz, Dens) values (" +
+                    $"\"{item.Name}\",{item.Power},{item.Temper}, {item.UdGaz}, {item.Dens});";
+                addUpdatedListPorohs.Append(addedporoh);
+            }
+            SQLiteCommand cmd = new SQLiteCommand();
+            //using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            //{
+            //    conn.Open();
+            //    cmd.Connection = conn;
+            //    cmd.CommandText = deleteAllPorohSQL;
+            //    try
+            //    {
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = addUpdatedListPorohs.ToString();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }
