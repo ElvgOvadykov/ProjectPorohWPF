@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="WhiteSmoke" Margin="10">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

@@ -89,26 +89,6 @@ namespace ProjectPorohWPF
             }
         }
 
-        //private void LoadChargesCombobox()
-        //{
-        //    ChargeSelection.MainСharge.Items.Clear();
-        //    ChargeSelection.ActiveСharge.Items.Clear();
-        //    ChargeSelection.ActiveСhargeType.Items.Clear();
-        //    ChargeSelection.MainСhargeType.Items.Clear();
-        //    List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
-        //    foreach (var item in zarads)
-        //    {
-        //        ChargeSelection.MainСharge.Items.Add(item);
-        //        ChargeSelection.ActiveСharge.Items.Add(item);
-        //    }
-        //    List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
-        //    foreach (var item in porohs)
-        //    {
-        //        ChargeSelection.ActiveСhargeType.Items.Add(item);
-        //        ChargeSelection.MainСhargeType.Items.Add(item);
-        //    }
-        //}
-
         private void Click_Calculation(object sender, RoutedEventArgs e)
         {
             //TTabSheet* ts;
@@ -189,18 +169,267 @@ namespace ProjectPorohWPF
                 //Excel1->Enabled = true;
                 CalculationResult.Visibility = Visibility.Visible;
             }
-            else
+        }
+
+        /// <summary>
+        /// Контроль заполнения всех полей.
+        /// </summary>
+        /// <returns>Результат проверки</returns>
+        private bool CheckFields()
+        {
+            bool result = true;
+
+            //проверка всех текстбоксов на экране ввода общей информации!
+            foreach (System.Windows.UIElement item in DataPage.MainGrid.Children)
             {
-                MessageBox.Show("Проверьте введенные да");
+                if ((item as TextBox) != null)
+                {
+                    if ((item as TextBox).Text == "")
+                    {
+                        result = false;
+                        (item as TextBox).BorderBrush = System.Windows.Media.Brushes.Red;
+                    }
+                }
+                //if(())
+            }
+            //проверка всех на экране выбора зарядов!
+            foreach (System.Windows.UIElement item in ChargeSelection.MainGrid.Children)
+            {
+                if ((item as TextBox) != null)
+                {
+                    if ((item as TextBox).Text == "")
+                    {
+                        result = false;
+                        (item as TextBox).BorderBrush = System.Windows.Media.Brushes.Red;
+                    }
+                }
+                if ((item as ComboBox) != null)
+                {
+                    if ((item as ComboBox).SelectedItem == null)
+                    {
+                        result = false;
+                        (item as ComboBox).BorderBrush = System.Windows.Media.Brushes.Red;
+                    }
+                }
+            }
+
+            if (result == false)
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Контроль ввода числовых значений в поля, где необходимы числовые значения
+        /// </summary>
+        private bool ControlInputNumericalValues()
+        {
+            bool result = true;
+            try
+            {
+                Convert.ToDouble(DataPage.SlaughterCurrent.Text);
+            }
+            catch
+            {
+                DataPage.SlaughterCurrent.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.CasingDiameter.Text);
+            }
+            catch
+            {
+                DataPage.CasingDiameter.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.CasingThickness.Text);
+            }
+            catch
+            {
+                DataPage.CasingThickness.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.FluidLevel.Text);
+            }
+            catch
+            {
+                DataPage.FluidLevel.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.FluidDensity.Text);
+            }
+            catch
+            {
+                DataPage.FluidDensity.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.PunchIntervalPower.Text);
+            }
+            catch
+            {
+                DataPage.PunchIntervalPower.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.SolePerforationInterval.Text);
+            }
+            catch
+            {
+                DataPage.SolePerforationInterval.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToInt32(DataPage.PerforationDensity.Text);
+            }
+            catch
+            {
+                DataPage.PerforationDensity.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToInt32(ChargeSelection.MainCount.Text);
+            }
+            catch
+            {
+                ChargeSelection.MainCount.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToInt32(ChargeSelection.ActiveCount.Text);
+            }
+            catch
+            {
+                ChargeSelection.ActiveCount.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.GeneratorDepth.Text);
+            }
+            catch
+            {
+                DataPage.GeneratorDepth.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.ReservoirPressure.Text); // давление в Мп
+            }
+            catch
+            {
+                DataPage.ReservoirPressure.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.ReservoirTemperature.Text);
+            }
+            catch
+            {
+                DataPage.ReservoirTemperature.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.YoungModulus.Text);
+            }
+            catch
+            {
+                DataPage.YoungModulus.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.PoissonRatio.Text);
+            }
+            catch
+            {
+                DataPage.PoissonRatio.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(DataPage.SimulationDuration.Text);
+            }
+            catch
+            {
+                DataPage.SimulationDuration.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+
+            if (result == false)
+            {
+                MessageBox.Show("Проверьте ввод числовых данных!");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Задает стандартный цвет границ заполнения данных
+        /// </summary>
+        private void SetDefaultBorderOnDataPages()
+        {
+            foreach (System.Windows.UIElement item in DataPage.MainGrid.Children)
+            {
+                if ((item as TextBox) != null)
+                {
+                    (item as TextBox).BorderBrush = Brushes.LightGray;
+                }
+                if ((item as ComboBox) != null)
+                {
+                    (item as ComboBox).BorderBrush = Brushes.LightGray;
+                }
+            }
+            foreach (System.Windows.UIElement item in ChargeSelection.MainGrid.Children)
+            {
+                if ((item as TextBox) != null)
+                {
+                    (item as TextBox).BorderBrush = Brushes.LightGray;
+                }
+                if ((item as ComboBox) != null)
+                {
+                    (item as ComboBox).BorderBrush = Brushes.LightGray;
+                }
             }
         }
-        
+
+
+
         private bool CorrectData()
         {
+            if (!CheckFields())
+            {
+                return false;
+            }
+
+            if (!ControlInputNumericalValues())
+            {
+                return false;
+            }
+
+
+
+            SetDefaultBorderOnDataPages();
+
             BaseCalcParam.NameWell = DataPage.WellNumber.Text;
             if (BaseCalcParam.NameWell == "")
             {
-                MessageBox.Show("Введите номер скважины"); //?????????????????????????????????????????????????????????
+                MessageBox.Show("Введите номер скважины");
                 throw (new IntException(0));
                 return false;
             }
@@ -238,7 +467,6 @@ namespace ProjectPorohWPF
                 osnZar = ChargeSelection.MainСharge.SelectedItem as CZarad;
 
                 BaseCalcParam.NameVospZarad = (ChargeSelection.ActiveСharge.SelectedItem as CZarad).Name;
-
                 if (BaseCalcParam.NameVospZarad == "")
                 {
                     MessageBox.Show("Выберите активные заряды");
@@ -278,7 +506,7 @@ namespace ProjectPorohWPF
 
         private void ClearCharts() //Очистка графиков!!!!!
         {
-            
+
         }
 
         private void InsertDataToCharts()
@@ -300,7 +528,7 @@ namespace ProjectPorohWPF
             OxyPlot.Series.LineSeries ls1 = new OxyPlot.Series.LineSeries();
 
             PlotModel model = new PlotModel();//???????
-            if(data2 != null)
+            if (data2 != null)
             {
                 for (int i = 0; i < data.Count; i++)
                 {
@@ -308,7 +536,7 @@ namespace ProjectPorohWPF
                     if (data2 != null)
                     {
                         z = data2[i];
-                        ls1.Points.Add(new DataPoint(data[i],data2[i]));
+                        ls1.Points.Add(new DataPoint(data[i], data2[i]));
                     }
                 }
                 model.Series.Add(ls);
@@ -398,33 +626,33 @@ namespace ProjectPorohWPF
         //    if (cont == 4) sg->Cells[3][0] = s3;
         //}
 
-   //     void InsertDataToTable(ref string sg, ref List<double> data, ref List<double> data1,
-   //     int cnt, string s, string s1, ref int indMin,ref int indMax, ref List<double> data2, string s2)
-   //     {
-   //         //ClearRezSG(sg, s, s1, s2);
-   //         int rz;
-   //         float min = 99999999;
-   //         float max = -9999999;
-   //         int imin, imax;
-   //         rz = data.Count();
-   //         for (int i = 0; i < rz; i++)
-   //         {
-   //             sg->Cells[0][i + 1] = IntToStr(i + 1);
-   //             sg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
-   //         sg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
-   //         if (cnt == 3) sg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
+        //     void InsertDataToTable(ref string sg, ref List<double> data, ref List<double> data1,
+        //     int cnt, string s, string s1, ref int indMin,ref int indMax, ref List<double> data2, string s2)
+        //     {
+        //         //ClearRezSG(sg, s, s1, s2);
+        //         int rz;
+        //         float min = 99999999;
+        //         float max = -9999999;
+        //         int imin, imax;
+        //         rz = data.Count();
+        //         for (int i = 0; i < rz; i++)
+        //         {
+        //             sg->Cells[0][i + 1] = IntToStr(i + 1);
+        //             sg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
+        //         sg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
+        //         if (cnt == 3) sg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
 
-   //         if (cnt == 2)
-   //         {
-   //             if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
-			//		if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
-			// }
-			// else
-			// {
-			//	 if (min>data2->operator [](i)) {min=data2->operator [](i); imin=i;}
-			//	 if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
-			// }
-			// sg->RowCount+=1;
-		 //}
+        //         if (cnt == 2)
+        //         {
+        //             if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
+        //		if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+        // }
+        // else
+        // {
+        //	 if (min>data2->operator [](i)) {min=data2->operator [](i); imin=i;}
+        //	 if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+        // }
+        // sg->RowCount+=1;
+        //}
     }
 }
