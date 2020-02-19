@@ -33,5 +33,29 @@ namespace ProjectPorohWPF
             ActiveСhargeType.ItemsSource = porohs;
             MainСhargeType.ItemsSource = porohs;
         }
+
+        private void ActiveСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach(var item in ActiveСhargeType.ItemsSource)
+            {
+                if ((item as CPoroh).ID == (ActiveСharge.SelectedItem as CZarad).Poroh.ID)
+                {
+                    ActiveСhargeType.SelectedItem = item;
+                    ActiveСhargeType.Text = (item as CPoroh).Name;
+                }
+            }
+        }
+
+        private void MainСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in MainСhargeType.ItemsSource)
+            {
+                if ((item as CPoroh).ID == (MainСharge.SelectedItem as CZarad).Poroh.ID)
+                {
+                    MainСhargeType.SelectedItem = item;
+                    MainСhargeType.Text = (item as CPoroh).Name;
+                }
+            }
+        }
     }
 }

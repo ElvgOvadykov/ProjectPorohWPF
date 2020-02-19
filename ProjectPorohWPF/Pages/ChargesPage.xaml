@@ -28,8 +28,8 @@
         <Label Grid.Row="1" Grid.Column="2" Content="Основные" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Количество" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Grid.Row="4" Content="Тип пороховой смеси" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <ComboBox x:Name="ActiveСharge" Grid.Row="2" Grid.Column="1" ></ComboBox>
-        <ComboBox x:Name="MainСharge" Grid.Row="2" Grid.Column="2"></ComboBox>
+        <ComboBox x:Name="ActiveСharge" Grid.Row="2" Grid.Column="1" SelectionChanged="ActiveСharge_SelectionChanged"></ComboBox>
+        <ComboBox x:Name="MainСharge" Grid.Row="2" Grid.Column="2" SelectionChanged="MainСharge_SelectionChanged"></ComboBox>
         <TextBox x:Name="ActiveCount" Grid.Row="3" Grid.Column="1"/>
         <TextBox x:Name="MainCount" Grid.Row="3" Grid.Column="2" />
         <ComboBox x:Name="ActiveСhargeType" Grid.Row="4" Grid.Column="1"></ComboBox>
