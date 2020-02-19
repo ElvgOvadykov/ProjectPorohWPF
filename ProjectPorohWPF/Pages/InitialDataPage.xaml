@@ -88,7 +88,10 @@
         <TextBox x:Name="PoissonRatio" Grid.Row="7" Grid.Column="3"/>
         <Label Content="Флюид" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Тип флюида в скважине" Grid.Row="9" Grid.Column="2"/>
-        <TextBox x:Name="TypeFluid" Grid.Row="9" Grid.Column="3"/>
+        <ComboBox x:Name="TypeFluid" Grid.Row="9" Grid.Column="3" IsEditable="True" VerticalContentAlignment="Center">
+            <TextBlock>Нефть</TextBlock>
+            <TextBlock>Техническая вода</TextBlock>
+        </ComboBox>
         <Label Content="Уровень флюида в скважине" Grid.Row="10" Grid.Column="2"/>
         <TextBox x:Name="FluidLevel" Grid.Row="10" Grid.Column="3"/>
         <Label Content="Плотность флюида, г/см3" Grid.Row="11" Grid.Column="2"/>
