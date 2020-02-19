@@ -33,7 +33,14 @@ namespace ProjectPorohWPF
 
         private void UpdateCharges_Click(object sender, RoutedEventArgs e)
         {
-            
+            DataBaseController.UpdateAllCharges(zarads);
+            ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
+        }
+
+        private void DeleteCharge_Click(object sender, RoutedEventArgs e)
+        {
+            DataBaseController.DeleteCharge(ChargesDataGrid.SelectedItem as CZarad);
+            ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
     }
 }

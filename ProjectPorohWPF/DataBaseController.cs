@@ -163,13 +163,50 @@ namespace ProjectPorohWPF
 
         public static void DeletePoroh(CPoroh poroh)
         {
-            string deletesql = $"delete from Porohs where ID = {poroh.ID}";
+            if(poroh != null)
+            {
+                string deletesql = $"delete from Porohs where ID = {poroh.ID}";
+                SQLiteCommand cmd = new SQLiteCommand();
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+                {
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = deletesql;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        public static void UpdateAllCharges(List<CZarad> zarads)
+        {
+            string addedCharges = "";
+            StringBuilder addUpdatedListCharges = new StringBuilder();
+            foreach (var item in zarads)
+            {
+                if (item.ID == 0)
+                {
+                    addedCharges = "insert into Zarads (Name, EDiameter, IDiameter, \"Length\", IDPowder) values (" +
+                        $"\"{item.Name}\",{item.Dnar.ToString("G", CultureInfo.InvariantCulture)},{item.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}, {item.L.ToString("G", CultureInfo.InvariantCulture)}, {item.Poroh.ID});";
+                }
+                else
+                {
+                    addedCharges = $"UPDATE Zarads SET Name = \"{item.Name}\", EDiameter = {item.Dnar.ToString("G", CultureInfo.InvariantCulture)}, IDiameter = {item.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}, \"Length\" = {item.L.ToString("G", CultureInfo.InvariantCulture)}, IDPowder = {item.Poroh.ID} WHERE ID = {item.ID};";
+                }
+                addUpdatedListCharges.Append(addedCharges);
+            }
             SQLiteCommand cmd = new SQLiteCommand();
             using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
             {
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = deletesql;
+                cmd.CommandText = addUpdatedListCharges.ToString();
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -177,6 +214,29 @@ namespace ProjectPorohWPF
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public static void DeleteCharge(CZarad zarad)
+        {
+            if(zarad != null)
+            {
+                string deletesql = $"delete from Zarads where ID = {zarad.ID}";
+                SQLiteCommand cmd = new SQLiteCommand();
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+                {
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = deletesql;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
