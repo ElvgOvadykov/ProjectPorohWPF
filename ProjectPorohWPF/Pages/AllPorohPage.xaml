@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="PorohsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" Binding="{Binding Path=ID}"/>
+                <DataGridTextColumn Header="№" Binding="{Binding Path=ID}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Header="Сила пороха, Дж/кг" Binding="{Binding Path=Power}"/>
                 <DataGridTextColumn Header="Расчетная температура, К" Binding="{Binding Path=Temper}"/>

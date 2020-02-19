@@ -32,6 +32,7 @@ namespace ProjectPorohWPF
         private void UpdatePorohs_Click(object sender, RoutedEventArgs e)
         {
             DataBaseController.UpdateAllPorohs(porohs);
+            PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs());
         }
     }
 }

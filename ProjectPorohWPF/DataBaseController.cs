@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SQLite;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,29 +129,22 @@ namespace ProjectPorohWPF
 
         public static void UpdateAllPorohs(List<CPoroh> porohs)
         {
-            string deleteAllPorohSQL = "DELETE FROM `Porohs`";
+            string addedporoh = "";
             StringBuilder addUpdatedListPorohs = new StringBuilder();
             foreach(var item in porohs)
             {
-                string addedporoh = "INSERT INTO Porohs (Name, Power, Temp, UdGaz, Dens) values (" +
-                    $"\"{item.Name}\",{item.Power},{item.Temper}, {item.UdGaz}, {item.Dens});";
+                if(item.ID == 0)
+                {
+                    addedporoh = "INSERT INTO Porohs (Name, Power, Temp, UdGaz, Dens) values (" +
+                        $"\"{item.Name}\",{item.Power.ToString("G", CultureInfo.InvariantCulture)},{item.Temper.ToString("G", CultureInfo.InvariantCulture)}, {item.UdGaz.ToString("G", CultureInfo.InvariantCulture)}, {item.Dens.ToString("G", CultureInfo.InvariantCulture)});";
+                }
+                else
+                {
+                    addedporoh = $"UPDATE Porohs SET Name = \"{item.Name}\", Power = {item.Power.ToString("G", CultureInfo.InvariantCulture)}, Temp = {item.Temper.ToString("G", CultureInfo.InvariantCulture)}, UdGaz = {item.UdGaz.ToString("G", CultureInfo.InvariantCulture)}, Dens = {item.Dens.ToString("G", CultureInfo.InvariantCulture)} WHERE ID = {item.ID};";
+                }
                 addUpdatedListPorohs.Append(addedporoh);
             }
             SQLiteCommand cmd = new SQLiteCommand();
-            //using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
-            //{
-            //    conn.Open();
-            //    cmd.Connection = conn;
-            //    cmd.CommandText = deleteAllPorohSQL;
-            //    try
-            //    {
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //    catch(Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
             using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
             {
                 conn.Open();
