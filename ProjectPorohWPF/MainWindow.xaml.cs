@@ -379,6 +379,83 @@ namespace ProjectPorohWPF
             return result;
         }
 
+        private bool ControlNonNegativityParameters()
+        {
+            bool result = true;
+            if (Convert.ToDouble(DataPage.PunchIntervalPower.Text) < 0)
+            {
+                result = false;
+                DataPage.PunchIntervalPower.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.SlaughterCurrent.Text) < 0)
+            {
+                result = false;
+                DataPage.SlaughterCurrent.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.GeneratorDepth.Text) < 0)
+            {
+                result = false;
+                DataPage.GeneratorDepth.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.PerforationDensity.Text) < 0)
+            {
+                result = false;
+                DataPage.PerforationDensity.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.SolePerforationInterval.Text) < 0)
+            {
+                result = false;
+                DataPage.SolePerforationInterval.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.CasingDiameter.Text) < 0)
+            {
+                result = false;
+                DataPage.CasingDiameter.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.CasingThickness.Text) < 0)
+            {
+                result = false;
+                DataPage.CasingThickness.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.ReservoirPressure.Text) < 0)
+            {
+                result = false;
+                DataPage.ReservoirPressure.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.ReservoirTemperature.Text) < 0)
+            {
+                result = false;
+                DataPage.ReservoirTemperature.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.YoungModulus.Text) < 0)
+            {
+                result = false;
+                DataPage.YoungModulus.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.PoissonRatio.Text) < 0)
+            {
+                result = false;
+                DataPage.PoissonRatio.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.FluidLevel.Text) < 0)
+            {
+                result = false;
+                DataPage.FluidLevel.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (Convert.ToDouble(DataPage.FluidDensity.Text) < 0)
+            {
+                result = false;
+                DataPage.FluidDensity.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+
+            if(result == false)
+            {
+                MessageBox.Show("Проверьте данные на отрицательность!");
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Задает стандартный цвет границ заполнения данных
         /// </summary>
@@ -422,7 +499,10 @@ namespace ProjectPorohWPF
                 return false;
             }
 
-
+            if (!ControlNonNegativityParameters())
+            {
+                return false;
+            }
 
             SetDefaultBorderOnDataPages();
 
