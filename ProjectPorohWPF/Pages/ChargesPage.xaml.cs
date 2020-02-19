@@ -21,12 +21,17 @@ namespace ProjectPorohWPF
     public partial class ChargesPage : UserControl
     {
         List<CZarad> zarads;
+        List<CPoroh> porohs;
 
         public ChargesPage()
         {
             zarads = new List<CZarad>(DataBaseController.GetZarads());
+            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
-            
+            ActiveСharge.ItemsSource = zarads;
+            MainСharge.ItemsSource = zarads;
+            ActiveСhargeType.ItemsSource = porohs;
+            MainСhargeType.ItemsSource = porohs;
         }
     }
 }
