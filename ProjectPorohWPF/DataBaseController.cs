@@ -160,5 +160,25 @@ namespace ProjectPorohWPF
                 }
             }
         }
+
+        public static void DeletePoroh(CPoroh poroh)
+        {
+            string deletesql = $"delete from Porohs where ID = {poroh.ID}";
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = deletesql;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

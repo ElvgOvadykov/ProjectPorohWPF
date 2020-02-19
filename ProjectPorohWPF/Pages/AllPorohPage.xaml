@@ -22,5 +22,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="UpdatePorohs" Content="Сохранить измениния" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0" Click="UpdatePorohs_Click"></Button>
+        <Button x:Name="DeletePoroh" Content="Удалить" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 170 0" Click="DeletePoroh_Click"></Button>
     </Grid>
 </UserControl>
