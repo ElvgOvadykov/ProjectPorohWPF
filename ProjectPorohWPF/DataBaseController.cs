@@ -243,12 +243,13 @@ namespace ProjectPorohWPF
 
         public static void SaveCalculationToArchive(CLOADPARAMS BaseCalcParam)
         {
-            string sql = "insert into Archive (Name, Date, Executer, MadeFor, FieldName, BushNumber, WellNumber, " +
+            string sql = "insert into Archive (Name, Date, CompanyName, Executer, MadeFor, FieldName, BushNumber, WellNumber, " +
                 "SlaughterCurrent, PunchIntervalPower, SolePerforationInterval, GenerationDepth, PerforationDensity, " +
                 "CasingDiameter, CasingThickness, ReservoirPressure, ReservoirTemperature, YoungModulus, " +
                 "PoissonRatio, TypeFluid, FluidLevel, FluidDensity, SimulationDuration, IDOsnZarad, CountOsnZarad, " +
                 " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh) values ";
-            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.Date.ToString("dd-MM-yyyy")}\"," +
+            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.Date.ToString("dd-MM-yyyy")}\", " +
+                $"\"{BaseCalcParam.CompanyName}\"," +
                 $"\"{BaseCalcParam.CalculationExecutor}\",\"{BaseCalcParam.MadeFor}\",\"{BaseCalcParam.NameMestor}\"," +
                 $"\"{BaseCalcParam.BushNumber}\", \"{BaseCalcParam.NameWell}\", {BaseCalcParam.Zaboy.ToString("G", CultureInfo.InvariantCulture)}," +
                 $"{BaseCalcParam.HPerf.ToString("G", CultureInfo.InvariantCulture)}," +
@@ -286,6 +287,108 @@ namespace ProjectPorohWPF
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        public static BindingList<CLOADPARAMS> GetArchive()
+        {
+            List<CZarad> zarads = new List<CZarad>(GetZarads());
+            List<CPoroh> porohs = new List<CPoroh>(GetPorohs());
+            string sql = "SELECT * FROM `Archive`";
+            BindingList<CLOADPARAMS> result = new BindingList<CLOADPARAMS>();
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                // Сочетать Command с Connection.
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                try
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt16(0);
+                                DateTime date = DateTime.Parse(reader.GetString(1));
+                                string name = reader.GetString(2);
+                                string companyname = reader.GetString(3);
+                                string executer = reader.GetString(4);
+                                string madefor = reader.GetString(5);
+                                string fieldname = reader.GetString(6);
+                                string bushnumber = reader.GetString(7);
+                                string wellnumber = reader.GetString(8);
+                                double zaboy = reader.GetDouble(9);
+                                double hperf = reader.GetDouble(10);
+                                double podintperf = reader.GetDouble(11);
+                                double glubgen = reader.GetDouble(12);
+                                double densperf = reader.GetDouble(13);
+                                double casingdiameter = reader.GetDouble(14);
+                                double casingthickness = reader.GetDouble(15);
+                                double pplast = reader.GetDouble(16);
+                                double tplast = reader.GetDouble(17);
+                                double modunga = reader.GetDouble(18);
+                                double kpuass = reader.GetDouble(19);
+                                string typefluid = reader.GetString(20);
+                                double glubvoda = reader.GetDouble(21);
+                                double densvoda = reader.GetDouble(22);
+                                double timeinterval = reader.GetDouble(23);
+                                int idosnzar = reader.GetInt32(24);
+                                int countosnzar = reader.GetInt32(25);
+                                int idosnporoh = reader.GetInt32(26);
+                                int idvospzar = reader.GetInt32(27);
+                                int countvospzar = reader.GetInt32(28);
+                                int idvospporoh = reader.GetInt32(29);
+
+                                CZarad osnzarad = zarads.Where(x => x.ID == idosnzar).FirstOrDefault();
+                                osnzarad.Poroh = porohs.Where(x => x.ID == idosnporoh).FirstOrDefault();
+
+                                CZarad vospzarad = zarads.Where(x => x.ID == idvospzar).FirstOrDefault();
+                                vospzarad.Poroh = porohs.Where(x => x.ID == idvospporoh).FirstOrDefault();
+
+                                result.Add(new CLOADPARAMS()
+                                {
+                                    ID = id,
+                                    CalculationName = name,
+                                    BushNumber = bushnumber,
+                                    CalculationExecutor = executer,
+                                    CasingDiameter = casingdiameter,
+                                    CasingThickness = casingthickness,
+                                    CompanyName = companyname,
+                                    CountOsnZarad = countosnzar,
+                                    CountVospZarad = countvospzar,
+                                    Date = date,
+                                    DensPerf = densperf,
+                                    DensVoda = densvoda,
+                                    TimeInterval = timeinterval,
+                                    GlubGen = glubgen,
+                                    GlubVoda = glubvoda,
+                                    HPerf = hperf,
+                                    KPuass = kpuass,
+                                    MadeFor = madefor,
+                                    ModUnga = modunga,
+                                    NameMestor = fieldname,
+                                    NameWell = wellnumber,
+                                    osnZar = osnzarad,
+                                    vospZar = vospzarad,
+                                    PodIntPerf = podintperf,
+                                    Pplast = pplast,
+                                    Tplast = tplast,
+                                    TypeFluid = typefluid,
+                                    Zaboy = zaboy,
+                                });
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return result;
             }
         }
     }

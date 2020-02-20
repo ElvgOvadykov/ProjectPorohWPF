@@ -20,9 +20,12 @@ namespace ProjectPorohWPF.Pages
     /// </summary>
     public partial class ArchivePage : UserControl
     {
+        List<CLOADPARAMS> archive;
         public ArchivePage()
         {
+            archive = new List<CLOADPARAMS>(DataBaseController.GetArchive());
             InitializeComponent();
+            ArchiveGrid.ItemsSource = archive;
         }
     }
 }

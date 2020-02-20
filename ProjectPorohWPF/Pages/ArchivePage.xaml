@@ -6,8 +6,20 @@
       xmlns:local="clr-namespace:ProjectPorohWPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-
-    <Grid>
-        
+    <Grid Background="WhiteSmoke" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40px"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="ArchiveGrid" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding Path=ID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}"/>
+                <DataGridTextColumn Header="Название расчета" Binding="{Binding Path=CalculationName}"/>
+                <DataGridTextColumn Header="Компания" Binding="{Binding Path=CompanyName}"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=CalculationExecutor}"/>
+                <DataGridTextColumn Header="Выполнен для" Binding="{Binding Path=MadeFor}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -50,6 +50,7 @@ namespace ProjectPorohWPF
             Pages.Add(AllCharges);
             Pages.Add(CombustionPressure);
             Pages.Add(AllPoroh);
+            Pages.Add(Archive);
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -657,6 +658,16 @@ namespace ProjectPorohWPF
         private void ClearChart(PlotView plot)
         {
             plot.Model = new PlotModel();
+        }
+
+        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TreeViewItem_Selected_Archive(object sender, RoutedEventArgs e)
+        {
+            ViewPage(Archive);
         }
 
         //private void GetDataToTables()

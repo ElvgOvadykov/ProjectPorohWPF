@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectPorohWPF"
+        xmlns:local1="clr-namespace:ProjectPorohWPF.Pages"
         mc:Ignorable="d"
         Title="Расчет параметров порохового воздействия" Height="500" Width="1000">
     <Grid Background="WhiteSmoke">
@@ -30,7 +31,7 @@
                     <TreeViewItem Header="Давление в зоне горения" Selected="TreeViewItem_Selected_Combustion_Pressure"/>
                 </TreeViewItem>
                 </TreeViewItem>
-            <TreeViewItem Header="Архив"/>
+            <TreeViewItem Header="Архив" Selected="TreeViewItem_Selected_Archive"/>
             <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_All_Charges"/>
             <TreeViewItem Header="Пороховые смеси" Selected="TreeViewItem_Selected_All_Porohs"/>
         </TreeView>
@@ -39,5 +40,6 @@
         <local:AllChargesPage x:Name="AllCharges" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local:CombustionPressurePage x:Name="CombustionPressure" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local:AllPorohPage x:Name="AllPoroh" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
+        <local1:ArchivePage x:Name="Archive" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>

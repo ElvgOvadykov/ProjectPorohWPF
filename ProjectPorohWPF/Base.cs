@@ -125,6 +125,7 @@ namespace ProjectPorohWPF
 
     class CLOADPARAMS
     {
+        public int ID; //идентификационный номер
         public DateTime Date;          //дата расчета
         public string CalculationName; //название расчета
         public string CompanyName; //название компании 
@@ -146,7 +147,7 @@ namespace ProjectPorohWPF
         public double DensVoda;             //плотность жидкости
         public double HPerf;                //мощность интервала перфор
         public double PodIntPerf;     //подошва интервала перфорации
-        public int DensPerf;                   //плотность перфорации
+        public double DensPerf;                   //плотность перфорации
         public int CountOsnZarad;      //количество основынх зарядов
         public int CountVospZarad;     //количество восплам зарядов
         public double GlubGen;              //глубина установки генератора

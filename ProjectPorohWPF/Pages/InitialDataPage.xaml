@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
         <Label Content="Общая информация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Дата расчета" Grid.Row="1"/>
-        <DatePicker x:Name="CalculationDate" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch"></DatePicker>
+        <DatePicker x:Name="CalculationDate" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch"/>
         <Label Content="Название расчета" Grid.Row="2"/>
         <TextBox x:Name="CalculationName" Grid.Row="2" Grid.Column="1"/>
         <Label Content="Компания" Grid.Row="3"/>
