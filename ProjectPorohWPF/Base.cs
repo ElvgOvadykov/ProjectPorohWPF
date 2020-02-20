@@ -114,7 +114,7 @@ namespace ProjectPorohWPF
         }
     }
 
-    struct CFPGInternal
+    class CFPGInternal
     {
         public double Z, APW, QT, DPSIZ, DENG, AMG, AMGOS, DMG, DMGOS, AM;
         public double FPM, FPGM, HX, HPSI, WG, SQ, VQ, AA0, AA, TGOS;
@@ -123,12 +123,25 @@ namespace ProjectPorohWPF
         public double DQT, DW, DWG, DA1, DA, DTGR, TGR, AMG0;
     }
 
-    struct CLOADPARAMS
+    class CLOADPARAMS
     {
+        public DateTime Date;          //дата расчета
+        public string CalculationName; //название расчета
+        public string CompanyName; //название компании 
+        public string CalculationExecutor; //исполнитель расчета
+        public string MadeFor; //выполнен для
+        public string BushNumber; //Номер куста
+        public string TypeFluid; //Тип флюида
+        public double TimeInterval; //Время 
+        public CZarad osnZar; //основной заряд
+        public CZarad vospZar; //впомогательный заряд
+
         public string NameWell;      //имя скважины
         public string NameMestor;  //имя месторождения
         public double Zaboy;                //забой
-        public double Dvn;                      //внутренний диаметр колонны
+        public double CasingDiameter; //Диаметр обсадной колонны, мм
+        public double CasingThickness; //Толщина обсадной колонны, мм
+        //public double Dvn;                      //внутренний диаметр колонны
         public double GlubVoda;             //уровень жидкости в стволе
         public double DensVoda;             //плотность жидкости
         public double HPerf;                //мощность интервала перфор
@@ -1241,7 +1254,7 @@ namespace ProjectPorohWPF
 
             Glob.HSP = Params.PodIntPerf + 10.0; //добавили 10 метров зумпфу
             Glob.HS = Params.GlubVoda;
-            Glob.DT = Params.Dvn;
+            Glob.DT = Params.CasingDiameter - Params.CasingThickness * 2; //Перевод внешнего диаметра и толщина 
             Glob.R0 = Params.DensVoda;
             Glob.HM = Params.HPerf;
             Glob.ANP = Params.DensPerf;

@@ -240,5 +240,53 @@ namespace ProjectPorohWPF
                 }
             }
         }
+
+        public static void SaveCalculationToArchive(CLOADPARAMS BaseCalcParam)
+        {
+            string sql = "insert into Archive (Name, Date, Executer, MadeFor, FieldName, BushNumber, WellNumber, " +
+                "SlaughterCurrent, PunchIntervalPower, SolePerforationInterval, GenerationDepth, PerforationDensity, " +
+                "CasingDiameter, CasingThickness, ReservoirPressure, ReservoirTemperature, YoungModulus, " +
+                "PoissonRatio, TypeFluid, FluidLevel, FluidDensity, SimulationDuration, IDOsnZarad, CountOsnZarad, " +
+                " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh) values ";
+            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.Date.ToString("dd-MM-yyyy")}\"," +
+                $"\"{BaseCalcParam.CalculationExecutor}\",\"{BaseCalcParam.MadeFor}\",\"{BaseCalcParam.NameMestor}\"," +
+                $"\"{BaseCalcParam.BushNumber}\", \"{BaseCalcParam.NameWell}\", {BaseCalcParam.Zaboy.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.HPerf.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.PodIntPerf.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.GlubGen.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.DensPerf.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.CasingDiameter.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.CasingThickness.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.Pplast.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.Tplast.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.ModUnga.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.KPuass.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.TypeFluid}\"," +
+                $"{BaseCalcParam.GlubVoda.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.DensVoda.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.TimeInterval.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.ID}," +
+                $"{BaseCalcParam.CountOsnZarad.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.Poroh.ID}," +
+                $"{BaseCalcParam.vospZar.ID}," +
+                $"{BaseCalcParam.CountVospZarad}," +
+                $"{BaseCalcParam.vospZar.Poroh.ID});";
+            sql += sqlvalues;
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = sql.ToString();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

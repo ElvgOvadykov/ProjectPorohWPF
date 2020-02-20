@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ArchivePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ChargesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +121,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base.cs" />
+    <Compile Include="Pages\ArchivePage.xaml.cs">
+      <DependentUpon>ArchivePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ChargesPage.xaml.cs">
       <DependentUpon>ChargesPage.xaml</DependentUpon>
     </Compile>

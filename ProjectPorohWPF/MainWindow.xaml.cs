@@ -25,10 +25,9 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        double TimeInterval;
-        CLOADPARAMS BaseCalcParam;
-        CBase BaseRasch;
-        CZarad osnZar, vospZar;
+        //double TimeInterval;
+        CLOADPARAMS BaseCalcParam = new CLOADPARAMS();
+        CBase BaseRasch = new CBase();
         //CReference Reference;
         List<double> T = new List<double>();
         List<double> P = new List<double>();
@@ -105,10 +104,10 @@ namespace ProjectPorohWPF
                 ClearArray();
                 ClearCharts();
 
-                BaseRasch.SetZarad(ref osnZar, ref vospZar);
+                BaseRasch.SetZarad(ref BaseCalcParam.osnZar, ref BaseCalcParam.vospZar);
                 BaseRasch.LoadBaseParams(ref BaseCalcParam);
                 BaseRasch.SetCountCalcPoint(1000);
-                BaseRasch.SetCalcInterval(TimeInterval);// Магическое число
+                BaseRasch.SetCalcInterval(BaseCalcParam.TimeInterval);// Магическое число
 
                 double t1, t2;
                 try
@@ -168,6 +167,8 @@ namespace ProjectPorohWPF
                 //TabSheet1->Enabled = false;
                 //Excel1->Enabled = true;
                 CalculationResult.Visibility = Visibility.Visible;
+
+                DataBaseController.SaveCalculationToArchive(BaseCalcParam);
             }
         }
 
@@ -190,8 +191,14 @@ namespace ProjectPorohWPF
                         (item as TextBox).BorderBrush = System.Windows.Media.Brushes.Red;
                     }
                 }
-                //if(())
             }
+
+            if (DataPage.TypeFluid.Text == "")
+            {
+                result = false;
+                DataPage.TypeFluid.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+
             //проверка всех на экране выбора зарядов!
             foreach (System.Windows.UIElement item in ChargeSelection.MainGrid.Children)
             {
@@ -506,28 +513,31 @@ namespace ProjectPorohWPF
 
             SetDefaultBorderOnDataPages();
 
-            BaseCalcParam.NameWell = DataPage.WellNumber.Text;
-            if (BaseCalcParam.NameWell == "")
-            {
-                MessageBox.Show("Введите номер скважины");
-                throw (new IntException(0));
-                return false;
-            }
-            BaseCalcParam.NameMestor = DataPage.FieldName.Text;
-            if (BaseCalcParam.NameMestor == "") BaseCalcParam.NameMestor = "Без названия";
             try
             {
+                BaseCalcParam.Date = DataPage.CalculationDate.SelectedDate.Value;
+                BaseCalcParam.CalculationName = DataPage.CalculationName.Text;
+                BaseCalcParam.CompanyName = DataPage.CalculationName.Text;
+                BaseCalcParam.CalculationExecutor = DataPage.CalculationExecutor.Text;
+                BaseCalcParam.MadeFor = DataPage.MadeFor.Text;
+                BaseCalcParam.BushNumber = DataPage.BushNumber.Text;
+                BaseCalcParam.TypeFluid = DataPage.TypeFluid.Text;
+
+                BaseCalcParam.NameMestor = DataPage.FieldName.Text;
+                BaseCalcParam.NameWell = DataPage.WellNumber.Text;
                 BaseCalcParam.Zaboy = Convert.ToDouble(DataPage.SlaughterCurrent.Text);
-                BaseCalcParam.Dvn = Convert.ToDouble(DataPage.CasingDiameter.Text)
-                    - (Convert.ToDouble(DataPage.CasingThickness.Text) * 2);
+                BaseCalcParam.CasingDiameter = Convert.ToDouble(DataPage.CasingDiameter.Text);
+                BaseCalcParam.CasingThickness = Convert.ToDouble(DataPage.CasingThickness.Text);
+                //BaseCalcParam.Dvn = Convert.ToDouble(DataPage.CasingDiameter.Text)
+                //    - (Convert.ToDouble(DataPage.CasingThickness.Text) * 2);
                 BaseCalcParam.GlubVoda = Convert.ToDouble(DataPage.FluidLevel.Text);
                 BaseCalcParam.DensVoda = Convert.ToDouble(DataPage.FluidDensity.Text);
                 BaseCalcParam.HPerf = Convert.ToDouble(DataPage.PunchIntervalPower.Text);
                 BaseCalcParam.PodIntPerf = Convert.ToDouble(DataPage.SolePerforationInterval.Text);
 
                 BaseCalcParam.DensPerf = Convert.ToInt32(DataPage.PerforationDensity.Text);
-                BaseCalcParam.CountOsnZarad = Convert.ToInt32(ChargeSelection.MainCount.Text);
-                BaseCalcParam.CountVospZarad = Convert.ToInt32(ChargeSelection.ActiveCount.Text);
+                BaseCalcParam.CountOsnZarad = Convert.ToInt32(ChargeSelection.ActiveCount.Text);
+                BaseCalcParam.CountVospZarad = Convert.ToInt32(ChargeSelection.MainCount.Text);
                 BaseCalcParam.GlubGen = Convert.ToDouble(DataPage.GeneratorDepth.Text);
                 BaseCalcParam.Pplast = Convert.ToDouble(DataPage.ReservoirPressure.Text); // давление в Мп
                 BaseCalcParam.Tplast = Convert.ToDouble(DataPage.ReservoirTemperature.Text);
@@ -544,7 +554,9 @@ namespace ProjectPorohWPF
                     return false;
                 }
 
-                osnZar = ChargeSelection.MainСharge.SelectedItem as CZarad;
+                BaseCalcParam.osnZar = ChargeSelection.MainСharge.SelectedItem as CZarad;
+                BaseCalcParam.osnZar.Poroh = ChargeSelection.MainСhargeType.SelectedItem as CPoroh;
+
 
                 BaseCalcParam.NameVospZarad = (ChargeSelection.ActiveСharge.SelectedItem as CZarad).Name;
                 if (BaseCalcParam.NameVospZarad == "")
@@ -554,9 +566,10 @@ namespace ProjectPorohWPF
                     return false;
                 }
 
-                vospZar = ChargeSelection.ActiveСharge.SelectedItem as CZarad;
+                BaseCalcParam.vospZar = ChargeSelection.ActiveСharge.SelectedItem as CZarad;
+                BaseCalcParam.vospZar.Poroh = ChargeSelection.ActiveСhargeType.SelectedItem as CPoroh;
 
-                TimeInterval = Convert.ToDouble(DataPage.SimulationDuration.Text);
+                BaseCalcParam.TimeInterval = Convert.ToDouble(DataPage.SimulationDuration.Text);
 
                 return true;
                 //N2->Enabled = true;
