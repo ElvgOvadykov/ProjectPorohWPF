@@ -21,6 +21,7 @@ namespace ProjectPorohWPF.Pages
     public partial class ArchivePage : UserControl
     {
         List<CLOADPARAMS> archive;
+
         public ArchivePage()
         {
             archive = new List<CLOADPARAMS>(DataBaseController.GetArchive());

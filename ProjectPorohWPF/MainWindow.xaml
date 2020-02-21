@@ -32,8 +32,10 @@
                 </TreeViewItem>
                 </TreeViewItem>
             <TreeViewItem Header="Архив" Selected="TreeViewItem_Selected_Archive"/>
-            <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_All_Charges"/>
-            <TreeViewItem Header="Пороховые смеси" Selected="TreeViewItem_Selected_All_Porohs"/>
+            <TreeViewItem Header="Справочники">
+                <TreeViewItem Header="Заряды" Selected="TreeViewItem_Selected_All_Charges"/>
+                <TreeViewItem Header="Пороховые смеси" Selected="TreeViewItem_Selected_All_Porohs"/>
+            </TreeViewItem>
         </TreeView>
         <local:InitialDataPage x:Name="DataPage" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"/>
         <local:ChargesPage x:Name="ChargeSelection" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>

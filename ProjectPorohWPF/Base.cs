@@ -125,41 +125,59 @@ namespace ProjectPorohWPF
 
     class CLOADPARAMS
     {
-        public int ID; //идентификационный номер
-        public DateTime Date;          //дата расчета
-        public string CalculationName; //название расчета
-        public string CompanyName; //название компании 
-        public string CalculationExecutor; //исполнитель расчета
-        public string MadeFor; //выполнен для
-        public string BushNumber; //Номер куста
-        public string TypeFluid; //Тип флюида
-        public double TimeInterval; //Время 
-        public CZarad osnZar; //основной заряд
+        public int ID { get; set; } //идентификационный номер
+
+        private DateTime _date;
+
+        public DateTime Date 
+        { 
+            set 
+            {
+                _date = value;
+            } 
+        }           //дата расчета
+
+        public string DateWithOutTime
+        {
+            get
+            {
+                return _date.ToString("dd-MM-yyyy");
+            }
+        }
+
+        public string CalculationName { get; set; }  //название расчета
+        public string CompanyName { get; set; }  //название компании 
+        public string CalculationExecutor { get; set; }  //исполнитель расчета
+        public string MadeFor { get; set; }  //выполнен для
+        public string BushNumber { get; set; }  //Номер куста
+        public string TypeFluid { get; set; }  //Тип флюида
+        public double TimeInterval { get; set; }  //Время 
+        public CZarad osnZar;  //основной заряд
         public CZarad vospZar; //впомогательный заряд
 
-        public string NameWell;      //имя скважины
-        public string NameMestor;  //имя месторождения
-        public double Zaboy;                //забой
-        public double CasingDiameter; //Диаметр обсадной колонны, мм
-        public double CasingThickness; //Толщина обсадной колонны, мм
+        public string NameWell { get; set; }       //имя скважины
+        public string NameMestor { get; set; }   //имя месторождения
+        public double Zaboy { get; set; }                 //забой
+        public double CasingDiameter { get; set; }  //Диаметр обсадной колонны, мм
+        public double CasingThickness { get; set; }  //Толщина обсадной колонны, мм
         //public double Dvn;                      //внутренний диаметр колонны
-        public double GlubVoda;             //уровень жидкости в стволе
-        public double DensVoda;             //плотность жидкости
-        public double HPerf;                //мощность интервала перфор
-        public double PodIntPerf;     //подошва интервала перфорации
-        public double DensPerf;                   //плотность перфорации
-        public int CountOsnZarad;      //количество основынх зарядов
-        public int CountVospZarad;     //количество восплам зарядов
-        public double GlubGen;              //глубина установки генератора
-        public double Pplast;                   //пластовое давление
-        public double Tplast;                   //пластовая температура
-        public double ModUnga;              //модуль Юнга
-        public double KPuass;                   //коэфф Пуассона
-        public double DlitProc;             //длительность процесса
-        public double TPvdolWell;           //время вывода вдоль скважины давления
-        public double dHFromGenToMan;   //расстояние от генератора до регистрирующего манометра
-        public string NameOsnZarad;    //имя основного заряда
-        public string NameVospZarad;	//имя восплам активного заряда
+        public double GlubVoda { get; set; }              //уровень жидкости в стволе
+        public double DensVoda { get; set; }              //плотность жидкости
+        public double HPerf { get; set; }                //мощность интервала перфор
+        public double PodIntPerf { get; set; }      //подошва интервала перфорации
+        public double DensPerf { get; set; }                    //плотность перфорации
+        public int CountOsnZarad { get; set; }       //количество основынх зарядов
+        public int CountVospZarad { get; set; }      //количество восплам зарядов
+        public double GlubGen { get; set; }               //глубина установки генератора
+        public double Pplast { get; set; }                   //пластовое давление
+        public double Tplast { get; set; }                    //пластовая температура
+        public double ModUnga { get; set; }               //модуль Юнга
+        public double KPuass { get; set; }                    //коэфф Пуассона
+        public double DlitProc { get; set; }              //длительность процесса
+        public double TPvdolWell { get; set; }           //время вывода вдоль скважины давления
+        public double dHFromGenToMan { get; set; }    //расстояние от генератора до регистрирующего манометра
+        public string NameOsnZarad { get; set; }     //имя основного заряда
+        public string NameVospZarad { get; set; } 	//имя восплам активного заряда
     }
 
     class CBase

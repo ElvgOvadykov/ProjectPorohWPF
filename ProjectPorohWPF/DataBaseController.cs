@@ -248,7 +248,7 @@ namespace ProjectPorohWPF
                 "CasingDiameter, CasingThickness, ReservoirPressure, ReservoirTemperature, YoungModulus, " +
                 "PoissonRatio, TypeFluid, FluidLevel, FluidDensity, SimulationDuration, IDOsnZarad, CountOsnZarad, " +
                 " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh) values ";
-            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.Date.ToString("dd-MM-yyyy")}\", " +
+            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.DateWithOutTime}\", " +
                 $"\"{BaseCalcParam.CompanyName}\"," +
                 $"\"{BaseCalcParam.CalculationExecutor}\",\"{BaseCalcParam.MadeFor}\",\"{BaseCalcParam.NameMestor}\"," +
                 $"\"{BaseCalcParam.BushNumber}\", \"{BaseCalcParam.NameWell}\", {BaseCalcParam.Zaboy.ToString("G", CultureInfo.InvariantCulture)}," +
