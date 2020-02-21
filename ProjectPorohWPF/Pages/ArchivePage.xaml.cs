@@ -28,5 +28,11 @@ namespace ProjectPorohWPF.Pages
             InitializeComponent();
             ArchiveGrid.ItemsSource = archive;
         }
+
+        public void UpdateGrid()
+        {
+            archive = new List<CLOADPARAMS>(DataBaseController.GetArchive());
+            ArchiveGrid.ItemsSource = archive;
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_Charge_Selection(object sender, RoutedEventArgs e)
         {
-            //LoadChargesCombobox();
+            ChargeSelection.UpdateComboBox();
             ViewPage(ChargeSelection);
         }
 
@@ -667,6 +667,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_Archive(object sender, RoutedEventArgs e)
         {
+            Archive.UpdateGrid();
             ViewPage(Archive);
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPorohWPF
 {
-    class CPoroh
+    class CPoroh : IEquatable<CPoroh>
     {
         public int ID { get; set; }
         public string Name { get; set; }   //Название смеси
@@ -35,6 +35,19 @@ namespace ProjectPorohWPF
         public override string ToString()
         {
             return Name;
+        }
+
+        public bool Equals(CPoroh other)
+        {
+            if(other is null)
+                return false;
+
+            return this.Name == other.Name
+                && this.Power == other.Power
+                && this.Temper == other.Temper
+                && this.ID == other.ID
+                && this.UdGaz == other.UdGaz
+                && this.Dens == this.Dens;
         }
     }
 }

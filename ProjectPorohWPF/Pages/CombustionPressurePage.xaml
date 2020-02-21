@@ -43,7 +43,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Расстояние от генератора до места рагистрации давления</TextBlock>
             <TextBox x:Name="Distance" Grid.Column="1" Text="30"></TextBox>
-            <Button x:Name="Recount" Grid.Column="2" VerticalAlignment="Center">Пересчитать</Button>
+            <!--<Button x:Name="Recount" Grid.Column="2" VerticalAlignment="Center">Пересчитать</Button>-->
         </Grid>
         <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальное давление, МПа</TextBlock>
         <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальное давление, МПа</TextBlock>

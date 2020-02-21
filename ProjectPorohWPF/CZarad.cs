@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPorohWPF
 {
-    class CZarad
+    class CZarad : IEquatable<CZarad>
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -55,6 +55,19 @@ namespace ProjectPorohWPF
         public override string ToString()
         {
             return Name;
+        }
+
+        public bool Equals(CZarad other)
+        {
+            if (other is null)
+                return false;
+
+            return this.Name == other.Name 
+                && this.Dnar == other.Dnar 
+                && this.Dvnutr == other.Dvnutr 
+                && this.ID == other.ID 
+                && this.L == other.L
+                && this.Poroh.Equals(other.Poroh);
         }
     }
 }

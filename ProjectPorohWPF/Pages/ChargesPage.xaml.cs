@@ -20,42 +20,68 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class ChargesPage : UserControl
     {
-        List<CZarad> zarads;
-        List<CPoroh> porohs;
+        List<CZarad> zarads = new List<CZarad>();
+        List<CPoroh> porohs = new List<CPoroh>();
 
         public ChargesPage()
         {
-            zarads = new List<CZarad>(DataBaseController.GetZarads());
-            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
-            ActiveСharge.ItemsSource = zarads;
-            MainСharge.ItemsSource = zarads;
-            ActiveСhargeType.ItemsSource = porohs;
-            MainСhargeType.ItemsSource = porohs;
+            UpdateComboBox();
         }
 
         private void ActiveСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach(var item in ActiveСhargeType.ItemsSource)
+            if(ActiveСharge.SelectedItem as CZarad != null)
             {
-                if ((item as CPoroh).ID == (ActiveСharge.SelectedItem as CZarad).Poroh.ID)
+                foreach (var item in ActiveСhargeType.ItemsSource)
                 {
-                    ActiveСhargeType.SelectedItem = item;
-                    ActiveСhargeType.Text = (item as CPoroh).Name;
+                    if ((item as CPoroh).ID == (ActiveСharge.SelectedItem as CZarad).Poroh.ID)
+                    {
+                        ActiveСhargeType.SelectedItem = item;
+                        ActiveСhargeType.Text = (item as CPoroh).Name;
+                    }
                 }
             }
         }
 
         private void MainСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var item in MainСhargeType.ItemsSource)
+            if(MainСharge.SelectedItem as CZarad != null)
             {
-                if ((item as CPoroh).ID == (MainСharge.SelectedItem as CZarad).Poroh.ID)
+                foreach (var item in MainСhargeType.ItemsSource)
                 {
-                    MainСhargeType.SelectedItem = item;
-                    MainСhargeType.Text = (item as CPoroh).Name;
+                    if ((item as CPoroh).ID == (MainСharge.SelectedItem as CZarad).Poroh.ID)
+                    {
+                        MainСhargeType.SelectedItem = item;
+                        MainСhargeType.Text = (item as CPoroh).Name;
+                    }
                 }
             }
+        }
+
+        private void Combobox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UpdateComboBox();
+        }
+
+        public void UpdateComboBox()
+        {
+            List<CZarad> zarads_new = new List<CZarad>(DataBaseController.GetZarads());
+            List<CPoroh> porohs_new = new List<CPoroh>(DataBaseController.GetPorohs());
+
+            bool isNewZarads = zarads.SequenceEqual(zarads_new);
+            bool isNewPorohs = porohs.SequenceEqual(porohs_new);
+
+            if (!isNewZarads||!isNewPorohs)
+            {
+                zarads = zarads_new;
+                porohs = porohs_new;
+                ActiveСharge.ItemsSource = zarads;
+                MainСharge.ItemsSource = zarads;
+                ActiveСhargeType.ItemsSource = porohs;
+                MainСhargeType.ItemsSource = porohs;
+            }
+            
         }
     }
 }

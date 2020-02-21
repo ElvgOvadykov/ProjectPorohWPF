@@ -39,6 +39,7 @@ namespace ProjectPorohWPF
 
         private void DeleteCharge_Click(object sender, RoutedEventArgs e)
         {
+            zarads.Remove(ChargesDataGrid.SelectedItem as CZarad);
             DataBaseController.DeleteCharge(ChargesDataGrid.SelectedItem as CZarad);
             ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
