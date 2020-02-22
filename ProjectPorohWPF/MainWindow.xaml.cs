@@ -170,6 +170,7 @@ namespace ProjectPorohWPF
                 CalculationResult.Visibility = Visibility.Visible;
 
                 DataBaseController.SaveCalculationToArchive(BaseCalcParam);
+                NameCalculation.Header = BaseCalcParam.CalculationName;
             }
         }
 
@@ -372,11 +373,11 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.SimulationDuration.Text);
+                Convert.ToDouble(ChargeSelection.SimulationDuration.Text);
             }
             catch
             {
-                DataPage.SimulationDuration.BorderBrush = System.Windows.Media.Brushes.Red;
+                ChargeSelection.SimulationDuration.BorderBrush = System.Windows.Media.Brushes.Red;
                 result = false;
             }
 
@@ -518,7 +519,7 @@ namespace ProjectPorohWPF
             {
                 BaseCalcParam.Date = DataPage.CalculationDate.SelectedDate.Value;
                 BaseCalcParam.CalculationName = DataPage.CalculationName.Text;
-                BaseCalcParam.CompanyName = DataPage.CalculationName.Text;
+                BaseCalcParam.CompanyName = DataPage.CompanyName.Text;
                 BaseCalcParam.CalculationExecutor = DataPage.CalculationExecutor.Text;
                 BaseCalcParam.MadeFor = DataPage.MadeFor.Text;
                 BaseCalcParam.BushNumber = DataPage.BushNumber.Text;
@@ -570,7 +571,7 @@ namespace ProjectPorohWPF
                 BaseCalcParam.vospZar = ChargeSelection.ActiveСharge.SelectedItem as CZarad;
                 BaseCalcParam.vospZar.Poroh = ChargeSelection.ActiveСhargeType.SelectedItem as CPoroh;
 
-                BaseCalcParam.TimeInterval = Convert.ToDouble(DataPage.SimulationDuration.Text);
+                BaseCalcParam.TimeInterval = Convert.ToDouble(ChargeSelection.SimulationDuration.Text);
 
                 return true;
                 //N2->Enabled = true;

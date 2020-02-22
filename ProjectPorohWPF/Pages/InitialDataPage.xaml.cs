@@ -50,7 +50,6 @@ namespace ProjectPorohWPF
             TypeFluid.Text = "Нефть";
             FluidLevel.Text = "50";
             FluidDensity.Text = "1,18";
-            SimulationDuration.Text = "10";
         }
     }
 }

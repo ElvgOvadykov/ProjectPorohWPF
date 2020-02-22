@@ -34,5 +34,8 @@
         <TextBox x:Name="MainCount" Grid.Row="3" Grid.Column="2" />
         <ComboBox x:Name="ActiveСhargeType" Grid.Row="4" Grid.Column="1"></ComboBox>
         <ComboBox x:Name="MainСhargeType" Grid.Row="4" Grid.Column="2"></ComboBox>
+        <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Content="Параметры расчета" HorizontalContentAlignment="Center"></Label>
+        <Label Grid.Row="6" Grid.Column="0" Content="Длительность моделирования, с"></Label>
+        <TextBox x:Name="SimulationDuration" Grid.Row="6" Grid.Column="1" Text="10"/>
     </Grid>
 </UserControl>

@@ -19,6 +19,9 @@
                 <DataGridTextColumn Header="Компания" Binding="{Binding Path=CompanyName}"/>
                 <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=CalculationExecutor}"/>
                 <DataGridTextColumn Header="Выполнен для" Binding="{Binding Path=MadeFor}"/>
+                <DataGridTextColumn Header="Месторождение" Binding="{Binding Path=NameMestor}"/>
+                <DataGridTextColumn Header="Номер куста" Binding="{Binding Path=BushNumber}"/>
+                <DataGridTextColumn Header="Номер скважины" Binding="{Binding Path=NameWell}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -24,7 +24,7 @@
             <MenuItem Header="Отчет" ></MenuItem>
         </Menu>
         <TreeView x:Name="TreeViewMain" Grid.Row="2" Grid.RowSpan="15">
-            <TreeViewItem Header="Расчет">
+            <TreeViewItem x:Name="NameCalculation" Header="Расчет">
                 <TreeViewItem Header="Общая информация" Selected="TreeViewItem_Selected_Initial_Data"/>
                 <TreeViewItem Header="Выбор зарядов" Selected="TreeViewItem_Selected_Charge_Selection"/>
                 <TreeViewItem x:Name="CalculationResult" Header="Результат расчета" Visibility="Collapsed">

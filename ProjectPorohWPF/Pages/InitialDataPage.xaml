@@ -96,8 +96,5 @@
         <TextBox x:Name="FluidLevel" Grid.Row="10" Grid.Column="3"/>
         <Label Content="Плотность флюида, г/см3" Grid.Row="11" Grid.Column="2"/>
         <TextBox x:Name="FluidDensity" Grid.Row="11" Grid.Column="3"/>
-        <Label Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Content="Параметры расчета" HorizontalContentAlignment="Center"></Label>
-        <Label Grid.Row="13" Grid.Column="2" Content="Длительность моделирования, с"></Label>
-        <TextBox x:Name="SimulationDuration" Grid.Row="13" Grid.Column="3"/>
     </Grid>
 </UserControl>
