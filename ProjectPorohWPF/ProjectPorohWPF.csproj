@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\GasAreaCoordinatesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\InitialDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +159,9 @@
     </Compile>
     <Compile Include="Pages\CrackWidthPage.xaml.cs">
       <DependentUpon>CrackWidthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GasAreaCoordinatesPage.xaml.cs">
+      <DependentUpon>GasAreaCoordinatesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\InitialDataPage.xaml.cs">
       <DependentUpon>InitialDataPage.xaml</DependentUpon>
