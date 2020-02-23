@@ -581,7 +581,7 @@ namespace ProjectPorohWPF
             BaseRasch.GetCoordVoda(ref Voda);
             BaseRasch.GetWellCoord(ref WellData);
 
-            //GetDataToTables();
+            GetDataToTables();
             InsertDataToCharts();
 
             //TabSheet1->Enabled = false;
@@ -800,50 +800,50 @@ namespace ProjectPorohWPF
             CalculationResult.Visibility = Visibility.Collapsed;
         }
 
-        //private void GetDataToTables()
-        //{
-        //    int imin, imax;
-        //    CombustionPressure.Distance.Text = BaseCalcParam.dHFromGenToMan.ToString();
+        private void GetDataToTables()
+        {
+            int imin, imax;
+            CombustionPressure.Distance.Text = BaseCalcParam.dHFromGenToMan.ToString();
 
-        //    //по давлению
-        //    double gd;
-        //    double a1, a2;
-        //    InsertDataToTable(Form2->StringGrid1, ref T, &P, 2, "Время, сек", "P, атм", &imin, &imax);
-        //    Form2->Label4->Caption = "Максимальное давление = " + RoundS(P[imax], 2) + "атм";
-        //    Form2->Label5->Caption = "Минимальние давление = " + RoundS(P[imin], 2) + "атм";
-        //    gd = BaseRasch->Hidrost;
-        //    Form2->Label6->Caption = "Гидростатическое давление = " + RoundS(gd / 100000.0, 2) + "атм";
-        //    Form2->Label8->Caption = "Глубина депрессионной воронки = " + RoundS(gd / 100000.0 - P[imin], 2) + "атм";
-        //    gd = BaseRasch->gorn;
-        //    Form2->Label7->Caption = "Горное давление = " + RoundS(gd / 100000.0, 2) + "атм";
+            //по давлению
+            double gd;
+            double a1, a2;
+            //InsertDataToTable(Form2->StringGrid1, ref T, &P, 2, "Время, сек", "P, атм", &imin, &imax);
+            CombustionPressure.MaxPressure.Text = Func.RoundS(P.Max(x=>x), 2) + "атм";
+            CombustionPressure.MinPressure.Text = Func.RoundS(P.Min(x=>x), 2) + "атм";
+            gd = BaseRasch.Hidrost;
+            CombustionPressure.HydrostaticPressure.Text = Func.RoundS(gd / 100000.0, 2) + "атм";
+            CombustionPressure.DepressionDepth.Text = Func.RoundS(gd / 100000.0 - P.Min(x=>x), 2) + "атм";
+            gd = BaseRasch.gorn;
+            CombustionPressure.RockPressure.Text = Func.RoundS(gd / 100000.0, 2) + "атм";
 
-        //    InsertDataToTable(Form2->StringGrid2, &T, &Temper, 2, "Время, сек", "T, C", &imin, &imax);
-        //    Form2->Label14->Caption = "Максимальная температура = " + RoundS(Temper[imax], 2) + " C";
-        //    Form2->Label15->Caption = "Минимальная температура = " + RoundS(Temper[imin], 2) + " C";
+            //InsertDataToTable(Form2->StringGrid2, &T, &Temper, 2, "Время, сек", "T, C", &imin, &imax);
+            TemperatureCombustion.MaxTemperature.Text = Func.RoundS(Temper.Max(x=>x), 2) + " C";
+            TemperatureCombustion.MinTemperature.Text = Func.RoundS(Temper.Min(x=>x), 2) + " C";
 
-        //    InsertDataToTable(Form2->StringGrid4, &T, &DlinTrech, 2, "Время, сек", "L, м", &imin, &imax);
-        //    Form2->Label18->Caption = "Максимальная длина = " + RoundS(DlinTrech[imax], 2) + " м";
-        //    Form2->Label19->Caption = "Минимальная длина = " + RoundS(DlinTrech[imin], 2) + " м";
+            //InsertDataToTable(Form2->StringGrid4, &T, &DlinTrech, 2, "Время, сек", "L, м", &imin, &imax);
+            CrackLength.MaxLength.Text = Func.RoundS(DlinTrech.Max(x=>x), 2) + " м";
+            CrackLength.MinLength.Text = Func.RoundS(DlinTrech.Min(x=>x), 2) + " м";
 
-        //    InsertDataToTable(Form2->StringGrid5, &T, &ShirTrech, 2, "Время, сек", "W, мм", &imin, &imax);
-        //    Form2->Label21->Caption = "Максимальная ширина = " + RoundS(ShirTrech[imax], 2) + " мм";
-        //    Form2->Label20->Caption = "Минимальная ширина = " + RoundS(ShirTrech[imin], 2) + " мм";
+            //InsertDataToTable(Form2->StringGrid5, &T, &ShirTrech, 2, "Время, сек", "W, мм", &imin, &imax);
+            CrackWidth.MaxWidth.Text = Func.RoundS(ShirTrech.Max(x=>x), 2) + " мм";
+            CrackWidth.MinWidth.Text = Func.RoundS(ShirTrech.Min(x=>x), 2) + " мм";
 
-        //    InsertDataToTable(Form2->StringGrid6, &T, &Coord1Gaz, 3, "Время, сек", "X1, м", &imin, &imax, &Coord2Gaz, "X2, м");
-        //    Form2->Label32->Caption = "Минимальная глубина = " + RoundS(Coord2Gaz[imin], 2) + " м";
-        //    Form2->Label33->Caption = "Максимальная глубина = " + RoundS(Coord1Gaz[imax], 2) + " м";
-        //    Form2->Label34->Caption = "Максимальная амплитуда = " + RoundS(Coord1Gaz[imax] - Coord2Gaz[imin], 2) + " м";
+            //InsertDataToTable(Form2->StringGrid6, &T, &Coord1Gaz, 3, "Время, сек", "X1, м", &imin, &imax, &Coord2Gaz, "X2, м");
+            GasAreaCoordinates.MinDepth.Text = Func.RoundS(Coord2Gaz.Min(x=>x), 2) + " м";
+            GasAreaCoordinates.MaxDepth.Text = Func.RoundS(Coord1Gaz.Max(x=>x), 2) + " м";
+            GasAreaCoordinates.MaxAmplitude.Text = Func.RoundS(Coord1Gaz.Max(x=>x) - Coord2Gaz.Min(x=>x), 2) + " м";
 
-        //    InsertDataToTable(Form2->StringGrid7, &WellData, &Davl, 2, "Глубина, м", "Давление, атм", &imin, &imax);
-        //    Form2->Label27->Caption = "Максимальное давление = " + RoundS(Davl[imax], 2) + " атм";
-        //    Form2->Label26->Caption = "Минимальное давление = " + RoundS(Davl[imin], 2) + " атм";
+            //InsertDataToTable(Form2->StringGrid7, &WellData, &Davl, 2, "Глубина, м", "Давление, атм", &imin, &imax);
+            BarrelPressureDistribution.MaxPressure.Text = Func.RoundS(Davl.Max(x=>x), 2) + " атм";
+            BarrelPressureDistribution.MinPressure.Text = Func.RoundS(Davl.Min(x=>x), 2) + " атм";
 
-        //    InsertDataToTable(Form2->StringGrid8, &T, &Voda, 2, "Время, сек", "X, м", &imin, &imax);
-        //    Form2->Label31->Caption = "Максимальное значение = " + RoundS(Voda[imax], 2) + " м";
-        //    Form2->Label30->Caption = "Минимальное значение = " + RoundS(Voda[imin], 2) + " м";
-        //    Form2->Label38->Caption = "Амплитуда = " + RoundS(Voda[imax] - Voda[imin], 2) + " м";
+            //InsertDataToTable(Form2->StringGrid8, &T, &Voda, 2, "Время, сек", "X, м", &imin, &imax);
+            UpperFluidBoundary.MaxValue.Text = Func.RoundS(Voda.Max(x=>x), 2) + " м";
+            UpperFluidBoundary.MinValue.Text = Func.RoundS(Voda.Min(x=>x), 2) + " м";
+            UpperFluidBoundary.Amplitude.Text = Func.RoundS(Voda.Max(x=>x) - Voda.Min(x=>x), 2) + " м";
 
-        //}
+        }
 
         //void ClearRezSG(TStringGrid* sg, string s1, string s2, string s3)
         //{
@@ -860,31 +860,31 @@ namespace ProjectPorohWPF
         //    if (cont == 4) sg->Cells[3][0] = s3;
         //}
 
-        //     void InsertDataToTable(ref string sg, ref List<double> data, ref List<double> data1,
-        //     int cnt, string s, string s1, ref int indMin,ref int indMax, ref List<double> data2, string s2)
-        //     {
-        //         //ClearRezSG(sg, s, s1, s2);
-        //         int rz;
-        //         float min = 99999999;
-        //         float max = -9999999;
-        //         int imin, imax;
-        //         rz = data.Count();
-        //         for (int i = 0; i < rz; i++)
-        //         {
-        //             sg->Cells[0][i + 1] = IntToStr(i + 1);
-        //             sg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
-        //         sg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
-        //         if (cnt == 3) sg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
+        //void InsertDataToTable(ref string sg, ref List<double> data, ref List<double> data1,
+        //int cnt, string s, string s1, ref int indMin, ref int indMax, ref List<double> data2, string s2)
+        //{
+        //    //ClearRezSG(sg, s, s1, s2);
+        //    int rz;
+        //    float min = 99999999;
+        //    float max = -9999999;
+        //    int imin, imax;
+        //    rz = data.Count();
+        //    for (int i = 0; i < rz; i++)
+        //    {
+        //        sg->Cells[0][i + 1] = IntToStr(i + 1);
+        //        sg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
+        //    sg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
+        //    if (cnt == 3) sg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
 
-        //         if (cnt == 2)
-        //         {
-        //             if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
-        //		if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+        //    if (cnt == 2)
+        //    {
+        //        if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
+        //		if (max<data1->operator [](i)) {max=data1->operator [] (i); imax=i;}
         // }
         // else
         // {
-        //	 if (min>data2->operator [](i)) {min=data2->operator [](i); imin=i;}
-        //	 if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+        //	 if (min>data2->operator [] (i)) {min=data2->operator [] (i); imin=i;}
+        //	 if (max<data1->operator [](i)) {max=data1->operator [] (i); imax=i;}
         // }
         // sg->RowCount+=1;
         //}

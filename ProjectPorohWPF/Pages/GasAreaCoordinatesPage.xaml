@@ -45,6 +45,6 @@
         <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная амплитуда</TextBlock>
         <TextBlock x:Name="MaxDepth" Grid.Row="2" Grid.Column="1"></TextBlock>
         <TextBlock x:Name="MinDepth" Grid.Row="3" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="MinAmplitude" Grid.Row="4" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="MaxAmplitude" Grid.Row="4" Grid.Column="1"></TextBlock>
     </Grid>
 </UserControl>

@@ -37,6 +37,8 @@
         </Grid>
         <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
         <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальное ширина, мм</TextBlock>
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальная ширина, мм</TextBlock>
         <TextBlock x:Name="MaxWidth" Grid.Row="2" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="MinWidth" Grid.Row="3" Grid.Column="1"></TextBlock>
     </Grid>
 </UserControl>
