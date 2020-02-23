@@ -106,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CrackLengthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CrackWidthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +150,9 @@
     <Compile Include="CZarad.cs" />
     <Compile Include="DataBaseController.cs" />
     <Compile Include="Func.cs" />
+    <Compile Include="Pages\CrackLengthPage.xaml.cs">
+      <DependentUpon>CrackLengthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CrackWidthPage.xaml.cs">
       <DependentUpon>CrackWidthPage.xaml</DependentUpon>
     </Compile>
