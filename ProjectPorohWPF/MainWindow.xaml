@@ -29,6 +29,7 @@
                 <TreeViewItem Header="Выбор зарядов" Selected="TreeViewItem_Selected_Charge_Selection"/>
                 <TreeViewItem x:Name="CalculationResult" Header="Результат расчета" Visibility="Collapsed">
                     <TreeViewItem Header="Давление в зоне горения" Selected="TreeViewItem_Selected_Combustion_Pressure"/>
+                    <TreeViewItem Header="Температура в зоне горения" Selected="TreeViewItem_Selected_Temperature_Combustion"/>
                 </TreeViewItem>
                 </TreeViewItem>
             <TreeViewItem Header="Архив" Selected="TreeViewItem_Selected_Archive"/>
@@ -43,5 +44,6 @@
         <local:CombustionPressurePage x:Name="CombustionPressure" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local:AllPorohPage x:Name="AllPoroh" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local1:ArchivePage x:Name="Archive" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
+        <local1:TemperatureCombustionZonePage x:Name="TemperatureCombustion" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>

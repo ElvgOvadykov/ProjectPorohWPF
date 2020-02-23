@@ -51,6 +51,7 @@ namespace ProjectPorohWPF
             Pages.Add(CombustionPressure);
             Pages.Add(AllPoroh);
             Pages.Add(Archive);
+            Pages.Add(TemperatureCombustion);
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -607,6 +608,7 @@ namespace ProjectPorohWPF
         private void InsertDataToCharts()
         {
             InsertDataToChart(CombustionPressure.Chart, T, P);
+            InsertDataToChart(TemperatureCombustion.Chart, T, Temper);
         }
 
         private void InsertDataToChart(PlotView plot, List<double> data, List<double> data1, List<double> data2 = null)
@@ -670,6 +672,11 @@ namespace ProjectPorohWPF
         {
             Archive.UpdateGrid();
             ViewPage(Archive);
+        }
+
+        private void TreeViewItem_Selected_Temperature_Combustion(object sender, RoutedEventArgs e)
+        {
+            ViewPage(TemperatureCombustion);
         }
 
         //private void GetDataToTables()
