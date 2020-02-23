@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="ProjectPorohWPF.Pages.CrackWidthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectPorohWPF.Pages"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Background="WhiteSmoke" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30px"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Ширина трещины, мм</TextBlock>
+            <TextBlock x:Name="Temperature" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Время, с</TextBlock>
+            <TextBlock x:Name="CurrentTime" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
+        </Grid>
+        <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальное ширина, мм</TextBlock>
+        <TextBlock x:Name="MaxWidth" Grid.Row="2" Grid.Column="1"></TextBlock>
+    </Grid>
+</UserControl>
