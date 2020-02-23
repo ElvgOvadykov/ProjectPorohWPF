@@ -24,5 +24,6 @@
                 <DataGridTextColumn Header="Номер скважины" Binding="{Binding Path=NameWell}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="UpdatePorohs" Content="Посмотреть расчет" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0" Click="CheckCalculation"></Button>
     </Grid>
 </UserControl>

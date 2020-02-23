@@ -20,6 +20,8 @@ namespace ProjectPorohWPF.Pages
     /// </summary>
     public partial class ArchivePage : UserControl
     {
+        public MainWindow parent;
+
         List<CLOADPARAMS> archive;
 
         public ArchivePage()
@@ -33,6 +35,15 @@ namespace ProjectPorohWPF.Pages
         {
             archive = new List<CLOADPARAMS>(DataBaseController.GetArchive());
             ArchiveGrid.ItemsSource = archive;
+        }
+
+        private void CheckCalculation(object sender, RoutedEventArgs e)
+        {
+            if(ArchiveGrid.SelectedItem != null)
+            {
+                parent.ViewCalculation(ArchiveGrid.SelectedItem as CLOADPARAMS);
+            }
+            
         }
     }
 }

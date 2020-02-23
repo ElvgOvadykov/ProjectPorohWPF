@@ -134,7 +134,11 @@ namespace ProjectPorohWPF
             set 
             {
                 _date = value;
-            } 
+            }
+            get
+            {
+                return _date;
+            }
         }           //дата расчета
 
         public string DateWithOutTime

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +58,7 @@ namespace ProjectPorohWPF
             Pages.Add(CrackLength);
             Pages.Add(GasAreaCoordinates);
             Pages.Add(UpperFluidBoundary);
+            Archive.parent = this;
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -97,86 +99,11 @@ namespace ProjectPorohWPF
 
         private void Click_Calculation(object sender, RoutedEventArgs e)
         {
-            //TTabSheet* ts;
-
-            //for (int i = 2; i < 23; i++)
-            //{
-            //    ts = (TTabSheet*)FindComponent("TabSheet" + IntToStr(i));
-            //    if (ts != NULL) ts->TabVisible = true;
-            //}
-
             if (CorrectData())
             {
-                BaseRasch = new CBase();
-                ClearArray();
-                ClearCharts();
-
-                BaseRasch.SetZarad(ref BaseCalcParam.osnZar, ref BaseCalcParam.vospZar);
-                BaseRasch.LoadBaseParams(ref BaseCalcParam);
-                BaseRasch.SetCountCalcPoint(1000);
-                BaseRasch.SetCalcInterval(BaseCalcParam.TimeInterval);// Магическое число
-
-                double t1, t2;
-                try
-                {
-                    t1 = Convert.ToDouble(CombustionPressure.Distance.Text);
-                    //t2 = Convert.ToDouble(Edit8->Text);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    MessageBox.Show("Проверьте правильность введенных расстояния до генератора и времени после воздействия!");
-                    return;
-                }
-
-                //if (t2 > Reference->DataTimeInterval[0])
-                //{
-                //    t2 = Reference->DataTimeInterval[0];
-                //    Edit8->Text = RoundS(t2, 2);
-                //}
-
-                BaseRasch.SetdHFromGenToMan(t1);
-                BaseRasch.SetTPvdolWell(1); // Тестовое время воздействия 1 секунда
-                //BaseRasch.SetTPvdolWell(t2);
-
-                int countiter = 0;
-
-                while (true)
-                {
-                    countiter++;
-                    try
-                    {
-                        if (countiter > 20) break;
-                        BaseRasch.Calc();//?????????????????????????????
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        BaseRasch.PlusK++;
-                        continue;
-                    }
-                }
-
-                BaseRasch.GetCalcTimes(ref T);
-                BaseRasch.GetCalcP(ref P);
-                BaseRasch.GetCalcTemper(ref Temper);
-                BaseRasch.GetDlinTrech(ref DlinTrech);
-                BaseRasch.GetShirTrech(ref ShirTrech);
-                BaseRasch.Get1CoorGaz(ref Coord1Gaz);
-                BaseRasch.Get2CoorGaz(ref Coord2Gaz);
-                BaseRasch.GetDavlOfWell(ref Davl);
-                BaseRasch.GetCoordVoda(ref Voda);
-                BaseRasch.GetWellCoord(ref WellData);
-
-                //GetDataToTables();
-                InsertDataToCharts();
-
-                //TabSheet1->Enabled = false;
-                //Excel1->Enabled = true;
-                CalculationResult.Visibility = Visibility.Visible;
-
-                DataBaseController.SaveCalculationToArchive(BaseCalcParam);
+                Calculation();
                 NameCalculation.Header = BaseCalcParam.CalculationName;
+                DataBaseController.SaveCalculationToArchive(BaseCalcParam);
             }
         }
 
@@ -504,6 +431,8 @@ namespace ProjectPorohWPF
 
         private bool CorrectData()
         {
+            SetDefaultBorderOnDataPages();
+
             if (!CheckFields())
             {
                 return false;
@@ -518,8 +447,6 @@ namespace ProjectPorohWPF
             {
                 return false;
             }
-
-            SetDefaultBorderOnDataPages();
 
             try
             {
@@ -589,6 +516,77 @@ namespace ProjectPorohWPF
                 MessageBox.Show("Проверьте правильность введенных данных!");
                 throw (new IntException(0));
             }
+        }
+
+        private void Calculation() 
+        {
+            BaseRasch = new CBase();
+            ClearArray();
+            ClearCharts();
+
+            BaseRasch.SetZarad(ref BaseCalcParam.osnZar, ref BaseCalcParam.vospZar);
+            BaseRasch.LoadBaseParams(ref BaseCalcParam);
+            BaseRasch.SetCountCalcPoint(1000);
+            BaseRasch.SetCalcInterval(BaseCalcParam.TimeInterval);// Магическое число
+
+            double t1, t2;
+            try
+            {
+                t1 = Convert.ToDouble(CombustionPressure.Distance.Text);
+                //t2 = Convert.ToDouble(Edit8->Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Проверьте правильность введенных расстояния до генератора и времени после воздействия!");
+                return;
+            }
+
+            //if (t2 > Reference->DataTimeInterval[0])
+            //{
+            //    t2 = Reference->DataTimeInterval[0];
+            //    Edit8->Text = RoundS(t2, 2);
+            //}
+
+            BaseRasch.SetdHFromGenToMan(t1);
+            BaseRasch.SetTPvdolWell(1); // Тестовое время воздействия 1 секунда
+                                        //BaseRasch.SetTPvdolWell(t2);
+
+            int countiter = 0;
+
+            while (true)
+            {
+                countiter++;
+                try
+                {
+                    if (countiter > 20) break;
+                    BaseRasch.Calc();//?????????????????????????????
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    BaseRasch.PlusK++;
+                    continue;
+                }
+            }
+
+            BaseRasch.GetCalcTimes(ref T);
+            BaseRasch.GetCalcP(ref P);
+            BaseRasch.GetCalcTemper(ref Temper);
+            BaseRasch.GetDlinTrech(ref DlinTrech);
+            BaseRasch.GetShirTrech(ref ShirTrech);
+            BaseRasch.Get1CoorGaz(ref Coord1Gaz);
+            BaseRasch.Get2CoorGaz(ref Coord2Gaz);
+            BaseRasch.GetDavlOfWell(ref Davl);
+            BaseRasch.GetCoordVoda(ref Voda);
+            BaseRasch.GetWellCoord(ref WellData);
+
+            //GetDataToTables();
+            InsertDataToCharts();
+
+            //TabSheet1->Enabled = false;
+            //Excel1->Enabled = true;
+            CalculationResult.Visibility = Visibility.Visible;
         }
 
         private void ClearArray()
@@ -712,6 +710,49 @@ namespace ProjectPorohWPF
         private void TreeViewItem_Selected_Upper_Fluid_Boundary(object sender, RoutedEventArgs e)
         {
             ViewPage(UpperFluidBoundary);
+        }
+
+        internal void ViewCalculation(CLOADPARAMS calc)
+        {
+            DataPage.CalculationDate.SelectedDate = calc.Date;
+            DataPage.CalculationName.Text = calc.CalculationName;
+            DataPage.CompanyName.Text = calc.CompanyName;
+            DataPage.CalculationExecutor.Text = calc.CalculationExecutor;
+            DataPage.MadeFor.Text = calc.MadeFor;
+            DataPage.FieldName.Text = calc.NameMestor;
+            DataPage.BushNumber.Text = calc.BushNumber;
+            DataPage.WellNumber.Text = calc.NameWell;
+            DataPage.SlaughterCurrent.Text = calc.Zaboy.ToString();
+            DataPage.PunchIntervalPower.Text = calc.HPerf.ToString();
+            DataPage.SolePerforationInterval.Text = calc.PodIntPerf.ToString();
+            DataPage.GeneratorDepth.Text = calc.GlubGen.ToString();
+            DataPage.PerforationDensity.Text = calc.DensPerf.ToString();
+            DataPage.CasingDiameter.Text = calc.CasingDiameter.ToString();
+            DataPage.CasingThickness.Text = calc.CasingThickness.ToString();
+            DataPage.ReservoirPressure.Text = calc.Pplast.ToString();
+            DataPage.ReservoirTemperature.Text = calc.Tplast.ToString();
+            DataPage.YoungModulus.Text = calc.ModUnga.ToString();
+            DataPage.PoissonRatio.Text = calc.KPuass.ToString();
+            DataPage.TypeFluid.Text = calc.TypeFluid;
+            DataPage.FluidLevel.Text = calc.GlubVoda.ToString();
+            DataPage.FluidDensity.Text = calc.DensVoda.ToString();
+
+            ChargeSelection.SimulationDuration.Text = calc.TimeInterval.ToString();
+
+            ChargeSelection.MainСharge.SelectedItem = calc.osnZar;
+            ChargeSelection.MainСhargeType.SelectedItem = calc.osnZar.Poroh;
+            ChargeSelection.MainCount.Text = calc.CountOsnZarad.ToString();
+
+            ChargeSelection.ActiveСharge.SelectedItem = calc.vospZar;
+            ChargeSelection.ActiveСhargeType.SelectedItem = calc.vospZar.Poroh;
+            ChargeSelection.ActiveCount.Text = calc.CountVospZarad.ToString();
+
+            if (CorrectData())
+            {
+                Calculation();
+                NameCalculation.Header = BaseCalcParam.CalculationName;
+            }
+
         }
 
         //private void GetDataToTables()

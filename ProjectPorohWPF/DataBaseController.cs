@@ -248,10 +248,15 @@ namespace ProjectPorohWPF
                 "CasingDiameter, CasingThickness, ReservoirPressure, ReservoirTemperature, YoungModulus, " +
                 "PoissonRatio, TypeFluid, FluidLevel, FluidDensity, SimulationDuration, IDOsnZarad, CountOsnZarad, " +
                 " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh) values ";
-            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", \"{BaseCalcParam.DateWithOutTime}\", " +
+            string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", " +
+                $"\"{BaseCalcParam.DateWithOutTime}\", " +
                 $"\"{BaseCalcParam.CompanyName}\"," +
-                $"\"{BaseCalcParam.CalculationExecutor}\",\"{BaseCalcParam.MadeFor}\",\"{BaseCalcParam.NameMestor}\"," +
-                $"\"{BaseCalcParam.BushNumber}\", \"{BaseCalcParam.NameWell}\", {BaseCalcParam.Zaboy.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.CalculationExecutor}\"," +
+                $"\"{BaseCalcParam.MadeFor}\"," +
+                $"\"{BaseCalcParam.NameMestor}\"," +
+                $"\"{BaseCalcParam.BushNumber}\", " +
+                $"\"{BaseCalcParam.NameWell}\", " +
+                $"{BaseCalcParam.Zaboy.ToString("G", CultureInfo.InvariantCulture)}," +
                 $"{BaseCalcParam.HPerf.ToString("G", CultureInfo.InvariantCulture)}," +
                 $"{BaseCalcParam.PodIntPerf.ToString("G", CultureInfo.InvariantCulture)}," +
                 $"{BaseCalcParam.GlubGen.ToString("G", CultureInfo.InvariantCulture)}," +
