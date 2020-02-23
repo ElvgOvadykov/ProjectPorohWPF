@@ -53,6 +53,7 @@ namespace ProjectPorohWPF
             Pages.Add(Archive);
             Pages.Add(TemperatureCombustion);
             Pages.Add(CrackWidth);
+            Pages.Add(BarrelPressureDistribution);
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -611,6 +612,7 @@ namespace ProjectPorohWPF
             InsertDataToChart(CombustionPressure.Chart, T, P);
             InsertDataToChart(TemperatureCombustion.Chart, T, Temper);
             InsertDataToChart(CrackWidth.Chart, T, DlinTrech);
+            InsertDataToChart(BarrelPressureDistribution.Chart, WellData, Davl);
         }
 
         private void InsertDataToChart(PlotView plot, List<double> data, List<double> data1, List<double> data2 = null)
@@ -684,6 +686,11 @@ namespace ProjectPorohWPF
         private void TreeViewItem_Selected_Crack_Width(object sender, RoutedEventArgs e)
         {
             ViewPage(CrackWidth);
+        }
+
+        private void TreeViewItem_Selected_Barrel_Pressure_Distribution(object sender, RoutedEventArgs e)
+        {
+            ViewPage(BarrelPressureDistribution);
         }
 
         //private void GetDataToTables()
