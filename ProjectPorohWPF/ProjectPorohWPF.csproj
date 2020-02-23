@@ -175,10 +175,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UpperFluidBoundaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\TemperatureCombustionZonePage.xaml.cs">
       <DependentUpon>TemperatureCombustionZonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpperFluidBoundaryPage.xaml.cs">
+      <DependentUpon>UpperFluidBoundaryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

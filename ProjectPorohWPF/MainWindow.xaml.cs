@@ -56,6 +56,7 @@ namespace ProjectPorohWPF
             Pages.Add(BarrelPressureDistribution);
             Pages.Add(CrackLength);
             Pages.Add(GasAreaCoordinates);
+            Pages.Add(UpperFluidBoundary);
         }
 
         private void TreeViewItem_Selected_Initial_Data(object sender, RoutedEventArgs e)
@@ -617,6 +618,7 @@ namespace ProjectPorohWPF
             InsertDataToChart(BarrelPressureDistribution.Chart, WellData, Davl);
             InsertDataToChart(CrackLength.Chart, T, DlinTrech);
             InsertDataToChart(GasAreaCoordinates.Chart, T, Coord1Gaz, Coord2Gaz);
+            InsertDataToChart(UpperFluidBoundary.Chart, T, Voda);
         }
 
         private void InsertDataToChart(PlotView plot, List<double> data, List<double> data1, List<double> data2 = null)
@@ -705,6 +707,11 @@ namespace ProjectPorohWPF
         private void TreeViewItem_Selected_Gas_Area_Coordinates(object sender, RoutedEventArgs e)
         {
             ViewPage(GasAreaCoordinates);
+        }
+
+        private void TreeViewItem_Selected_Upper_Fluid_Boundary(object sender, RoutedEventArgs e)
+        {
+            ViewPage(UpperFluidBoundary);
         }
 
         //private void GetDataToTables()

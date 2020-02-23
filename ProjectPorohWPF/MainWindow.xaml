@@ -33,6 +33,7 @@
                     <TreeViewItem Header="Ширина трещины" Selected="TreeViewItem_Selected_Crack_Width"/>
                     <TreeViewItem Header="Длина трещины" Selected="TreeViewItem_Selected_Crack_Length"/>
                     <TreeViewItem Header="Координаты газовой области" Selected="TreeViewItem_Selected_Gas_Area_Coordinates"/>
+                    <TreeViewItem Header="Верхняя граница жидкости" Selected="TreeViewItem_Selected_Upper_Fluid_Boundary"/>
                     <TreeViewItem Header="Распределение давления по стволу" Selected="TreeViewItem_Selected_Barrel_Pressure_Distribution"/>
                 </TreeViewItem>
                 </TreeViewItem>
@@ -53,5 +54,6 @@
         <local1:CrackLengthPage x:Name="CrackLength" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local1:BarrelPressureDistributionPage x:Name="BarrelPressureDistribution" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
         <local1:GasAreaCoordinatesPage x:Name="GasAreaCoordinates" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
+        <local1:UpperFluidBoundaryPage x:Name="UpperFluidBoundary" Grid.Column="1" Grid.Row="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>
