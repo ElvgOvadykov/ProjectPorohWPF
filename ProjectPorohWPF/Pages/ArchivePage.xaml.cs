@@ -45,5 +45,12 @@ namespace ProjectPorohWPF.Pages
             }
             
         }
+
+        private void DeleteArchive_Click(object sender, RoutedEventArgs e)
+        {
+            archive.Remove(ArchiveGrid.SelectedItem as CLOADPARAMS);
+            DataBaseController.DeleteArchive(ArchiveGrid.SelectedItem as CLOADPARAMS);
+            ArchiveGrid.ItemsSource = new List<CLOADPARAMS>(DataBaseController.GetArchive());
+        }
     }
 }

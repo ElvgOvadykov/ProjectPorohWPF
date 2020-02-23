@@ -396,5 +396,28 @@ namespace ProjectPorohWPF
                 return result;
             }
         }
+
+        public static void DeleteArchive(CLOADPARAMS deleted)
+        {
+            if (deleted != null)
+            {
+                string sql = $"delete from Archive where ID = {deleted.ID.ToString()};";
+                SQLiteCommand cmd = new SQLiteCommand();
+                using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+                {
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = sql;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

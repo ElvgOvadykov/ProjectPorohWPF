@@ -32,12 +32,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Верхняя граница, м</TextBlock>
-            <TextBlock x:Name="UpperBound" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
-            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Нижняя граница, м</TextBlock>
-            <TextBlock x:Name="BottomBound" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
-            <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">Время, с</TextBlock>
-            <TextBlock x:Name="CurrentTime" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"></TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Верхняя граница, м</TextBlock>
+            <TextBlock x:Name="UpperBound" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Нижняя граница, м</TextBlock>
+            <TextBlock x:Name="BottomBound" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
+            <TextBlock Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Время, с</TextBlock>
+            <TextBlock x:Name="CurrentTime" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
         </Grid>
         <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
         <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная глубина</TextBlock>
