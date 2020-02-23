@@ -755,6 +755,51 @@ namespace ProjectPorohWPF
 
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Click_New_Calculation(object sender, RoutedEventArgs e)
+        {
+            DataPage.CalculationDate.SelectedDate = DateTime.Now;
+            DataPage.CalculationName.Text = "";
+            DataPage.CompanyName.Text = "";
+            DataPage.CalculationExecutor.Text = "";
+            DataPage.MadeFor.Text = "";
+            DataPage.FieldName.Text = "";
+            DataPage.BushNumber.Text = "";
+            DataPage.WellNumber.Text = "";
+            DataPage.SlaughterCurrent.Text = "";
+            DataPage.PunchIntervalPower.Text = "";
+            DataPage.SolePerforationInterval.Text = "";
+            DataPage.GeneratorDepth.Text = "";
+            DataPage.PerforationDensity.Text = "";
+            DataPage.CasingDiameter.Text = "";
+            DataPage.CasingThickness.Text = "";
+            DataPage.ReservoirPressure.Text = "";
+            DataPage.ReservoirTemperature.Text = "";
+            DataPage.YoungModulus.Text = "";
+            DataPage.PoissonRatio.Text = "";
+            DataPage.TypeFluid.SelectedIndex = 0;
+            DataPage.FluidLevel.Text = "";
+            DataPage.FluidDensity.Text = "";
+
+            ChargeSelection.SimulationDuration.Text = "10";
+
+            ChargeSelection.MainСharge.SelectedItem = null;
+            ChargeSelection.MainСhargeType.SelectedItem = null;
+            ChargeSelection.MainCount.Text = "";
+
+            ChargeSelection.ActiveСharge.SelectedItem = null;
+            ChargeSelection.ActiveСhargeType.SelectedItem = null;
+            ChargeSelection.ActiveCount.Text = "";
+
+            NameCalculation.Header = "Расчет";
+
+            CalculationResult.Visibility = Visibility.Collapsed;
+        }
+
         //private void GetDataToTables()
         //{
         //    int imin, imax;
