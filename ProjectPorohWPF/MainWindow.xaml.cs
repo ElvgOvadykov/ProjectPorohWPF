@@ -802,13 +802,13 @@ namespace ProjectPorohWPF
 
         private void GetDataToTables()
         {
-            int imin, imax;
+            int imin = 0, imax = 0;
             CombustionPressure.Distance.Text = BaseCalcParam.dHFromGenToMan.ToString();
 
             //по давлению
             double gd;
             double a1, a2;
-            //InsertDataToTable(Form2->StringGrid1, ref T, &P, 2, "Время, сек", "P, атм", &imin, &imax);
+            InsertDataToTable(ref CombustionPressure.data, T,  P, 2, "Время, сек", "P, атм",ref imin, ref imax);
             CombustionPressure.MaxPressure.Text = Func.RoundS(P.Max(x=>x), 2) + "атм";
             CombustionPressure.MinPressure.Text = Func.RoundS(P.Min(x=>x), 2) + "атм";
             gd = BaseRasch.Hidrost;
@@ -817,76 +817,115 @@ namespace ProjectPorohWPF
             gd = BaseRasch.gorn;
             CombustionPressure.RockPressure.Text = Func.RoundS(gd / 100000.0, 2) + "атм";
 
-            //InsertDataToTable(Form2->StringGrid2, &T, &Temper, 2, "Время, сек", "T, C", &imin, &imax);
+            InsertDataToTable(ref TemperatureCombustion.data,T, Temper, 2, "Время, сек", "T, C", ref imin,ref imax);
             TemperatureCombustion.MaxTemperature.Text = Func.RoundS(Temper.Max(x=>x), 2) + " C";
             TemperatureCombustion.MinTemperature.Text = Func.RoundS(Temper.Min(x=>x), 2) + " C";
 
-            //InsertDataToTable(Form2->StringGrid4, &T, &DlinTrech, 2, "Время, сек", "L, м", &imin, &imax);
+            InsertDataToTable(ref CrackLength.data,T, DlinTrech, 2, "Время, сек", "L, м", ref imin, ref imax);
             CrackLength.MaxLength.Text = Func.RoundS(DlinTrech.Max(x=>x), 2) + " м";
-            CrackLength.MinLength.Text = Func.RoundS(DlinTrech.Min(x=>x), 2) + " м";
+            //CrackLength.MinLength.Text = Func.RoundS(DlinTrech.Min(x=>x), 2) + " м";
 
-            //InsertDataToTable(Form2->StringGrid5, &T, &ShirTrech, 2, "Время, сек", "W, мм", &imin, &imax);
+            InsertDataToTable(ref CrackWidth.data, T, ShirTrech, 2, "Время, сек", "W, мм", ref imin, ref imax);
             CrackWidth.MaxWidth.Text = Func.RoundS(ShirTrech.Max(x=>x), 2) + " мм";
-            CrackWidth.MinWidth.Text = Func.RoundS(ShirTrech.Min(x=>x), 2) + " мм";
+            //CrackWidth.MinWidth.Text = Func.RoundS(ShirTrech.Min(x=>x), 2) + " мм";
 
-            //InsertDataToTable(Form2->StringGrid6, &T, &Coord1Gaz, 3, "Время, сек", "X1, м", &imin, &imax, &Coord2Gaz, "X2, м");
+            InsertDataToTable(ref GasAreaCoordinates.data,T,Coord1Gaz, 3, "Время, сек", "X1, м",ref imin,ref imax, Coord2Gaz, "X2, м");
             GasAreaCoordinates.MinDepth.Text = Func.RoundS(Coord2Gaz.Min(x=>x), 2) + " м";
             GasAreaCoordinates.MaxDepth.Text = Func.RoundS(Coord1Gaz.Max(x=>x), 2) + " м";
             GasAreaCoordinates.MaxAmplitude.Text = Func.RoundS(Coord1Gaz.Max(x=>x) - Coord2Gaz.Min(x=>x), 2) + " м";
 
-            //InsertDataToTable(Form2->StringGrid7, &WellData, &Davl, 2, "Глубина, м", "Давление, атм", &imin, &imax);
+            InsertDataToTable(ref BarrelPressureDistribution.data, WellData, Davl, 2, "Глубина, м", "Давление, атм", ref imin, ref imax);
             BarrelPressureDistribution.MaxPressure.Text = Func.RoundS(Davl.Max(x=>x), 2) + " атм";
             BarrelPressureDistribution.MinPressure.Text = Func.RoundS(Davl.Min(x=>x), 2) + " атм";
 
-            //InsertDataToTable(Form2->StringGrid8, &T, &Voda, 2, "Время, сек", "X, м", &imin, &imax);
+            InsertDataToTable(ref UpperFluidBoundary.data,T,Voda, 2, "Время, сек", "X, м", ref imin,ref imax);
             UpperFluidBoundary.MaxValue.Text = Func.RoundS(Voda.Max(x=>x), 2) + " м";
             UpperFluidBoundary.MinValue.Text = Func.RoundS(Voda.Min(x=>x), 2) + " м";
             UpperFluidBoundary.Amplitude.Text = Func.RoundS(Voda.Max(x=>x) - Voda.Min(x=>x), 2) + " м";
 
         }
 
-        //void ClearRezSG(TStringGrid* sg, string s1, string s2, string s3)
-        //{
-        //    int cont = 4;
-        //    if (s3 == "") cont = 3;
+        void ClearRezSG(ref DataGrid dg, string s1, string s2, string s3 = null)
+        {
+            dg.Items.Clear();
+            dg.Columns.Clear();
+            DataGridTextColumn column0 = new DataGridTextColumn();
+            column0.Header = "№";
+            column0.IsReadOnly = true;
+            DataGridTextColumn column1 = new DataGridTextColumn();
+            column1.Header = s1;
+            column1.IsReadOnly = true;
+            DataGridTextColumn column2 = new DataGridTextColumn();
+            column2.Header = s2;
+            column2.IsReadOnly = true;
+            dg.Columns.Add(column0);
+            dg.Columns.Add(column1);
+            dg.Columns.Add(column2);
+            if (s3 != null)
+            {
+                DataGridTextColumn column3 = new DataGridTextColumn();
+                column3.Header = s3;
+                column3.IsReadOnly = true;
+                dg.Columns.Add(column3);
+            }
+        }
 
-        //    for (int i = 0; i < cont; i++)
-        //        sg->Cols[i]->Clear();
+        void InsertDataToTable(ref DataGrid dg, List<double> data, List<double> data1,
+        int cnt, string s, string s1, ref int indMin, ref int indMax, List<double> data2 = null, string s2 = null)
+        {
+            //ClearRezSG(ref dg, s, s1, s2);
+            dg.Items.Clear();
+            dg.Columns.Clear();
+            int rz;
+            float min = 99999999;
+            float max = -9999999;
+            int imin, imax;
+            rz = data.Count();
+            DataTable dt = new DataTable();
 
-        //    sg->RowCount = 2;
-        //    sg->Cells[0][0] = "№";
-        //    sg->Cells[1][0] = s1;
-        //    sg->Cells[2][0] = s2;
-        //    if (cont == 4) sg->Cells[3][0] = s3;
-        //}
+            if (data2 == null && s2 == null)
+            {
+                dt.Columns.Add("№");
+                dt.Columns.Add(s);
+                dt.Columns.Add(s1);
+            }
+            else
+            {
+                dt.Columns.Add("№");
+                dt.Columns.Add(s);
+                dt.Columns.Add(s1);
+                dt.Columns.Add(s2);
+            }
 
-        //void InsertDataToTable(ref string sg, ref List<double> data, ref List<double> data1,
-        //int cnt, string s, string s1, ref int indMin, ref int indMax, ref List<double> data2, string s2)
-        //{
-        //    //ClearRezSG(sg, s, s1, s2);
-        //    int rz;
-        //    float min = 99999999;
-        //    float max = -9999999;
-        //    int imin, imax;
-        //    rz = data.Count();
-        //    for (int i = 0; i < rz; i++)
-        //    {
-        //        sg->Cells[0][i + 1] = IntToStr(i + 1);
-        //        sg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
-        //    sg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
-        //    if (cnt == 3) sg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
+            for (int i = 0; i < rz; i++)
+            {
+                if(data2 == null&&s2 == null)
+                {
+                    dt.Rows.Add(i, data[i], data1[i]);
+                }
+                else
+                {
+                    dt.Rows.Add(i, data[i], data1[i], data2[i]);
+                }
+            }
 
-        //    if (cnt == 2)
-        //    {
-        //        if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
-        //		if (max<data1->operator [](i)) {max=data1->operator [] (i); imax=i;}
-        // }
-        // else
-        // {
-        //	 if (min>data2->operator [] (i)) {min=data2->operator [] (i); imin=i;}
-        //	 if (max<data1->operator [](i)) {max=data1->operator [] (i); imax=i;}
-        // }
-        // sg->RowCount+=1;
-        //}
+            dg.ItemsSource = dt.DefaultView;
+         //       dg->Cells[0][i + 1] = IntToStr(i + 1);
+         //       dg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
+         //   dg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
+         //   if (cnt == 3) dg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
+
+         //   if (cnt == 2)
+         //   {
+         //       if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
+        	//	if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+         //}
+         //else
+         //{
+        	// if (min>data2->operator [](i)) {min=data2->operator [](i); imin=i;}
+        	// if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
+         //}
+         //sg->RowCount+=1;
+        }
     }
 }

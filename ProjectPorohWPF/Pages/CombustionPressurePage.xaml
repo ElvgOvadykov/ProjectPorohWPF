@@ -13,11 +13,6 @@
             <RowDefinition/>
             <RowDefinition Height="25"/>
             <RowDefinition/>
-            <!--<RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>-->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -73,7 +68,15 @@
                     <TextBlock x:Name="DepressionDepth" Grid.Row="4" Grid.Column="1"></TextBlock>
                 </Grid>
             </TabItem>
-            <TabItem Header="Данные"/>
+            <TabItem Header="Данные">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="data"/>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

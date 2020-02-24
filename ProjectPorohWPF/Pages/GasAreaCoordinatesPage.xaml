@@ -12,12 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30px"/>
             <RowDefinition/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -40,11 +35,38 @@
             <TextBlock x:Name="CurrentTime" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
         </Grid>
         <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
-        <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная глубина</TextBlock>
-        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальная глубина</TextBlock>
-        <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная амплитуда</TextBlock>
-        <TextBlock x:Name="MaxDepth" Grid.Row="2" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="MinDepth" Grid.Row="3" Grid.Column="1"></TextBlock>
-        <TextBlock x:Name="MaxAmplitude" Grid.Row="4" Grid.Column="1"></TextBlock>
+        <TabControl Grid.Row="2" Grid.ColumnSpan="2" x:Name="TabMain">
+            <TabItem Header="Статистика">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25px"/>
+                        <RowDefinition Height="25px"/>
+                        <RowDefinition Height="25px"/>
+                        <RowDefinition Height="25px"/>
+                        <RowDefinition Height="25px"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная глубина</TextBlock>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">Минимальная глубина</TextBlock>
+                    <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Максимальная амплитуда</TextBlock>
+                    <TextBlock x:Name="MaxDepth" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="MinDepth" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="MaxAmplitude" Grid.Row="2" Grid.Column="1"></TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Данные">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="data"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
