@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30px"/>
             <RowDefinition/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -29,6 +30,16 @@
             <TextBlock x:Name="Depth" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
             <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Давление, атм</TextBlock>
             <TextBlock x:Name="CurrentPressure" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Время после воздействия, с</TextBlock>
+            <TextBox x:Name="TimeAfterExposure" Grid.Column="1" Text="1"></TextBox>
+            <!--<Button x:Name="Recount" Grid.Column="2" VerticalAlignment="Center">Пересчитать</Button>-->
         </Grid>
         <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
         <TabControl Grid.Row="3" Grid.ColumnSpan="2" x:Name="TabMain">

@@ -533,7 +533,7 @@ namespace ProjectPorohWPF
             try
             {
                 t1 = Convert.ToDouble(CombustionPressure.Distance.Text);
-                //t2 = Convert.ToDouble(Edit8->Text);
+                t2 = Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text);
             }
             catch (Exception ex)
             {
@@ -542,15 +542,15 @@ namespace ProjectPorohWPF
                 return;
             }
 
-            //if (t2 > Reference->DataTimeInterval[0])
-            //{
-            //    t2 = Reference->DataTimeInterval[0];
-            //    Edit8->Text = RoundS(t2, 2);
-            //}
+            if (t2 > BaseCalcParam.TimeInterval)
+            {
+                t2 = BaseCalcParam.TimeInterval;
+                BarrelPressureDistribution.TimeAfterExposure.Text = Func.RoundS(t2, 2);
+            }
 
             BaseRasch.SetdHFromGenToMan(t1);
-            BaseRasch.SetTPvdolWell(1); // Тестовое время воздействия 1 секунда
-                                        //BaseRasch.SetTPvdolWell(t2);
+            //BaseRasch.SetTPvdolWell(1); // Тестовое время воздействия 1 секунда
+            BaseRasch.SetTPvdolWell(t2);
 
             int countiter = 0;
 
@@ -845,35 +845,9 @@ namespace ProjectPorohWPF
 
         }
 
-        void ClearRezSG(ref DataGrid dg, string s1, string s2, string s3 = null)
-        {
-            dg.Items.Clear();
-            dg.Columns.Clear();
-            DataGridTextColumn column0 = new DataGridTextColumn();
-            column0.Header = "№";
-            column0.IsReadOnly = true;
-            DataGridTextColumn column1 = new DataGridTextColumn();
-            column1.Header = s1;
-            column1.IsReadOnly = true;
-            DataGridTextColumn column2 = new DataGridTextColumn();
-            column2.Header = s2;
-            column2.IsReadOnly = true;
-            dg.Columns.Add(column0);
-            dg.Columns.Add(column1);
-            dg.Columns.Add(column2);
-            if (s3 != null)
-            {
-                DataGridTextColumn column3 = new DataGridTextColumn();
-                column3.Header = s3;
-                column3.IsReadOnly = true;
-                dg.Columns.Add(column3);
-            }
-        }
-
         void InsertDataToTable(ref DataGrid dg, List<double> data, List<double> data1,
         int cnt, string s, string s1, ref int indMin, ref int indMax, List<double> data2 = null, string s2 = null)
         {
-            //ClearRezSG(ref dg, s, s1, s2);
             dg.Items.Clear();
             dg.Columns.Clear();
             int rz;
@@ -910,22 +884,6 @@ namespace ProjectPorohWPF
             }
 
             dg.ItemsSource = dt.DefaultView;
-         //       dg->Cells[0][i + 1] = IntToStr(i + 1);
-         //       dg->Cells[1][i + 1] = RoundS(data->operator [](i),5);
-         //   dg->Cells[2][i + 1] = RoundS(data1->operator [](i),2);
-         //   if (cnt == 3) dg->Cells[3][i + 1] = RoundS(data2->operator [](i),2);
-
-         //   if (cnt == 2)
-         //   {
-         //       if (min > data1->operator [] (i)) {min=data1->operator [] (i); imin=i;}
-        	//	if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
-         //}
-         //else
-         //{
-        	// if (min>data2->operator [](i)) {min=data2->operator [](i); imin=i;}
-        	// if (max<data1->operator [](i)) {max=data1->operator [](i); imax=i;}
-         //}
-         //sg->RowCount+=1;
         }
     }
 }
