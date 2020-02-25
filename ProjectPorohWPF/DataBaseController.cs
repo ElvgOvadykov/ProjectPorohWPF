@@ -346,6 +346,8 @@ namespace ProjectPorohWPF
                                 int idvospzar = reader.GetInt32(27);
                                 int countvospzar = reader.GetInt32(28);
                                 int idvospporoh = reader.GetInt32(29);
+                                double distance = reader.GetDouble(30);
+                                double timeafterexposure = reader.GetDouble(31);
 
                                 CZarad osnzarad = zarads.Where(x => x.ID == idosnzar).FirstOrDefault();
                                 osnzarad.Poroh = porohs.Where(x => x.ID == idosnporoh).FirstOrDefault();
@@ -383,6 +385,8 @@ namespace ProjectPorohWPF
                                     Tplast = tplast,
                                     TypeFluid = typefluid,
                                     Zaboy = zaboy,
+                                    dHFromGenToMan = distance,
+                                    TPvdolWell = timeafterexposure,
                                 });
                             }
                         }

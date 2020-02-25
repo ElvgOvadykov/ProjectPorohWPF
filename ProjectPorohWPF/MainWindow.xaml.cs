@@ -155,6 +155,18 @@ namespace ProjectPorohWPF
                 }
             }
 
+            if(CombustionPressure.Distance.Text == "")
+            {
+                result = false;
+                CombustionPressure.Distance.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+
+            if (BarrelPressureDistribution.TimeAfterExposure.Text == "")
+            {
+                result = false;
+                BarrelPressureDistribution.TimeAfterExposure.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+
             if (result == false)
             {
                 MessageBox.Show("Заполните все поля!");
@@ -313,6 +325,24 @@ namespace ProjectPorohWPF
                 ChargeSelection.SimulationDuration.BorderBrush = System.Windows.Media.Brushes.Red;
                 result = false;
             }
+            try
+            {
+                Convert.ToDouble(CombustionPressure.Distance.Text);
+            }
+            catch
+            {
+                CombustionPressure.Distance.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
+            try
+            {
+                Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text);
+            }
+            catch
+            {
+                BarrelPressureDistribution.TimeAfterExposure.BorderBrush = System.Windows.Media.Brushes.Red;
+                result = false;
+            }
 
             if (result == false)
             {
@@ -389,6 +419,16 @@ namespace ProjectPorohWPF
                 result = false;
                 DataPage.FluidDensity.BorderBrush = System.Windows.Media.Brushes.Red;
             }
+            if(Convert.ToDouble(CombustionPressure.Distance.Text) < 0)
+            {
+                result = false;
+                CombustionPressure.Distance.BorderBrush = Brushes.Red;
+            }
+            if(Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text) < 0)
+            {
+                result = false;
+                BarrelPressureDistribution.TimeAfterExposure.BorderBrush = Brushes.Red;
+            }
 
             if(result == false)
             {
@@ -425,6 +465,8 @@ namespace ProjectPorohWPF
                     (item as ComboBox).BorderBrush = Brushes.LightGray;
                 }
             }
+            CombustionPressure.Distance.BorderBrush = Brushes.LightGray;
+            BarrelPressureDistribution.TimeAfterExposure.BorderBrush = Brushes.LightGray;
         }
 
 
@@ -747,6 +789,9 @@ namespace ProjectPorohWPF
             ChargeSelection.ActiveСhargeType.SelectedItem = calc.vospZar.Poroh;
             ChargeSelection.ActiveCount.Text = calc.CountVospZarad.ToString();
 
+            CombustionPressure.Distance.Text = calc.dHFromGenToMan.ToString();
+            BarrelPressureDistribution.TimeAfterExposure.Text = calc.TPvdolWell.ToString();
+
             if (CorrectData())
             {
                 Calculation();
@@ -794,6 +839,9 @@ namespace ProjectPorohWPF
             ChargeSelection.ActiveСharge.SelectedItem = null;
             ChargeSelection.ActiveСhargeType.SelectedItem = null;
             ChargeSelection.ActiveCount.Text = "";
+
+            CombustionPressure.Distance.Text = "30";
+            BarrelPressureDistribution.TimeAfterExposure.Text = "1";
 
             NameCalculation.Header = "Расчет";
 
@@ -848,6 +896,7 @@ namespace ProjectPorohWPF
         void InsertDataToTable(ref DataGrid dg, List<double> data, List<double> data1,
         int cnt, string s, string s1, ref int indMin, ref int indMax, List<double> data2 = null, string s2 = null)
         {
+            dg.ItemsSource = null;
             dg.Items.Clear();
             dg.Columns.Clear();
             int rz;
