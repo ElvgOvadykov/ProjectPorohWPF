@@ -45,7 +45,6 @@ namespace ProjectPorohWPF
             return this.Name == other.Name
                 && this.Power == other.Power
                 && this.Temper == other.Temper
-                && this.ID == other.ID
                 && this.UdGaz == other.UdGaz
                 && this.Dens == this.Dens;
         }

@@ -31,7 +31,7 @@ namespace ProjectPorohWPF
 
         private void ActiveСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ActiveСharge.SelectedItem as CZarad != null)
+            if(ActiveСharge.SelectedItem as CZarad != null&& (ActiveСharge.SelectedItem as CZarad).Poroh !=null)
             {
                 foreach (var item in ActiveСhargeType.ItemsSource)
                 {
@@ -46,7 +46,7 @@ namespace ProjectPorohWPF
 
         private void MainСharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(MainСharge.SelectedItem as CZarad != null)
+            if(MainСharge.SelectedItem as CZarad != null&& (MainСharge.SelectedItem as CZarad).Poroh != null)
             {
                 foreach (var item in MainСhargeType.ItemsSource)
                 {

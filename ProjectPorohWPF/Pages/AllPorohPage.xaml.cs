@@ -41,5 +41,11 @@ namespace ProjectPorohWPF
             DataBaseController.DeletePoroh(PorohsDataGrid.SelectedItem as CPoroh);
             PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs());
         }
+
+        public void UpdateGrid()
+        {
+            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            PorohsDataGrid.ItemsSource = porohs;
+        }
     }
 }

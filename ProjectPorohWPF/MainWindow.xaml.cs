@@ -74,6 +74,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_All_Charges(object sender, RoutedEventArgs e)
         {
+            AllCharges.UpdateGrid();
             ViewPage(AllCharges);
         }
 
@@ -705,6 +706,7 @@ namespace ProjectPorohWPF
 
         private void TreeViewItem_Selected_All_Porohs(object sender, RoutedEventArgs e)
         {
+            AllPoroh.UpdateGrid();
             ViewPage(AllPoroh);
         }
 
@@ -781,9 +783,78 @@ namespace ProjectPorohWPF
 
             ChargeSelection.SimulationDuration.Text = calc.TimeInterval.ToString();
 
+            bool haveOsnPoroh = false;
+            bool haveOsnZarad = false;
+
+            List<CPoroh> porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            List<CZarad> zarads = new List<CZarad>(DataBaseController.GetZarads());
+
+            foreach(var item in porohs)
+            {
+                if (calc.osnZar.Poroh.Equals(item))
+                {
+                    calc.osnZar.Poroh = item;
+                    haveOsnPoroh = true;
+                }
+            }
+
+            if (!haveOsnPoroh)
+            {
+                calc.osnZar.Poroh = DataBaseController.AddPoroh(calc.osnZar.Poroh);
+            }
+
+            foreach (var item in zarads)
+            {
+                if (calc.osnZar.Equals(item))
+                {
+                    calc.osnZar = item;
+                    haveOsnZarad = true;
+                }
+            }
+
+            if (!haveOsnZarad)
+            {
+                calc.osnZar = DataBaseController.AddCharge(calc.osnZar);
+            }
+
+            ChargeSelection.UpdateComboBox();
+
             ChargeSelection.MainСharge.SelectedItem = calc.osnZar;
             ChargeSelection.MainСhargeType.SelectedItem = calc.osnZar.Poroh;
             ChargeSelection.MainCount.Text = calc.CountOsnZarad.ToString();
+
+            bool haveVospPoroh = false;
+            bool haveVospZarad = false;
+
+            foreach (var item in porohs)
+            {
+                if (calc.vospZar.Poroh.Equals(item))
+                {
+                    calc.vospZar.Poroh = item;
+                    haveVospPoroh = true;
+                }
+            }
+
+            if (!haveVospPoroh)
+            {
+                calc.vospZar.Poroh = DataBaseController.AddPoroh(calc.vospZar.Poroh);
+            }
+
+            foreach (var item in zarads)
+            {
+                if (calc.vospZar.Equals(item))
+                {
+                    calc.vospZar = item;
+                    haveVospZarad = true;
+                }
+            }
+
+            if (!haveVospZarad)
+            {
+                calc.vospZar = DataBaseController.AddCharge(calc.vospZar);
+            }
+
+            ChargeSelection.UpdateComboBox();
 
             ChargeSelection.ActiveСharge.SelectedItem = calc.vospZar;
             ChargeSelection.ActiveСhargeType.SelectedItem = calc.vospZar.Poroh;

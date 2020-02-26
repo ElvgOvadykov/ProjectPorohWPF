@@ -59,15 +59,19 @@ namespace ProjectPorohWPF
 
         public bool Equals(CZarad other)
         {
+            bool equalityPoroh = true;
+
             if (other is null)
                 return false;
 
-            return this.Name == other.Name 
-                && this.Dnar == other.Dnar 
-                && this.Dvnutr == other.Dvnutr 
-                && this.ID == other.ID 
-                && this.L == other.L
-                && this.Poroh.Equals(other.Poroh);
+            if (this.Poroh == null)
+                return false;
+
+            return this.Name == other.Name
+                && this.Dnar == other.Dnar
+                && this.Dvnutr == other.Dvnutr
+                && this.L == other.L;
+                //&& this.Poroh.Equals(other.Poroh);
         }
     }
 }

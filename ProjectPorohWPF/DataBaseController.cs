@@ -79,7 +79,7 @@ namespace ProjectPorohWPF
                                 double idiameter = reader.GetDouble(3);
                                 double length = reader.GetDouble(4);
                                 int idporoh = reader.GetInt32(5);
-                                zarads.Add(new CZarad(id, name, porohs.Where(x=>x.ID==idporoh).First(), ediameter, idiameter, length));
+                                zarads.Add(new CZarad(id, name, porohs.Where(x=>x.ID==idporoh).FirstOrDefault(), ediameter, idiameter, length));
                             }
                         }
                     }
@@ -197,6 +197,8 @@ namespace ProjectPorohWPF
                 }
                 else
                 {
+                    if (item.Poroh == null)
+                        item.Poroh = new CPoroh();
                     addedCharges = $"UPDATE Zarads SET Name = \"{item.Name}\", EDiameter = {item.Dnar.ToString("G", CultureInfo.InvariantCulture)}, IDiameter = {item.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}, \"Length\" = {item.L.ToString("G", CultureInfo.InvariantCulture)}, IDPowder = {item.Poroh.ID} WHERE ID = {item.ID};";
                 }
                 addUpdatedListCharges.Append(addedCharges);
@@ -247,7 +249,10 @@ namespace ProjectPorohWPF
                 "SlaughterCurrent, PunchIntervalPower, SolePerforationInterval, GenerationDepth, PerforationDensity, " +
                 "CasingDiameter, CasingThickness, ReservoirPressure, ReservoirTemperature, YoungModulus, " +
                 "PoissonRatio, TypeFluid, FluidLevel, FluidDensity, SimulationDuration, IDOsnZarad, CountOsnZarad, " +
-                " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh) values ";
+                " IDOsnPoroh, IDVospZarad, CountVospZarad, IDVospPoroh, Distance, TimeAfterExposure, OsnNameZarad, " +
+                "OsnEDiameter, OsnIDiameter, OsnLength, OsnNamePoroh, OsnPower, OsnTemp, OsnUdgaz, OsnDens," +
+                "VospNameZarad, VospEDiameter, VospIDiameter, VospLength, VospNamePoroh, VospPower, VospTemp," +
+                "VospUdgaz, VospDens) values ";
             string sqlvalues = $"(\"{BaseCalcParam.CalculationName}\", " +
                 $"\"{BaseCalcParam.DateWithOutTime}\", " +
                 $"\"{BaseCalcParam.CompanyName}\"," +
@@ -276,7 +281,27 @@ namespace ProjectPorohWPF
                 $"{BaseCalcParam.osnZar.Poroh.ID}," +
                 $"{BaseCalcParam.vospZar.ID}," +
                 $"{BaseCalcParam.CountVospZarad}," +
-                $"{BaseCalcParam.vospZar.Poroh.ID});";
+                $"{BaseCalcParam.vospZar.Poroh.ID}," +
+                $"{BaseCalcParam.dHFromGenToMan.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.TPvdolWell.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.osnZar.Name}\"," +
+                $"{BaseCalcParam.osnZar.Dnar.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.L.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.osnZar.Poroh.Name}\"," +
+                $"{BaseCalcParam.osnZar.Poroh.Power.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.Poroh.Temper.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.Poroh.UdGaz.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.osnZar.Poroh.Dens.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.vospZar.Name}\"," +
+                $"{BaseCalcParam.vospZar.Dnar.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.vospZar.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.vospZar.L.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"\"{BaseCalcParam.vospZar.Poroh.Name}\"," +
+                $"{BaseCalcParam.vospZar.Poroh.Power.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.vospZar.Poroh.Temper.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.vospZar.Poroh.UdGaz.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{BaseCalcParam.vospZar.Poroh.Dens.ToString("G", CultureInfo.InvariantCulture)});";
             sql += sqlvalues;
             SQLiteCommand cmd = new SQLiteCommand();
             using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
@@ -349,11 +374,62 @@ namespace ProjectPorohWPF
                                 double distance = reader.GetDouble(30);
                                 double timeafterexposure = reader.GetDouble(31);
 
-                                CZarad osnzarad = zarads.Where(x => x.ID == idosnzar).FirstOrDefault();
-                                osnzarad.Poroh = porohs.Where(x => x.ID == idosnporoh).FirstOrDefault();
+                                    string osnnameporoh = reader.GetString(36);
+                                    double osnpower = reader.GetDouble(37);
+                                    double osntemp = reader.GetDouble(38);
+                                    double osnudgaz = reader.GetDouble(39);
+                                    double osndens = reader.GetDouble(40);
+                                CPoroh osnporoh = new CPoroh()
+                                    {
+                                        Name = osnnameporoh,
+                                        Power = osnpower,
+                                        Temper = osntemp,
+                                        UdGaz = osnudgaz,
+                                        Dens = osndens
+                                    };
 
-                                CZarad vospzarad = zarads.Where(x => x.ID == idvospzar).FirstOrDefault();
-                                vospzarad.Poroh = porohs.Where(x => x.ID == idvospporoh).FirstOrDefault();
+                                    string osnnamezarad = reader.GetString(32);
+                                    double osnediameter = reader.GetDouble(33);
+                                    double osnidiameter = reader.GetDouble(34);
+                                    double osnlength = reader.GetDouble(35);
+                                CZarad osnzarad = new CZarad()
+                                    {
+                                        Name = osnnamezarad,
+                                        Dnar = osnediameter,
+                                        Dvnutr = osnidiameter,
+                                        L = osnlength,
+                                        Poroh = osnporoh
+                                    };
+                                
+
+
+                                    string vospnameporoh = reader.GetString(45);
+                                    double vosppower = reader.GetDouble(46);
+                                    double vosptemp = reader.GetDouble(47);
+                                    double vospudgaz = reader.GetDouble(48);
+                                    double vospdens = reader.GetDouble(49);
+                                    CPoroh vospporoh = new CPoroh()
+                                    {
+                                        Name = vospnameporoh,
+                                        Power = vosppower,
+                                        Temper = vosptemp,
+                                        UdGaz = vospudgaz,
+                                        Dens = vospdens
+                                    };
+
+                                    string vospnamezarad = reader.GetString(41);
+                                    double vospediameter = reader.GetDouble(42);
+                                    double vospidiameter = reader.GetDouble(43);
+                                    double vosplength = reader.GetDouble(44);
+                                CZarad vospzarad = new CZarad()
+                                    {
+                                        Name = vospnamezarad,
+                                        Dnar = vospediameter,
+                                        Dvnutr = vospidiameter,
+                                        L = vosplength,
+                                        Poroh = vospporoh
+                                    };
+                                
 
                                 result.Add(new CLOADPARAMS()
                                 {
@@ -396,9 +472,8 @@ namespace ProjectPorohWPF
                 {
                     MessageBox.Show(ex.Message);
                 }
-
-                return result;
             }
+            return result;
         }
 
         public static void DeleteArchive(CLOADPARAMS deleted)
@@ -422,6 +497,113 @@ namespace ProjectPorohWPF
                     }
                 }
             }
+        }
+
+        public static CZarad AddCharge(CZarad zarad)
+        {
+            string sqlInsert = "insert into Zarads (Name, EDiameter, IDiameter, Length, IDPowder) values " +
+                $"(\"{zarad.Name}\",{zarad.Dnar.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{zarad.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{zarad.L.ToString("G", CultureInfo.InvariantCulture)}," +
+                $"{zarad.Poroh.ID});";
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = sqlInsert;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            string sqlreturnid = "select ID from Zarads;";
+            int lastid = 0;
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                // Сочетать Command с Connection.
+                cmd.Connection = conn;
+                cmd.CommandText = sqlreturnid;
+                try
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                lastid = reader.GetInt16(0);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            zarad.ID = lastid;
+
+            return zarad;
+        }
+
+        public static CPoroh AddPoroh(CPoroh poroh)
+        {
+            string sqlInsert = "insert into Porohs (Name, Power, Temp, UdGaz, Dens) values " +
+                   $"(\"{poroh.Name}\",{poroh.Power.ToString("G", CultureInfo.InvariantCulture)}," +
+                   $"{poroh.Temper.ToString("G", CultureInfo.InvariantCulture)}," +
+                   $"{poroh.UdGaz.ToString("G", CultureInfo.InvariantCulture)}," +
+                   $"{poroh.Dens.ToString("G", CultureInfo.InvariantCulture)});";
+            SQLiteCommand cmd = new SQLiteCommand();
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = sqlInsert;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            string sqlreturnid = "select ID from Porohs;";
+            int lastid = 0;
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source = DataBase.db; Version = 3; ", true))
+            {
+                conn.Open();
+                // Сочетать Command с Connection.
+                cmd.Connection = conn;
+                cmd.CommandText = sqlreturnid;
+                try
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                lastid = reader.GetInt16(0);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            poroh.ID = lastid;
+            return poroh;
         }
     }
 }
