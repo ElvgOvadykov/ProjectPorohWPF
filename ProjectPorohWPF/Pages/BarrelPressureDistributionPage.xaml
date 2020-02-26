@@ -46,9 +46,8 @@
             <TabItem Header="Статистика">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="95*"/>
-                        <ColumnDefinition Width="292*"/>
-                        <ColumnDefinition Width="387*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25px"/>
@@ -58,10 +57,10 @@
                         <RowDefinition Height="25px"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Margin="30,5,124,4">Максимальное давление</TextBlock>
-                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Margin="32,5,126,4">Минимальное давление</TextBlock>
-                    <TextBlock x:Name="MaxPressure" Grid.Row="0" Grid.Column="2"></TextBlock>
-                    <TextBlock x:Name="MinPressure" Grid.Row="1" Grid.Column="2"></TextBlock>
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" >Максимальное давление</TextBlock>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" >Минимальное давление</TextBlock>
+                    <TextBlock x:Name="MaxPressure" Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <TextBlock x:Name="MinPressure" Grid.Row="1" Grid.Column="1"></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem Header="Данные">

@@ -807,7 +807,9 @@ namespace ProjectPorohWPF
             {
                 if (calc.osnZar.Equals(item))
                 {
-                    calc.osnZar = item;
+                    if(item.Poroh == null)
+                        item.Poroh = calc.osnZar.Poroh;
+                    calc.osnZar.ID = item.ID;
                     haveOsnZarad = true;
                 }
             }
@@ -816,12 +818,13 @@ namespace ProjectPorohWPF
             {
                 calc.osnZar = DataBaseController.AddCharge(calc.osnZar);
             }
+            else
+            {
+                DataBaseController.UpdateAllCharges(zarads);
+            }
 
-            ChargeSelection.UpdateComboBox();
-
-            ChargeSelection.MainСharge.SelectedItem = calc.osnZar;
-            ChargeSelection.MainСhargeType.SelectedItem = calc.osnZar.Poroh;
-            ChargeSelection.MainCount.Text = calc.CountOsnZarad.ToString();
+            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
+            zarads = new List<CZarad>(DataBaseController.GetZarads());
 
             bool haveVospPoroh = false;
             bool haveVospZarad = false;
@@ -844,7 +847,9 @@ namespace ProjectPorohWPF
             {
                 if (calc.vospZar.Equals(item))
                 {
-                    calc.vospZar = item;
+                    if (item.Poroh == null)
+                        item.Poroh = calc.vospZar.Poroh;
+                    calc.vospZar.ID = item.ID;
                     haveVospZarad = true;
                 }
             }
@@ -855,6 +860,10 @@ namespace ProjectPorohWPF
             }
 
             ChargeSelection.UpdateComboBox();
+
+            ChargeSelection.MainСharge.SelectedItem = calc.osnZar;
+            ChargeSelection.MainСhargeType.SelectedItem = calc.osnZar.Poroh;
+            ChargeSelection.MainCount.Text = calc.CountOsnZarad.ToString();
 
             ChargeSelection.ActiveСharge.SelectedItem = calc.vospZar;
             ChargeSelection.ActiveСhargeType.SelectedItem = calc.vospZar.Poroh;
