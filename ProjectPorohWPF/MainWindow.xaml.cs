@@ -43,6 +43,8 @@ namespace ProjectPorohWPF
 
         List<UserControl> Pages = new List<UserControl>();
 
+        ReportClass report = new ReportClass();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -563,6 +565,8 @@ namespace ProjectPorohWPF
 
         private void Calculation() 
         {
+            report.SetLoadParams(BaseCalcParam);
+            
             BaseRasch = new CBase();
             ClearArray();
             ClearCharts();
@@ -1013,6 +1017,18 @@ namespace ProjectPorohWPF
             }
 
             dg.ItemsSource = dt.DefaultView;
+        }
+
+        private void Report_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                report.CreateReport("");
+            }    
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
