@@ -13,7 +13,13 @@ namespace ProjectPorohWPF
     class ReportClass
     {
         bool isLoadParamsReady = false;
+        bool isCombustionPressureReady = false;
         private CLOADPARAMS LOADPARAMS;
+
+        private List<double> T_CombustionPressureReady;
+        private List<double> P_CombustionPressureReady;
+        private List<Tuple<string, string>> CombustionPressureReady_Parametrs;
+
         Document document;
         public void SetLoadParams(CLOADPARAMS loadparams)
         {
@@ -21,9 +27,17 @@ namespace ProjectPorohWPF
             isLoadParamsReady = true;
         }
 
+        public void SetCombustionPressureReady(List<double> T, List<double> P, List<Tuple<string, string>> parametrs)
+        {
+            T_CombustionPressureReady = T;
+            P_CombustionPressureReady = P;
+            CombustionPressureReady_Parametrs = parametrs;
+            isCombustionPressureReady = true;
+        }
+
         private bool IsReady()
         {
-            if (isLoadParamsReady)
+            if (isLoadParamsReady && isCombustionPressureReady)
             {
                 return true;
             }
@@ -39,6 +53,7 @@ namespace ProjectPorohWPF
             {
                 SetPageSetupHeadersFooters();
                 SetMainInformation();
+                SetChartPage("Давление в зоне горения", "Время, сек","Давление, МПа", CombustionPressureReady_Parametrs, T_CombustionPressureReady, P_CombustionPressureReady);
                 RenderPdf(path);
             }
             else
@@ -365,6 +380,78 @@ namespace ProjectPorohWPF
             paragraph = row.Cells[7].AddParagraph(LOADPARAMS.osnZar.Poroh.ToString());
             paragraph.Format.Font.Size = 11;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
+
+            section.AddPageBreak();
+        }
+
+        private void SetChartPage(string NameChart, string xTitle, string yTitle, List<Tuple<string,string>> parametrs, List<double> dataChart, List<double> dataChart1, List<double> dataChart2 = null) 
+        {
+            Section section = document.LastSection;
+            Chart chart = section.AddChart();
+            chart.Width = Unit.FromCentimeter(25);
+            chart.Height = Unit.FromCentimeter(10);
+            if(dataChart2 == null)
+            {
+                Series series = chart.SeriesCollection.AddSeries();
+                series.ChartType = ChartType.Line;
+                foreach (var item in dataChart1)
+                {
+                    series.Elements.Add(item);
+                }
+                series.LineFormat.Width = 1.5;
+                series.MarkerStyle = MarkerStyle.None;
+            }
+            else
+            {
+                Series series1 = chart.SeriesCollection.AddSeries();
+                Series series2 = chart.SeriesCollection.AddSeries();
+                series1.ChartType = ChartType.Line;
+                series2.ChartType = ChartType.Line;
+
+            }
+            chart.XAxis.MajorTickMark = TickMarkType.Outside;
+            chart.XAxis.MajorGridlines.LineFormat.Visible = true;
+            //chart.XAxis.MajorGridlines.
+            chart.XAxis.Title.Caption = xTitle;
+            XSeries xseries = chart.XValues.AddXSeries();
+            for(int i = 0; i < dataChart.Count; i++)
+            {
+                if (i % 99 == 0)
+                    xseries.Add(Func.RoundS(dataChart[i],0));
+                else
+                {
+                    xseries.Add(" ");
+                }
+            }
+            chart.YAxis.MajorTickMark = TickMarkType.Outside;
+            chart.YAxis.Title.Caption = yTitle;
+            chart.YAxis.Title.Orientation = Unit.FromCentimeter(90);
+            chart.YAxis.Title.VerticalAlignment = MigraDoc.DocumentObjectModel.Tables.VerticalAlignment.Center;
+            chart.PlotArea.LineFormat.Color = Colors.AliceBlue;
+            chart.PlotArea.LineFormat.Width = 1;
+            Paragraph hederChart = chart.HeaderArea.AddParagraph(NameChart);
+            hederChart.Format.Alignment = ParagraphAlignment.Center;
+            hederChart.Format.Font.Size = 12;
+            hederChart.Format.Font.Bold = true;
+
+            Paragraph paragraph = section.AddParagraph("");
+            paragraph.Format.Font.Size = 12;
+
+            Table table = section.AddTable();
+            table.Borders.Visible = true;
+            table.AddColumn(Unit.FromCentimeter(12.5));
+            table.AddColumn(Unit.FromCentimeter(12.5));
+            foreach (var para in parametrs)
+            {
+                Row row = table.AddRow();
+                row.VerticalAlignment = VerticalAlignment.Center;
+                Paragraph paragraph1 = row.Cells[0].AddParagraph(para.Item1);
+                paragraph1.Format.Font.Size = 11;
+                paragraph1.Format.Alignment = ParagraphAlignment.Center;
+                Paragraph paragraph2 = row.Cells[1].AddParagraph(para.Item2);
+                paragraph2.Format.Font.Size = 11;
+                paragraph2.Format.Alignment = ParagraphAlignment.Center;
+            }
         }
 
         private void RenderPdf(string path)
