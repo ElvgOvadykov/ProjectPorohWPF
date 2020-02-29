@@ -9,8 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30px"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.25*"/>
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -25,13 +24,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Давление, атм</TextBlock>
-            <TextBlock x:Name="CurrentPressure" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
-            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Время, с</TextBlock>
-            <TextBlock x:Name="CurrentTime" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
         </Grid>
-        <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <oxy:PlotView Grid.Row="0" Grid.ColumnSpan="2" x:Name="Chart"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="100"/>
@@ -41,7 +36,7 @@
             <TextBox x:Name="Distance" Grid.Column="1" Text="30"></TextBox>
             <!--<Button x:Name="Recount" Grid.Column="2" VerticalAlignment="Center">Пересчитать</Button>-->
         </Grid>
-        <TabControl Grid.Row="3" Grid.ColumnSpan="2" x:Name="TabMain">
+        <TabControl Grid.Row="2" Grid.ColumnSpan="2" x:Name="TabMain">
             <TabItem Header="Статистика">
                 <Grid>
                     <Grid.ColumnDefinitions>

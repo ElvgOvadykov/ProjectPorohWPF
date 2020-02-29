@@ -10,8 +10,7 @@
 
     <Grid Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30px"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.25*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,13 +24,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Ширина трещины, мм</TextBlock>
-            <TextBlock x:Name="Width" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
-            <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0">Время, с</TextBlock>
-            <TextBlock x:Name="CurrentTime" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0"></TextBlock>
         </Grid>
-        <oxy:PlotView Grid.Row="1" Grid.ColumnSpan="2" x:Name="Chart"/>
-        <TabControl Grid.Row="2" Grid.ColumnSpan="2" x:Name="TabMain">
+        <oxy:PlotView Grid.Row="0" Grid.ColumnSpan="2" x:Name="Chart"/>
+        <TabControl Grid.Row="1" Grid.ColumnSpan="2" x:Name="TabMain">
             <TabItem Header="Статистика">
                 <Grid>
                     <Grid.ColumnDefinitions>
