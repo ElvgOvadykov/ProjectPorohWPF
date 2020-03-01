@@ -1,4 +1,5 @@
-﻿using OxyPlot;
+﻿using Microsoft.Win32;
+using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Wpf;
@@ -45,6 +46,8 @@ namespace ProjectPorohWPF
         List<UserControl> Pages = new List<UserControl>();
 
         ReportClass report = new ReportClass();
+
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
 
         public MainWindow()
         {
@@ -1078,9 +1081,24 @@ namespace ProjectPorohWPF
 
         private void Report_Click(object sender, RoutedEventArgs e)
         {
+            string filename = "";
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = BaseCalcParam.CalculationName + "_" + BaseCalcParam.Date.ToString("dd_MM_yyyy"); // Default file name
+            dlg.DefaultExt = ".pdf"; // Default file extension
+            dlg.Filter = "PDF documents (.pdf)|*.pdf"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                filename = dlg.FileName;
+            }
             try
             {
-                report.CreateReport("");
+                report.CreateReport(filename);
             }    
             catch(Exception ex)
             {

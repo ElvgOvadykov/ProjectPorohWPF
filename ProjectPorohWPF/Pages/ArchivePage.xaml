@@ -14,14 +14,14 @@
         <DataGrid x:Name="ArchiveGrid" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=ID}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Path=DateWithOutTime}"/>
-                <DataGridTextColumn Header="Название расчета" Binding="{Binding Path=CalculationName}"/>
-                <DataGridTextColumn Header="Компания" Binding="{Binding Path=CompanyName}"/>
-                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=CalculationExecutor}"/>
-                <DataGridTextColumn Header="Выполнен для" Binding="{Binding Path=MadeFor}"/>
-                <DataGridTextColumn Header="Месторождение" Binding="{Binding Path=NameMestor}"/>
-                <DataGridTextColumn Header="Номер куста" Binding="{Binding Path=BushNumber}"/>
-                <DataGridTextColumn Header="Номер скважины" Binding="{Binding Path=NameWell}"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=DateWithOutTime}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Название расчета" Binding="{Binding Path=CalculationName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Компания" Binding="{Binding Path=CompanyName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Path=CalculationExecutor}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Выполнен для" Binding="{Binding Path=MadeFor}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Месторождение" Binding="{Binding Path=NameMestor}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Номер куста" Binding="{Binding Path=BushNumber}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Номер скважины" Binding="{Binding Path=NameWell}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="UpdatePorohs" Content="Посмотреть расчет" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0" Click="CheckCalculation"></Button>

@@ -456,13 +456,12 @@ namespace ProjectPorohWPF
             paragraph = row.Cells[7].AddParagraph(LOADPARAMS.osnZar.Poroh.ToString());
             paragraph.Format.Font.Size = 11;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
-
-            section.AddPageBreak();
         }
 
         private void SetChartPage(PlotModel model, List<Tuple<string, string>> parametrs)
         {
             Section section = document.LastSection;
+            section.AddPageBreak();
 
             var pngExporter = new PngExporter
             {
@@ -494,8 +493,6 @@ namespace ProjectPorohWPF
                 paragraph2.Format.Font.Size = 11;
                 paragraph2.Format.Alignment = ParagraphAlignment.Center;
             }
-
-            section.AddPageBreak();
         }
 
         private void RenderPdf(string path)
