@@ -725,13 +725,13 @@ namespace ProjectPorohWPF
                 MajorGridlineColor = OxyColor.FromArgb(100, 0, 0, 0),
                 MajorGridlineStyle = LineStyle.Automatic
             });
-            model.Axes.Add(new OxyPlot.Axes.LinearAxis 
-            { 
-                Position = AxisPosition.Bottom, 
+            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            {
+                Position = AxisPosition.Bottom,
                 Title = xTitle,
                 MajorGridlineColor = OxyColor.FromArgb(100, 0, 0, 0),
-                MajorGridlineStyle = LineStyle.Automatic
-            });
+                MajorGridlineStyle = LineStyle.Automatic,
+            }) ;
 
             plot.Model = model;
         }

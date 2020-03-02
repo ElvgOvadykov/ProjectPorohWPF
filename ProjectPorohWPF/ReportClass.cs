@@ -500,7 +500,7 @@ namespace ProjectPorohWPF
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
-            pdfRenderer.PdfDocument.Save(path + LOADPARAMS.CalculationName+"_" +LOADPARAMS.Date.ToString("dd_MM_yyyy")+".pdf");//сохраняем
+            pdfRenderer.PdfDocument.Save(path);//сохраняем
         }
 
         public void DeleteTempFile()
