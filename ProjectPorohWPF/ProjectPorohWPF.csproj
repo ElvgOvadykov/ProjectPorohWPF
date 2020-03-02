@@ -98,6 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DecimalConverter.cs" />
     <Compile Include="ReportClass.cs" />
     <Page Include="Pages\AllChargesPage.xaml">
       <SubType>Designer</SubType>

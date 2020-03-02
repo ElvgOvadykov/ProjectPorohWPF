@@ -6,6 +6,9 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:DecimalConverter x:Key="decimalconverter"/>
+    </UserControl.Resources>
     <Grid Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,10 +18,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=ID}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Header="Сила пороха, Дж/кг" Binding="{Binding Path=Power}"/>
-                <DataGridTextColumn Header="Расчетная температура, К" Binding="{Binding Path=Temper}"/>
-                <DataGridTextColumn Header="Удельная газопроизводительность, л/кг" Binding="{Binding Path=UdGaz}"/>
-                <DataGridTextColumn Header="Плотность, г/см3" Binding="{Binding Path=Dens}"/>
+                <DataGridTextColumn Header="Сила пороха, Дж/кг" Binding="{Binding Path=Power, Converter={StaticResource decimalconverter}}"/>
+                <DataGridTextColumn Header="Расчетная температура, К" Binding="{Binding Path=Temper, Converter={StaticResource decimalconverter}}"/>
+                <DataGridTextColumn Header="Удельная газопроизводительность, л/кг" Binding="{Binding Path=UdGaz, Converter={StaticResource decimalconverter}}"/>
+                <DataGridTextColumn Header="Плотность, г/см3" Binding="{Binding Path=Dens, Converter={StaticResource decimalconverter}}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="UpdatePorohs" Content="Сохранить измениния" Grid.Row="1" Width="130" Height="30" HorizontalAlignment="Right" Margin="0 0 20 0" Click="UpdatePorohs_Click"></Button>

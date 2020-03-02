@@ -28,6 +28,7 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         //double TimeInterval;
         CLOADPARAMS BaseCalcParam = new CLOADPARAMS();
         CBase BaseRasch = new CBase();
@@ -596,7 +597,7 @@ namespace ProjectPorohWPF
             if (t2 > BaseCalcParam.TimeInterval)
             {
                 t2 = BaseCalcParam.TimeInterval;
-                BarrelPressureDistribution.TimeAfterExposure.Text = Func.RoundS(t2, 2);
+                BarrelPressureDistribution.TimeAfterExposure.Text = t2.ToString("F");
             }
 
             BaseRasch.SetdHFromGenToMan(t1);
@@ -971,47 +972,51 @@ namespace ProjectPorohWPF
             foreach (var item in P)
                 PMPa.Add(item * 0.1013273887931908);
             InsertDataToTable(ref CombustionPressure.data, T, PMPa, 2, "Время, сек", "P, МПа",ref imin, ref imax);
-            CombustionPressure.MaxPressure.Text = Func.RoundS(P.Max(x=>x) * 0.1013273887931908, 2) + " МПа";
-            CombustionPressure.MinPressure.Text = Func.RoundS(P.Min(x=>x) * 0.1013273887931908, 2) + " МПа";
+            CombustionPressure.MaxPressure.Text = PMPa.Max(x => x).ToString("F") + " МПа";
+            CombustionPressure.MinPressure.Text = PMPa.Min(x => x).ToString("F") + " МПа";
+            //CombustionPressure.MaxPressure.Text = Func.RoundS(PMPa.Max(x => x) * 0.1013273887931908, 2) + " МПа";
+            //CombustionPressure.MinPressure.Text = Func.RoundS(PMPa.Min(x => x) * 0.1013273887931908, 2) + " МПа";
             gd = BaseRasch.Hidrost;
-            CombustionPressure.HydrostaticPressure.Text = Func.RoundS(gd / 100000.0 * 0.1013273887931908, 2) + " МПа";
-            CombustionPressure.DepressionDepth.Text = Func.RoundS((gd / 100000.0 - P.Min(x=>x)) * 0.1013273887931908, 2) + " МПа";
+            CombustionPressure.HydrostaticPressure.Text = (gd / 100000.0 * 0.1013273887931908).ToString("F") + " МПа";
+            CombustionPressure.DepressionDepth.Text = ((gd / 100000.0 - PMPa.Min(x=>x)) * 0.1013273887931908).ToString("F") + " МПа";
+            //CombustionPressure.HydrostaticPressure.Text = Func.RoundS(gd / 100000.0 * 0.1013273887931908, 2) + " МПа";
+            //CombustionPressure.DepressionDepth.Text = Func.RoundS((gd / 100000.0 - PMPa.Min(x=>x)) * 0.1013273887931908, 2) + " МПа";
             gd = BaseRasch.gorn;
-            CombustionPressure.RockPressure.Text = Func.RoundS((gd / 100000.0) * 0.1013273887931908, 2) + " МПа";
+            CombustionPressure.RockPressure.Text = ((gd / 100000.0) * 0.1013273887931908).ToString("F") + " МПа";
             List<Tuple<string,string>> CombustionPressure_Parametrs = new List<Tuple<string, string>>();
-            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Максимальное давление, МПа", Func.RoundS(P.Max(x => x) * 0.1013273887931908, 2)));
-            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Минимальное давление, МПа", Func.RoundS(P.Min(x => x) * 0.1013273887931908, 2)));
-            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Гидростатическое давление, МПа", Func.RoundS(gd / 100000.0 * 0.1013273887931908, 2)));
-            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Расчетное горное давление, МПа", Func.RoundS((gd / 100000.0) * 0.1013273887931908, 2)));
-            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Глубина депрессионной воронки, МПа", Func.RoundS((gd / 100000.0 - P.Min(x => x)) * 0.1013273887931908, 2)));
+            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Максимальное давление, МПа", (P.Max(x => x) * 0.1013273887931908).ToString("F")));
+            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Минимальное давление, МПа", (P.Min(x => x) * 0.1013273887931908).ToString("F")));
+            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Гидростатическое давление, МПа", (gd / 100000.0 * 0.1013273887931908).ToString("F")));
+            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Расчетное горное давление, МПа", ((gd / 100000.0) * 0.1013273887931908).ToString("F")));
+            CombustionPressure_Parametrs.Add(new Tuple<string, string>("Глубина депрессионной воронки, МПа", ((gd / 100000.0 - P.Min(x => x)) * 0.1013273887931908).ToString("F")));
             report.SetCombustionPressureReady(CombustionPressure.Chart.Model, CombustionPressure_Parametrs);
 
             InsertDataToTable(ref TemperatureCombustion.data,T, Temper, 2, "Время, сек", "T, C", ref imin,ref imax);
-            TemperatureCombustion.MaxTemperature.Text = Func.RoundS(Temper.Max(x=>x), 2) + " C";
-            TemperatureCombustion.MinTemperature.Text = Func.RoundS(Temper.Min(x=>x), 2) + " C";
+            TemperatureCombustion.MaxTemperature.Text = Temper.Max(x=>x).ToString("F") + " C";
+            TemperatureCombustion.MinTemperature.Text = Temper.Min(x=>x).ToString("F") + " C";
             List<Tuple<string, string>> TemperatureCombustion__Parametrs = new List<Tuple<string, string>>();
-            TemperatureCombustion__Parametrs.Add(new Tuple<string, string>("Максимальное температура, С", Func.RoundS(Temper.Max(x => x), 2)));
-            TemperatureCombustion__Parametrs.Add(new Tuple<string, string>("Минимальная температура, С", Func.RoundS(Temper.Min(x => x), 2)));
+            TemperatureCombustion__Parametrs.Add(new Tuple<string, string>("Максимальное температура, С", Temper.Max(x => x).ToString("F")));
+            TemperatureCombustion__Parametrs.Add(new Tuple<string, string>("Минимальная температура, С", Temper.Min(x => x).ToString("F")));
             report.SetTemperatureCombustionReady(TemperatureCombustion.Chart.Model, TemperatureCombustion__Parametrs);
 
             InsertDataToTable(ref CrackLength.data,T, DlinTrech, 2, "Время, сек", "L, м", ref imin, ref imax);
-            CrackLength.MaxLength.Text = Func.RoundS(DlinTrech.Max(x=>x), 2) + " м";
+            CrackLength.MaxLength.Text = DlinTrech.Max(x=>x).ToString("F") + " м";
             //CrackLength.MinLength.Text = Func.RoundS(DlinTrech.Min(x=>x), 2) + " м";
-            report.SetCrackLengthReady(CrackLength.Chart.Model, new List<Tuple<string, string>>() { new Tuple<string, string>("Максимальная длина, м", Func.RoundS(DlinTrech.Max(x => x), 2)) });
+            report.SetCrackLengthReady(CrackLength.Chart.Model, new List<Tuple<string, string>>() { new Tuple<string, string>("Максимальная длина, м", DlinTrech.Max(x => x).ToString("F")) });
 
             InsertDataToTable(ref CrackWidth.data, T, ShirTrech, 2, "Время, сек", "W, мм", ref imin, ref imax);
-            CrackWidth.MaxWidth.Text = Func.RoundS(ShirTrech.Max(x=>x), 2) + " мм";
+            CrackWidth.MaxWidth.Text = ShirTrech.Max(x=>x).ToString("F") + " мм";
             //CrackWidth.MinWidth.Text = Func.RoundS(ShirTrech.Min(x=>x), 2) + " мм";
-            report.SetCrackWidthReady(CrackWidth.Chart.Model, new List<Tuple<string, string>>() { new Tuple<string, string>("Максимальная ширина, мм", Func.RoundS(ShirTrech.Max(x => x), 2)) });
+            report.SetCrackWidthReady(CrackWidth.Chart.Model, new List<Tuple<string, string>>() { new Tuple<string, string>("Максимальная ширина, мм", ShirTrech.Max(x => x).ToString("F")) });
 
             InsertDataToTable(ref GasAreaCoordinates.data,T,Coord1Gaz, 3, "Время, сек", "X1, м",ref imin,ref imax, Coord2Gaz, "X2, м");
-            GasAreaCoordinates.MinDepth.Text = Func.RoundS(Coord2Gaz.Min(x=>x), 2) + " м";
-            GasAreaCoordinates.MaxDepth.Text = Func.RoundS(Coord1Gaz.Max(x=>x), 2) + " м";
-            GasAreaCoordinates.MaxAmplitude.Text = Func.RoundS(Coord1Gaz.Max(x=>x) - Coord2Gaz.Min(x=>x), 2) + " м";
+            GasAreaCoordinates.MinDepth.Text = Coord2Gaz.Min(x=>x).ToString("F") + " м";
+            GasAreaCoordinates.MaxDepth.Text = Coord1Gaz.Max(x=>x).ToString("F") + " м";
+            GasAreaCoordinates.MaxAmplitude.Text = (Coord1Gaz.Max(x=>x) - Coord2Gaz.Min(x=>x)).ToString("F") + " м";
             List<Tuple<string, string>> GasAreaCoordinates__Parametrs = new List<Tuple<string, string>>();
-            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Максимальная глубина, м", Func.RoundS(Coord2Gaz.Max(x => x), 2)));
-            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Минимальная глубина, м", Func.RoundS(Coord2Gaz.Min(x => x), 2)));
-            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Максимальная амплитуда, м", Func.RoundS(Coord1Gaz.Max(x => x) - Coord2Gaz.Min(x => x), 2)));
+            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Максимальная глубина, м", Coord2Gaz.Max(x => x).ToString("F")));
+            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Минимальная глубина, м", Coord2Gaz.Min(x => x).ToString("F")));
+            GasAreaCoordinates__Parametrs.Add(new Tuple<string, string>("Максимальная амплитуда, м", (Coord1Gaz.Max(x => x) - Coord2Gaz.Min(x => x)).ToString("F")));
             report.SetGasAreaCoordinatesReady(GasAreaCoordinates.Chart.Model, GasAreaCoordinates__Parametrs);
 
             List<double> DavlMPa = new List<double>();
@@ -1019,21 +1024,21 @@ namespace ProjectPorohWPF
                 DavlMPa.Add(item * 0.1013273887931908);
 
             InsertDataToTable(ref BarrelPressureDistribution.data, WellData, DavlMPa, 2, "Глубина, м", "Давление, МПа", ref imin, ref imax);
-            BarrelPressureDistribution.MaxPressure.Text = Func.RoundS(Davl.Max(x=>x), 2) + " МПа";
-            BarrelPressureDistribution.MinPressure.Text = Func.RoundS(Davl.Min(x=>x), 2) + " МПа";
+            BarrelPressureDistribution.MaxPressure.Text = Davl.Max(x=>x).ToString("F") + " МПа";
+            BarrelPressureDistribution.MinPressure.Text = Davl.Min(x=>x).ToString("F") + " МПа";
             List<Tuple<string, string>> BarrelPressureDistribution__Parametrs = new List<Tuple<string, string>>();
-            BarrelPressureDistribution__Parametrs.Add(new Tuple<string, string>("Максимальное давление, МПа", Func.RoundS(Davl.Max(x => x), 2)));
-            BarrelPressureDistribution__Parametrs.Add(new Tuple<string, string>("Минимальное давление, МПа", Func.RoundS(Davl.Min(x => x), 2)));
+            BarrelPressureDistribution__Parametrs.Add(new Tuple<string, string>("Максимальное давление, МПа", Davl.Max(x => x).ToString("F")));
+            BarrelPressureDistribution__Parametrs.Add(new Tuple<string, string>("Минимальное давление, МПа", Davl.Min(x => x).ToString("F")));
             report.SetBarrelPressureDistributionReady(BarrelPressureDistribution.Chart.Model, BarrelPressureDistribution__Parametrs);
 
             InsertDataToTable(ref UpperFluidBoundary.data,T,Voda, 2, "Время, сек", "X, м", ref imin,ref imax);
-            UpperFluidBoundary.MaxValue.Text = Func.RoundS(Voda.Max(x=>x), 2) + " м";
-            UpperFluidBoundary.MinValue.Text = Func.RoundS(Voda.Min(x=>x), 2) + " м";
-            UpperFluidBoundary.Amplitude.Text = Func.RoundS(Voda.Max(x=>x) - Voda.Min(x=>x), 2) + " м";
+            UpperFluidBoundary.MaxValue.Text = Voda.Max(x=>x).ToString("F") + " м";
+            UpperFluidBoundary.MinValue.Text = Voda.Min(x=>x).ToString("F") + " м";
+            UpperFluidBoundary.Amplitude.Text = (Voda.Max(x=>x) - Voda.Min(x=>x)).ToString("F") + " м";
             List<Tuple<string, string>> UpperFluidBoundary__Parametrs = new List<Tuple<string, string>>();
-            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Максимальное значение, м", Func.RoundS(Voda.Max(x => x), 2)));
-            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Минимальное значение, м", Func.RoundS(Voda.Min(x => x), 2)));
-            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Амплитуда, м", Func.RoundS(Voda.Max(x => x) - Voda.Min(x => x), 2)));
+            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Максимальное значение, м", Voda.Max(x => x).ToString("F")));
+            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Минимальное значение, м", Voda.Min(x => x).ToString("F")));
+            UpperFluidBoundary__Parametrs.Add(new Tuple<string, string>("Амплитуда, м", (Voda.Max(x => x) - Voda.Min(x => x)).ToString("F")));
             report.SetUpperFluidBoundaryReady(UpperFluidBoundary.Chart.Model, UpperFluidBoundary__Parametrs);
         }
 

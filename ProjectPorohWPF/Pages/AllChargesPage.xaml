@@ -6,6 +6,9 @@
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:DecimalConverter x:Key="decimalconverter"/>
+    </UserControl.Resources>
     <Grid Background="WhiteSmoke" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,9 +18,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=ID}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Header="Диаметр наружный, мм" Binding="{Binding Path=Dnar}"/>
-                <DataGridTextColumn Header="Диаметр внутренний, мм" Binding="{Binding Path=Dvnutr}"/>
-                <DataGridTextColumn Header="Длина заряда, мм" Binding="{Binding Path=L}"/>
+                <DataGridTextColumn Header="Диаметр наружный, мм" Binding="{Binding Path=Dnar, Converter={StaticResource decimalconverter}}" />
+                <DataGridTextColumn Header="Диаметр внутренний, мм" Binding="{Binding Path=Dvnutr, Converter={StaticResource decimalconverter}}"/>
+                <DataGridTextColumn Header="Длина заряда, мм" Binding="{Binding Path=L, Converter={StaticResource decimalconverter}}"/>
                 <DataGridTemplateColumn Header="Тип порохового заряда">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
