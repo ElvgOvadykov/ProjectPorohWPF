@@ -191,7 +191,7 @@ namespace ProjectPorohWPF
             bool result = true;
             try
             {
-                Convert.ToDouble(DataPage.SlaughterCurrent.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.SlaughterCurrent.Text));
             }
             catch
             {
@@ -200,7 +200,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.CasingDiameter.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingDiameter.Text));
             }
             catch
             {
@@ -209,7 +209,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.CasingThickness.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingThickness.Text));
             }
             catch
             {
@@ -218,7 +218,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.FluidLevel.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidLevel.Text));
             }
             catch
             {
@@ -227,7 +227,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.FluidDensity.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidDensity.Text));
             }
             catch
             {
@@ -236,7 +236,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.PunchIntervalPower.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.PunchIntervalPower.Text));
             }
             catch
             {
@@ -245,7 +245,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.SolePerforationInterval.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.SolePerforationInterval.Text));
             }
             catch
             {
@@ -281,7 +281,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.GeneratorDepth.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.GeneratorDepth.Text));
             }
             catch
             {
@@ -290,7 +290,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.ReservoirPressure.Text); // давление в Мп
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirPressure.Text)); // давление в Мп
             }
             catch
             {
@@ -299,7 +299,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.ReservoirTemperature.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirTemperature.Text));
             }
             catch
             {
@@ -308,7 +308,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.YoungModulus.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.YoungModulus.Text));
             }
             catch
             {
@@ -317,7 +317,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(DataPage.PoissonRatio.Text);
+                Convert.ToDouble(Func.ConvertToFloat(DataPage.PoissonRatio.Text));
             }
             catch
             {
@@ -326,7 +326,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(ChargeSelection.SimulationDuration.Text);
+                Convert.ToDouble(Func.ConvertToFloat(ChargeSelection.SimulationDuration.Text));
             }
             catch
             {
@@ -335,7 +335,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(CombustionPressure.Distance.Text);
+                Convert.ToDouble(Func.ConvertToFloat(CombustionPressure.Distance.Text));
             }
             catch
             {
@@ -344,7 +344,7 @@ namespace ProjectPorohWPF
             }
             try
             {
-                Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text);
+                Convert.ToDouble(Func.ConvertToFloat(BarrelPressureDistribution.TimeAfterExposure.Text));
             }
             catch
             {
@@ -362,77 +362,77 @@ namespace ProjectPorohWPF
         private bool ControlNonNegativityParameters()
         {
             bool result = true;
-            if (Convert.ToDouble(DataPage.PunchIntervalPower.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.PunchIntervalPower.Text)) < 0)
             {
                 result = false;
                 DataPage.PunchIntervalPower.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.SlaughterCurrent.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.SlaughterCurrent.Text)) < 0)
             {
                 result = false;
                 DataPage.SlaughterCurrent.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.GeneratorDepth.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.GeneratorDepth.Text)) < 0)
             {
                 result = false;
                 DataPage.GeneratorDepth.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.PerforationDensity.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.PerforationDensity.Text)) < 0)
             {
                 result = false;
                 DataPage.PerforationDensity.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.SolePerforationInterval.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.SolePerforationInterval.Text)) < 0)
             {
                 result = false;
                 DataPage.SolePerforationInterval.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.CasingDiameter.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingDiameter.Text)) < 0)
             {
                 result = false;
                 DataPage.CasingDiameter.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.CasingThickness.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingThickness.Text)) < 0)
             {
                 result = false;
                 DataPage.CasingThickness.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.ReservoirPressure.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirPressure.Text)) < 0)
             {
                 result = false;
                 DataPage.ReservoirPressure.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.ReservoirTemperature.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirTemperature.Text)) < 0)
             {
                 result = false;
                 DataPage.ReservoirTemperature.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.YoungModulus.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.YoungModulus.Text)) < 0)
             {
                 result = false;
                 DataPage.YoungModulus.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.PoissonRatio.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.PoissonRatio.Text)) < 0)
             {
                 result = false;
                 DataPage.PoissonRatio.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.FluidLevel.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidLevel.Text)) < 0)
             {
                 result = false;
                 DataPage.FluidLevel.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if (Convert.ToDouble(DataPage.FluidDensity.Text) < 0)
+            if (Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidDensity.Text)) < 0)
             {
                 result = false;
                 DataPage.FluidDensity.BorderBrush = System.Windows.Media.Brushes.Red;
             }
-            if(Convert.ToDouble(CombustionPressure.Distance.Text) < 0)
+            if(Convert.ToDouble(Func.ConvertToFloat(CombustionPressure.Distance.Text)) < 0)
             {
                 result = false;
                 CombustionPressure.Distance.BorderBrush = Brushes.Red;
             }
-            if(Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text) < 0)
+            if(Convert.ToDouble(Func.ConvertToFloat(BarrelPressureDistribution.TimeAfterExposure.Text)) < 0)
             {
                 result = false;
                 BarrelPressureDistribution.TimeAfterExposure.BorderBrush = Brushes.Red;
@@ -510,24 +510,24 @@ namespace ProjectPorohWPF
 
                 BaseCalcParam.NameMestor = DataPage.FieldName.Text;
                 BaseCalcParam.NameWell = DataPage.WellNumber.Text;
-                BaseCalcParam.Zaboy = Convert.ToDouble(DataPage.SlaughterCurrent.Text);
-                BaseCalcParam.CasingDiameter = Convert.ToDouble(DataPage.CasingDiameter.Text);
-                BaseCalcParam.CasingThickness = Convert.ToDouble(DataPage.CasingThickness.Text);
+                BaseCalcParam.Zaboy = Convert.ToDouble(Func.ConvertToFloat(DataPage.SlaughterCurrent.Text));
+                BaseCalcParam.CasingDiameter = Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingDiameter.Text));
+                BaseCalcParam.CasingThickness = Convert.ToDouble(Func.ConvertToFloat(DataPage.CasingThickness.Text));
                 //BaseCalcParam.Dvn = Convert.ToDouble(DataPage.CasingDiameter.Text)
                 //    - (Convert.ToDouble(DataPage.CasingThickness.Text) * 2);
-                BaseCalcParam.GlubVoda = Convert.ToDouble(DataPage.FluidLevel.Text);
-                BaseCalcParam.DensVoda = Convert.ToDouble(DataPage.FluidDensity.Text);
-                BaseCalcParam.HPerf = Convert.ToDouble(DataPage.PunchIntervalPower.Text);
-                BaseCalcParam.PodIntPerf = Convert.ToDouble(DataPage.SolePerforationInterval.Text);
+                BaseCalcParam.GlubVoda = Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidLevel.Text));
+                BaseCalcParam.DensVoda = Convert.ToDouble(Func.ConvertToFloat(DataPage.FluidDensity.Text));
+                BaseCalcParam.HPerf = Convert.ToDouble(Func.ConvertToFloat(DataPage.PunchIntervalPower.Text));
+                BaseCalcParam.PodIntPerf = Convert.ToDouble(Func.ConvertToFloat(DataPage.SolePerforationInterval.Text));
 
                 BaseCalcParam.DensPerf = Convert.ToInt32(DataPage.PerforationDensity.Text);
                 BaseCalcParam.CountOsnZarad = Convert.ToInt32(ChargeSelection.ActiveCount.Text);
                 BaseCalcParam.CountVospZarad = Convert.ToInt32(ChargeSelection.MainCount.Text);
-                BaseCalcParam.GlubGen = Convert.ToDouble(DataPage.GeneratorDepth.Text);
-                BaseCalcParam.Pplast = Convert.ToDouble(DataPage.ReservoirPressure.Text); // давление в Мп
-                BaseCalcParam.Tplast = Convert.ToDouble(DataPage.ReservoirTemperature.Text);
-                BaseCalcParam.ModUnga = Convert.ToDouble(DataPage.YoungModulus.Text);
-                BaseCalcParam.KPuass = Convert.ToDouble(DataPage.PoissonRatio.Text);
+                BaseCalcParam.GlubGen = Convert.ToDouble(Func.ConvertToFloat(DataPage.GeneratorDepth.Text));
+                BaseCalcParam.Pplast = Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirPressure.Text)); // давление в Мп
+                BaseCalcParam.Tplast = Convert.ToDouble(Func.ConvertToFloat(DataPage.ReservoirTemperature.Text));
+                BaseCalcParam.ModUnga = Convert.ToDouble(Func.ConvertToFloat(DataPage.YoungModulus.Text));
+                BaseCalcParam.KPuass = Convert.ToDouble(Func.ConvertToFloat(DataPage.PoissonRatio.Text));
                 BaseCalcParam.TPvdolWell = 1.0;
                 BaseCalcParam.dHFromGenToMan = 1.0;
 
@@ -554,7 +554,7 @@ namespace ProjectPorohWPF
                 BaseCalcParam.vospZar = ChargeSelection.ActiveСharge.SelectedItem as CZarad;
                 BaseCalcParam.vospZar.Poroh = ChargeSelection.ActiveСhargeType.SelectedItem as CPoroh;
 
-                BaseCalcParam.TimeInterval = Convert.ToDouble(ChargeSelection.SimulationDuration.Text);
+                BaseCalcParam.TimeInterval = Convert.ToDouble(Func.ConvertToFloat(ChargeSelection.SimulationDuration.Text));
 
                 return true;
                 //N2->Enabled = true;
@@ -584,8 +584,8 @@ namespace ProjectPorohWPF
             double t1, t2;
             try
             {
-                t1 = Convert.ToDouble(CombustionPressure.Distance.Text);
-                t2 = Convert.ToDouble(BarrelPressureDistribution.TimeAfterExposure.Text);
+                t1 = Convert.ToDouble(Func.ConvertToFloat(CombustionPressure.Distance.Text));
+                t2 = Convert.ToDouble(Func.ConvertToFloat(BarrelPressureDistribution.TimeAfterExposure.Text));
             }
             catch (Exception ex)
             {
