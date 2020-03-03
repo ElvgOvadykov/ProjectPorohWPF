@@ -152,13 +152,13 @@ namespace ProjectPorohWPF
             Shapka.AddColumn(Unit.FromCentimeter(18));
             Shapka.AddColumn(Unit.FromCentimeter(3.5));
             Shapka.AddRow();
-            Shapka.Rows[0].Cells[0].AddImage("icon.jpg");
+            Shapka.Rows[0].Cells[0].AddImage("iconintable.png");
             Paragraph programmName = Shapka.Rows[0].Cells[1].AddParagraph("Расчет параметров порохового воздействия");
             programmName.Format.Alignment = ParagraphAlignment.Center;
             programmName.Format.Font.Size = 11;
             Shapka.Rows[0].Cells[1].VerticalAlignment = MigraDoc.DocumentObjectModel.Tables.VerticalAlignment.Center;
             programmName = Shapka.Rows[0].Cells[2].AddParagraph();
-            programmName.AddImage("icon.jpg");
+            programmName.AddImage("iconintable.png");
             programmName.Format.Alignment = ParagraphAlignment.Right;
             Shapka.AddRow();
             Paragraph paragraph = Shapka.Rows[1].Cells[0].AddParagraph();

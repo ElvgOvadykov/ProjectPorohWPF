@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProjectPorohWPF"
         xmlns:local1="clr-namespace:ProjectPorohWPF.Pages"
         mc:Ignorable="d"
-        Title="Расчет параметров порохового воздействия" Height="700" Width="1000">
+        Title="StimuLab" Height="700" Width="1200"
+        Icon="icon.ico">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>

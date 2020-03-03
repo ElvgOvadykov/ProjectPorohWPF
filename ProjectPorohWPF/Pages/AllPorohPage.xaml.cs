@@ -63,7 +63,7 @@ namespace ProjectPorohWPF
 
         public void UpdateGrid()
         {
-            PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs()); ;
+            PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs()); 
         }
     }
 }
