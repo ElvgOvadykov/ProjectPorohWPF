@@ -20,34 +20,49 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class AllChargesPage : UserControl
     {
-        List<CZarad> zarads;
         List<CPoroh> porohs;
 
         public AllChargesPage()
         {
-            zarads = new List<CZarad>(DataBaseController.GetZarads());
             porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
-            ChargesDataGrid.ItemsSource = zarads;
+            ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
 
         private void UpdateCharges_Click(object sender, RoutedEventArgs e)
         {
-            DataBaseController.UpdateAllCharges(zarads);
+            bool isOk = true;
+            foreach (var item in ChargesDataGrid.ItemsSource)
+            {
+                if ((item as CZarad).Name == "")
+                    isOk = false;
+                if ((item as CZarad).Dnar == 0)
+                    isOk = false;
+                if ((item as CZarad).Dvnutr == 0)
+                    isOk = false;
+                if ((item as CZarad).L == 0)
+                    isOk = false;
+                if ((item as CZarad).Poroh == null)
+                    isOk = false;
+            }
+            if (!isOk)
+            {
+                MessageBox.Show("Проверьте заполнение всех полей!");
+                return;
+            }
+            DataBaseController.UpdateAllCharges(new List<CZarad>(ChargesDataGrid.ItemsSource as List<CZarad>));
             ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
 
         private void DeleteCharge_Click(object sender, RoutedEventArgs e)
         {
-            zarads.Remove(ChargesDataGrid.SelectedItem as CZarad);
             DataBaseController.DeleteCharge(ChargesDataGrid.SelectedItem as CZarad);
             ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
 
         public void UpdateGrid()
-        {
-            zarads = new List<CZarad>(DataBaseController.GetZarads());
-            ChargesDataGrid.ItemsSource = zarads;
+        { 
+            ChargesDataGrid.ItemsSource = new List<CZarad>(DataBaseController.GetZarads());
         }
     }
 }

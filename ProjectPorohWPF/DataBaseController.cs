@@ -191,7 +191,7 @@ namespace ProjectPorohWPF
             foreach (var item in zarads)
             {
                 if (item.ID == 0)
-                {
+                { 
                     addedCharges = "insert into Zarads (Name, EDiameter, IDiameter, \"Length\", IDPowder) values (" +
                         $"\"{item.Name}\",{item.Dnar.ToString("G", CultureInfo.InvariantCulture)},{item.Dvnutr.ToString("G", CultureInfo.InvariantCulture)}, {item.L.ToString("G", CultureInfo.InvariantCulture)}, {item.Poroh.ID});";
                 }

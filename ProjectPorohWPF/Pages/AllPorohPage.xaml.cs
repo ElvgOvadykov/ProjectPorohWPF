@@ -20,32 +20,50 @@ namespace ProjectPorohWPF
     /// </summary>
     public partial class AllPorohPage : UserControl
     {
-        List<CPoroh> porohs;
 
         public AllPorohPage()
         {
-            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
             InitializeComponent();
-            PorohsDataGrid.ItemsSource = porohs;
+            PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs());
         }
 
         private void UpdatePorohs_Click(object sender, RoutedEventArgs e)
         {
+            bool isOk = true;
+            List<CPoroh> porohs = new List<CPoroh>();
+            foreach(var item in PorohsDataGrid.ItemsSource)
+            {
+                if ((item as CPoroh).Name == "")
+                    isOk = false;
+                if ((item as CPoroh).Power == 0)
+                    isOk = false;
+                if ((item as CPoroh).Temper == 0)
+                    isOk = false;
+                if ((item as CPoroh).UdGaz == 0)
+                    isOk = false;
+                if ((item as CPoroh).Dens == 0)
+                    isOk = false;
+                if (!isOk)
+                {
+                    MessageBox.Show("Проверьте запонение всех полей!");
+                    return;
+                }
+                porohs.Add(item as CPoroh);
+            }
             DataBaseController.UpdateAllPorohs(porohs);
             PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs());
         }
 
         private void DeletePoroh_Click(object sender, RoutedEventArgs e)
         {
-            porohs.Remove(PorohsDataGrid.SelectedItem as CPoroh);
+ 
             DataBaseController.DeletePoroh(PorohsDataGrid.SelectedItem as CPoroh);
             PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs());
         }
 
         public void UpdateGrid()
         {
-            porohs = new List<CPoroh>(DataBaseController.GetPorohs());
-            PorohsDataGrid.ItemsSource = porohs;
+            PorohsDataGrid.ItemsSource = new List<CPoroh>(DataBaseController.GetPorohs()); ;
         }
     }
 }
