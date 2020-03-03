@@ -664,19 +664,19 @@ namespace ProjectPorohWPF
             List<double> PMPa = new List<double>();
             foreach (var item in P)
                 PMPa.Add(item * 0.1013273887931908);
-            InsertDataToChart(CombustionPressure.Chart, "Давление в зоне горения", "Время, сек", "Давление, МПа", T, PMPa);
-            InsertDataToChart(TemperatureCombustion.Chart, "Температура в зоне горения", "Время, сек", "Температура, С", T, Temper);
-            InsertDataToChart(CrackWidth.Chart, "Ширина трещины", "Время, сек", "Ширина, мм", T, ShirTrech);
+            InsertDataToChart(CombustionPressure.Chart, "Давление в зоне горения", "Время, сек", "Давление, МПа", false, T, PMPa);
+            InsertDataToChart(TemperatureCombustion.Chart, "Температура в зоне горения", "Время, сек", "Температура, С", false, T, Temper);
+            InsertDataToChart(CrackWidth.Chart, "Ширина трещины", "Время, сек", "Ширина, мм", false, T, ShirTrech);
             List<double> DavlMPa = new List<double>();
             foreach (var item in Davl)
                 DavlMPa.Add(item * 0.1013273887931908);
-            InsertDataToChart(BarrelPressureDistribution.Chart, "Распределение давления по стволу","Глубина, м", "Давление, МПа",  WellData, DavlMPa);
-            InsertDataToChart(CrackLength.Chart, "Длина трещины","Время, сек", "Длина, м",  T, DlinTrech);
-            InsertDataToChart(GasAreaCoordinates.Chart, "Координаты газовой области", "Время, сек", "Глубина, м", T, Coord1Gaz, Coord2Gaz);
-            InsertDataToChart(UpperFluidBoundary.Chart, "Верхняя граница жидкости", "Время, сек", "Глубина, м", T, Voda);
+            InsertDataToChart(BarrelPressureDistribution.Chart, "Распределение давления по стволу","Глубина, м", "Давление, МПа", false,  WellData, DavlMPa);
+            InsertDataToChart(CrackLength.Chart, "Длина трещины","Время, сек", "Длина, м", false,  T, DlinTrech);
+            InsertDataToChart(GasAreaCoordinates.Chart, "Координаты газовой области", "Время, сек", "Глубина, м",true ,  T, Coord1Gaz, Coord2Gaz);
+            InsertDataToChart(UpperFluidBoundary.Chart, "Верхняя граница жидкости", "Время, сек", "Глубина, м", true, T, Voda);
         }
 
-        private void InsertDataToChart(PlotView plot, string chartTitle, string xTitle, string yTitle, List<double> data, List<double> data1, List<double> data2 = null)
+        private void InsertDataToChart(PlotView plot, string chartTitle, string xTitle, string yTitle, bool IsYAxisReverse, List<double> data, List<double> data1, List<double> data2 = null)
         {
             double x;
             double y;
@@ -718,20 +718,25 @@ namespace ProjectPorohWPF
             ClearChart(plot);
 
             model.Title = chartTitle;
-            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+            OxyPlot.Axes.LinearAxis yAxis = new OxyPlot.Axes.LinearAxis();
+            yAxis.Position = AxisPosition.Left;
+            yAxis.Title = yTitle;
+            yAxis.MajorGridlineColor = OxyColor.FromArgb(100, 0, 0, 0);
+            yAxis.MajorGridlineStyle = LineStyle.Automatic;
+            if (IsYAxisReverse)
             {
-                Position = AxisPosition.Left,
-                Title = yTitle,
-                MajorGridlineColor = OxyColor.FromArgb(100, 0, 0, 0),
-                MajorGridlineStyle = LineStyle.Automatic
-            });
-            model.Axes.Add(new OxyPlot.Axes.LinearAxis
+                yAxis.StartPosition = 1;
+                yAxis.EndPosition = 0;
+            }
+            model.Axes.Add(yAxis);
+            OxyPlot.Axes.LinearAxis xAxis = new OxyPlot.Axes.LinearAxis
             {
                 Position = AxisPosition.Bottom,
                 Title = xTitle,
                 MajorGridlineColor = OxyColor.FromArgb(100, 0, 0, 0),
                 MajorGridlineStyle = LineStyle.Automatic,
-            }) ;
+            };
+            model.Axes.Add(xAxis);
 
             plot.Model = model;
         }
