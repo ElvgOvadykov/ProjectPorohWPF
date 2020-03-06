@@ -1115,5 +1115,10 @@ namespace ProjectPorohWPF
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Print_Report_Click(object sender, RoutedEventArgs e)
+        {
+            report.PrintPDF("");
+        }
     }
 }

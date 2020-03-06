@@ -9,6 +9,8 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using OxyPlot;
 using OxyPlot.Wpf;
+using System.Drawing.Printing;
+using System.Diagnostics;
 
 namespace ProjectPorohWPF
 {
@@ -50,10 +52,10 @@ namespace ProjectPorohWPF
 
         private bool IsReady()
         {
-            if (isLoadParamsReady 
-                && isCombustionPressureReady 
-                && isTemperatureCombustionReady 
-                && isCrackLengthReady 
+            if (isLoadParamsReady
+                && isCombustionPressureReady
+                && isTemperatureCombustionReady
+                && isCrackLengthReady
                 && isCrackWidthReady
                 && isBarrelPressureDistributionReady
                 && isGasAreaCoordinatesReady
@@ -130,7 +132,7 @@ namespace ProjectPorohWPF
                 SetChartPage(GasAreaCoordinates_Model, GasAreaCoordinates_Parametrs);
                 SetChartPage(UpperFluidBoundary_Model, UpperFluidBoundary_Parametrs);
                 RenderPdf(path);
-                DeleteTempFile();
+                DeleteTempImageFiles();
             }
             else
                 throw new Exception("Выполните расчет!");
@@ -503,12 +505,26 @@ namespace ProjectPorohWPF
             pdfRenderer.PdfDocument.Save(path);//сохраняем
         }
 
-        public void DeleteTempFile()
+        public void DeleteTempImageFiles()
         {
-            foreach(var item in TempFile)
+            foreach (var item in TempFile)
             {
                 System.IO.File.Delete(item);
             }
+        }
+
+        public void PrintPDF(string paperinfo)
+        {
+            string path = "test.pdf";
+
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo()
+            {
+                CreateNoWindow = true,
+                Verb = "print",
+                FileName = path //put the correct path here
+            };
+            p.Start();
         }
     }
 }

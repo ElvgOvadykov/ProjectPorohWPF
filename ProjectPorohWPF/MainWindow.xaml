@@ -24,7 +24,7 @@
             </MenuItem>
             <MenuItem Header="Отчет">
                 <MenuItem Header="Сохранить отчет" Click="Report_Click"></MenuItem>
-                <MenuItem Header="Печать"></MenuItem>
+                <MenuItem Header="Печать" Click="Print_Report_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <TreeView x:Name="TreeViewMain" Grid.Row="2" Grid.RowSpan="15">
