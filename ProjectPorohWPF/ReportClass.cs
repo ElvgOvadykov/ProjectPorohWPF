@@ -11,6 +11,7 @@ using OxyPlot;
 using OxyPlot.Wpf;
 using System.Drawing.Printing;
 using System.Diagnostics;
+using System.IO;
 
 namespace ProjectPorohWPF
 {
@@ -513,18 +514,36 @@ namespace ProjectPorohWPF
             }
         }
 
-        public void PrintPDF(string paperinfo)
-        {
-            string path = "test.pdf";
 
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo()
+
+        public void PrintPDF(string path)
+        {
+            CreateReport(path);
+            string fullpath = Path.Combine(Directory.GetCurrentDirectory(), path);
+            //ProcessStartInfo procInfo = new ProcessStartInfo();
+            //procInfo.FileName = "FoxitReader.exe";
+            //procInfo.Arguments = "/p ";
+            //procInfo.Arguments += fullpath;
+            //Process.Start(procInfo);
+            Process iStartProcess = new Process(); // новый процесс
+            iStartProcess.StartInfo.FileName = "FoxitReader.exe"; // путь к запускаемому файлу
+            iStartProcess.StartInfo.Arguments = "/p "; // эта строка указывается, если программа запускается с параметрами (здесь указан пример, для наглядности)
+            iStartProcess.StartInfo.Arguments += fullpath;
+            iStartProcess.Start(); // запускаем программу
+            iStartProcess.EnableRaisingEvents = true;
+            while (true)
             {
-                CreateNoWindow = true,
-                Verb = "print",
-                FileName = path //put the correct path here
-            };
-            p.Start();
+                if (iStartProcess.HasExited)
+                {
+                    DeleteTempFile(path);
+                    break;
+                }
+            }
+        }
+
+        public void DeleteTempFile(string filename)
+        {
+            System.IO.File.Delete(filename);
         }
     }
 }
