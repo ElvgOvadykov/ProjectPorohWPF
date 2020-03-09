@@ -12,6 +12,7 @@ using OxyPlot.Wpf;
 using System.Drawing.Printing;
 using System.Diagnostics;
 using System.IO;
+using System.Windows;
 
 namespace ProjectPorohWPF
 {
@@ -516,19 +517,17 @@ namespace ProjectPorohWPF
 
 
 
-        public void PrintPDF(string path)
+        public void PrintPDF(string path, string printerName)
         {
             CreateReport(path);
             string fullpath = Path.Combine(Directory.GetCurrentDirectory(), path);
-            //ProcessStartInfo procInfo = new ProcessStartInfo();
-            //procInfo.FileName = "FoxitReader.exe";
-            //procInfo.Arguments = "/p ";
-            //procInfo.Arguments += fullpath;
-            //Process.Start(procInfo);
             Process iStartProcess = new Process(); // новый процесс
             iStartProcess.StartInfo.FileName = "FoxitReader.exe"; // путь к запускаемому файлу
-            iStartProcess.StartInfo.Arguments = "/p "; // эта строка указывается, если программа запускается с параметрами (здесь указан пример, для наглядности)
+            iStartProcess.StartInfo.Arguments = "/t ";
             iStartProcess.StartInfo.Arguments += fullpath;
+            iStartProcess.StartInfo.Arguments += " \"";
+            iStartProcess.StartInfo.Arguments += printerName;
+            iStartProcess.StartInfo.Arguments += "\"";
             iStartProcess.Start(); // запускаем программу
             iStartProcess.EnableRaisingEvents = true;
             while (true)

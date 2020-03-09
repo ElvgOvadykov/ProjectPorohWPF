@@ -1118,14 +1118,10 @@ namespace ProjectPorohWPF
 
         private void Print_Report_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                report.PrintPDF("temperfile.pdf");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            PrintWindow printWindow = new PrintWindow();
+            printWindow.report = this.report;
+            printWindow.Owner = this;
+            printWindow.Show();
         }
     }
 }

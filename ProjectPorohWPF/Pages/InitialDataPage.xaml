@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectPorohWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="MainGrid" Background="WhiteSmoke" Margin="10">
+      d:DesignHeight="450" d:DesignWidth="800" MinHeight="450" MinWidth="800" Background="WhiteSmoke">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke" Margin="0,0,10,10" MaxHeight="450" MaxWidth="800" Height="430" VerticalAlignment="Top" HorizontalAlignment="Left" Width="780" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -32,69 +32,69 @@
         </Grid.ColumnDefinitions>
         <Label Content="Общая информация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Дата расчета" Grid.Row="1"/>
-        <DatePicker x:Name="CalculationDate" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch"/>
+        <DatePicker x:Name="CalculationDate" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Stretch" MaxHeight="30"/>
         <Label Content="Название расчета" Grid.Row="2"/>
-        <TextBox x:Name="CalculationName" Grid.Row="2" Grid.Column="1"/>
+        <TextBox x:Name="CalculationName" Grid.Row="2" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Компания" Grid.Row="3"/>
-        <TextBox x:Name="CompanyName" Grid.Row="3" Grid.Column="1" />
+        <TextBox x:Name="CompanyName" Grid.Row="3" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Исполнитель расчета" Grid.Row="4"/>
-        <TextBox x:Name="CalculationExecutor" Grid.Row="4" Grid.Column="1" />
+        <TextBox x:Name="CalculationExecutor" Grid.Row="4" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Выполнен для" Grid.Row="5"/>
-        <TextBox x:Name="MadeFor" Grid.Row="5" Grid.Column="1"/>
+        <TextBox x:Name="MadeFor" Grid.Row="5" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Обсадная колонна" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Диаметр обсадной колонны, мм" Grid.Row="1" Grid.Column="2"/>
-        <TextBox x:Name="CasingDiameter" Grid.Row="1" Grid.Column="3"/>
+        <TextBox x:Name="CasingDiameter" Grid.Row="1" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Толщина обсадной колонны, мм" Grid.Row="2" Grid.Column="2"/>
-        <TextBox x:Name="CasingThickness" Grid.Row="2" Grid.Column="3"/>
+        <TextBox x:Name="CasingThickness" Grid.Row="2" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Данные по скважине" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Месторождение" Grid.Row="7" Grid.Column="0"/>
-        <TextBox x:Name="FieldName" Grid.Row="7" Grid.Column="1"/>
+        <TextBox x:Name="FieldName" Grid.Row="7" Grid.Column="1" MaxHeight="30"/>
         <Label Content="№ куста" Grid.Row="8" Grid.Column="0"/>
-        <TextBox x:Name="BushNumber" Grid.Row="8" Grid.Column="1"/>
+        <TextBox x:Name="BushNumber" Grid.Row="8" Grid.Column="1" MaxHeight="30"/>
         <Label Content="№ скважины" Grid.Row="9" Grid.Column="0"/>
-        <TextBox x:Name="WellNumber" Grid.Row="9" Grid.Column="1"/>
+        <TextBox x:Name="WellNumber" Grid.Row="9" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Забой текущий, м" Grid.Row="10" Grid.Column="0"/>
-        <TextBox x:Name="SlaughterCurrent" Grid.Row="10" Grid.Column="1"/>
+        <TextBox x:Name="SlaughterCurrent" Grid.Row="10" Grid.Column="1" MaxHeight="30"/>
         <TextBlock Grid.Row="11" Grid.Column="0" VerticalAlignment="Center">
             Мощность интервала
             <LineBreak />
             перфорации, м
         </TextBlock>
-        <TextBox x:Name="PunchIntervalPower" Grid.Row="11" Grid.Column="1"/>
+        <TextBox x:Name="PunchIntervalPower" Grid.Row="11" Grid.Column="1" MaxHeight="30"/>
         <TextBlock Grid.Row="12" Grid.Column="0" VerticalAlignment="Center">
             Подошва интервала
             <LineBreak />
             перфорации, м
         </TextBlock>
-        <TextBox x:Name="SolePerforationInterval" Grid.Row="12" Grid.Column="1"/>
+        <TextBox x:Name="SolePerforationInterval" Grid.Row="12" Grid.Column="1" MaxHeight="30"/>
         <TextBlock Grid.Row="13" Grid.Column="0" VerticalAlignment="Center">
             Глубина установки
             <LineBreak />
             генератора, м
         </TextBlock>
-        <TextBox x:Name="GeneratorDepth" Grid.Row="13" Grid.Column="1"/>
+        <TextBox x:Name="GeneratorDepth" Grid.Row="13" Grid.Column="1" MaxHeight="30"/>
         <TextBlock Grid.Row="14" Grid.Column="0" VerticalAlignment="Center">
             Плотность перфорации отв/м
         </TextBlock>
-        <TextBox x:Name="PerforationDensity" Grid.Row="14" Grid.Column="1"/>
+        <TextBox x:Name="PerforationDensity" Grid.Row="14" Grid.Column="1" MaxHeight="30"/>
         <Label Content="Порода и пласт" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Пластовое давление , МПа" Grid.Row="4" Grid.Column="2"/>
-        <TextBox x:Name="ReservoirPressure" Grid.Row="4" Grid.Column="3"/>
+        <TextBox x:Name="ReservoirPressure" Grid.Row="4" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Температура пласта, С" Grid.Row="5" Grid.Column="2"/>
-        <TextBox x:Name="ReservoirTemperature" Grid.Row="5" Grid.Column="3"/>
+        <TextBox x:Name="ReservoirTemperature" Grid.Row="5" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Модуль Юнга породы, МПа" Grid.Row="6" Grid.Column="2"/>
-        <TextBox x:Name="YoungModulus" Grid.Row="6" Grid.Column="3"/>
+        <TextBox x:Name="YoungModulus" Grid.Row="6" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Коэффициент Пуассона породы" Grid.Row="7" Grid.Column="2"/>
-        <TextBox x:Name="PoissonRatio" Grid.Row="7" Grid.Column="3"/>
+        <TextBox x:Name="PoissonRatio" Grid.Row="7" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Флюид" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
         <Label Content="Тип флюида в скважине" Grid.Row="9" Grid.Column="2"/>
-        <ComboBox x:Name="TypeFluid" Grid.Row="9" Grid.Column="3" IsEditable="True" VerticalContentAlignment="Center">
+        <ComboBox x:Name="TypeFluid" Grid.Row="9" Grid.Column="3" IsEditable="True" VerticalContentAlignment="Center" MaxHeight="30">
             <TextBlock>Нефть</TextBlock>
             <TextBlock>Техническая вода</TextBlock>
         </ComboBox>
         <Label Content="Уровень флюида в скважине" Grid.Row="10" Grid.Column="2"/>
-        <TextBox x:Name="FluidLevel" Grid.Row="10" Grid.Column="3"/>
+        <TextBox x:Name="FluidLevel" Grid.Row="10" Grid.Column="3" MaxHeight="30"/>
         <Label Content="Плотность флюида, г/см3" Grid.Row="11" Grid.Column="2"/>
-        <TextBox x:Name="FluidDensity" Grid.Row="11" Grid.Column="3"/>
+        <TextBox x:Name="FluidDensity" Grid.Row="11" Grid.Column="3" MaxHeight="30"/>
     </Grid>
 </UserControl>
